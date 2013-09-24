@@ -3,7 +3,7 @@ App = Ember.Application.create();
 
 App.CUSTOMAdapter = DS.RESTAdapter.extend({
   bulkCommit: false, 
-  url: "http://veenda01.herokuapp.com",    
+  url: "localhost:3000",    
   buildURL: function(record, suffix) {
     var s = this._super(record, suffix);
     return s + ".json";
@@ -32,7 +32,10 @@ App.IndexRoute = Ember.Route.extend({
 App.LoginController = Ember.Controller.extend({
   insert: function(event) {
         var order = App.Order.find(this.get('codigo'));
-        this.transitionTo('order', order);
+        console.log(this.get('codigo'))
+        console.log(order.product)
+
+        this.transitionToRoute('order', order);
   }
 });
 
@@ -43,11 +46,11 @@ App.OrderRoute = Ember.Route.extend({
   }
 });
 
-
 App.Order = DS.Model.extend({
   product: DS.attr('string'),
   turn: DS.attr('number')
 });
+
 
 /*App.Order.FIXTURES = [{ // App.Order.FIXTURES = [{...}] Debe ser comentado si se activa la función REST de arriba
     id:1,
