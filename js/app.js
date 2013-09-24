@@ -2,11 +2,15 @@ App = Ember.Application.create();
 
 App.Store = DS.Store.extend({
   revision:12,
-  adapter: 'DS.FixtureAdapter'
+  adapter: 'DS.FixtureAdapter' // Se debe comentar esta linea y descomentar el texto de abajo!
+  /* adapter: DS.RESTAdapter.extend({
+    url: 'http://otipap.hol.es/veenda_client/'
+  }) */ 
+  
 });
 
 App.Router.map(function() {
-  this.resource('pedido', { path: '/:pedido_id' });
+  this.resource('pedido', { path: 'pedido/:pedido_id'});
   this.resource('login');
 });
 
@@ -16,35 +20,32 @@ App.IndexRoute = Ember.Route.extend({
   }
 });
 
-// ACÁ ESTÁ EL PROBLEMA!!!!!!
-// La idea es que reciba el codigo del pedido desede el input y abra la ruta "pedido" asociada al id del pedido
-// El problema es que se cae al intentar pasar a la ruta pedido
 App.LoginController = Ember.Controller.extend({
   insert: function(event) {
-        var codigo = this.get('codigo');
-        var accountObj = App.Pedido.find(1);
-        App.get('router').transitionTo('pedido');
+        var pedido = App.Pedido.find(this.get('codigo'));
+        this.transitionTo('pedido', pedido);
+  }
+});
+
+App.PedidoRoute = Ember.Route.extend({
+  model: function(params) {
+    console.log(2);
+    return App.Pedido.find(params.pedido_id);
   }
 });
 
 App.Pedido = DS.Model.extend({
-  title: DS.attr('string'),
-  author: DS.attr('string'),
-  intro: DS.attr('string'),
-  publishedAt: DS.attr('date')
+  name: DS.attr('string'),
+  rest: DS.attr('string')
 });
 
-App.Pedido.FIXTURES = [{
+App.Pedido.FIXTURES = [{ // App.Pedido.FIXTURES = [{...}] Debe ser comentado si se activa la función REST de arriba
     id:1,
-    title: "Mejoras de usabilidad en el ecommerce. Panama Jack",
-    author: "elad",
-    publishedAt: new Date('4-8-2013'),
-    fullText: "..."
+    name: "Pedido Anx3",
+    rest:4
 },
 {
     id:2,
-    title: "Introducción al framework Ember.js",
-    author: "danii",
-    publishedAt: new Date('4-3-2013'),
-    fullText: "..."
+    name: "Pedio Ztk1",
+    rest:2
 }];
