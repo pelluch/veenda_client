@@ -1,25 +1,21 @@
 App = Ember.Application.create();
 
-
-App.CUSTOMAdapter = DS.RESTAdapter.extend({
-  bulkCommit: false, 
-  url: "localhost:3000",    
-  buildURL: function(record, suffix) {
-    var s = this._super(record, suffix);
-    return s + ".json";
-  }
-})
-
-
 App.Store = DS.Store.extend({
   revision:12,
   //adapter: 'DS.FixtureAdapter' // Se debe comentar esta linea y descomentar el texto de abajo!
-   adapter: App.CUSTOMAdapter
+   adapter: DS.RESTAdapter.extend({
+    bulkCommit: false, 
+    url: "http://veenda01.herokuapp.com",    
+    buildURL: function(record, suffix) {
+        var s = this._super(record, suffix);
+        return s + ".json";
+    }
   
+})
 });
 
 App.Router.map(function() {
-  this.resource('order', { path: 'orders/:order_id'});
+  this.resource('order', { path: 'order/:order_id'});
   this.resource('login');
 });
 
@@ -32,10 +28,7 @@ App.IndexRoute = Ember.Route.extend({
 App.LoginController = Ember.Controller.extend({
   insert: function(event) {
         var order = App.Order.find(this.get('codigo'));
-        console.log(this.get('codigo'))
-        console.log(order.product)
-
-        this.transitionToRoute('order', order);
+        this.transitionTo('order', order);
   }
 });
 
@@ -51,14 +44,13 @@ App.Order = DS.Model.extend({
   turn: DS.attr('number')
 });
 
-
-/*App.Order.FIXTURES = [{ // App.Order.FIXTURES = [{...}] Debe ser comentado si se activa la función REST de arriba
-    id:1,
-    name: "Order Anx3",
-    rest:4
-},
-{
-    id:2,
-    name: "Pedio Ztk1",
-    rest:2
-}];*/
+// App.Pedido.FIXTURES = [{ // App.Pedido.FIXTURES = [{...}] Debe ser comentado si se activa la función REST de arriba
+//     id:1,
+//     name: "Pedido Anx3",
+//     rest:4
+// },
+// {
+//     id:2,
+//     name: "Pedio Ztk1",
+//     rest:2
+// }];
