@@ -1,16 +1,25 @@
 App = Ember.Application.create();
 
+
+App.CUSTOMAdapter = DS.RESTAdapter.extend({
+  bulkCommit: false, 
+  url: "http://veenda01.herokuapp.com",    
+  buildURL: function(record, suffix) {
+    var s = this._super(record, suffix);
+    return s + ".json";
+  }
+})
+
+
 App.Store = DS.Store.extend({
   revision:12,
-  adapter: 'DS.FixtureAdapter' // Se debe comentar esta linea y descomentar el texto de abajo!
-  /* adapter: DS.RESTAdapter.extend({
-    url: 'http://otipap.hol.es/veenda_client/'
-  }) */ 
+  //adapter: 'DS.FixtureAdapter' // Se debe comentar esta linea y descomentar el texto de abajo!
+   adapter: App.CUSTOMAdapter
   
 });
 
 App.Router.map(function() {
-  this.resource('pedido', { path: 'pedido/:pedido_id'});
+  this.resource('order', { path: 'orders/:order_id'});
   this.resource('login');
 });
 
@@ -22,30 +31,31 @@ App.IndexRoute = Ember.Route.extend({
 
 App.LoginController = Ember.Controller.extend({
   insert: function(event) {
-        var pedido = App.Pedido.find(this.get('codigo'));
-        this.transitionTo('pedido', pedido);
+        var order = App.Order.find(this.get('codigo'));
+        this.transitionTo('order', order);
   }
 });
 
-App.PedidoRoute = Ember.Route.extend({
+App.OrderRoute = Ember.Route.extend({
   model: function(params) {
     console.log(2);
-    return App.Pedido.find(params.pedido_id);
+    return App.Order.find(params.order_id);
   }
 });
 
-App.Pedido = DS.Model.extend({
-  name: DS.attr('string'),
-  rest: DS.attr('string')
+
+App.Order = DS.Model.extend({
+  product: DS.attr('string'),
+  turn: DS.attr('number')
 });
 
-App.Pedido.FIXTURES = [{ // App.Pedido.FIXTURES = [{...}] Debe ser comentado si se activa la función REST de arriba
+/*App.Order.FIXTURES = [{ // App.Order.FIXTURES = [{...}] Debe ser comentado si se activa la función REST de arriba
     id:1,
-    name: "Pedido Anx3",
+    name: "Order Anx3",
     rest:4
 },
 {
     id:2,
     name: "Pedio Ztk1",
     rest:2
-}];
+}];*/
