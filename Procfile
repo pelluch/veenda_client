@@ -1,1 +1,1 @@
-web: bundle exec rakep server --port $PORT
+web: bundle exec rakep server
