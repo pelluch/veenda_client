@@ -2,14 +2,14 @@ App = Ember.Application.create();
 
 App.Store = DS.Store.extend({
   revision:12,
-  //adapter: 'DS.FixtureAdapter' // Se debe comentar esta linea y descomentar el texto de abajo!
-   adapter: DS.RESTAdapter.extend({
+  adapter: 'DS.FixtureAdapter' // Se debe comentar esta linea y descomentar el texto de abajo!
+   /*adapter: DS.RESTAdapter.extend({
     bulkCommit: false, 
     url: "http://veenda01.herokuapp.com",    
     buildURL: function(record, suffix) {
         var s = this._super(record, suffix);
         return s + ".json";
-    }
+    }*/
   
 })
 });
@@ -44,13 +44,13 @@ App.Order = DS.Model.extend({
   turn: DS.attr('number')
 });
 
-// App.Pedido.FIXTURES = [{ // App.Pedido.FIXTURES = [{...}] Debe ser comentado si se activa la función REST de arriba
-//     id:1,
-//     name: "Pedido Anx3",
-//     rest:4
-// },
-// {
-//     id:2,
-//     name: "Pedio Ztk1",
-//     rest:2
-// }];
+ App.Pedido.FIXTURES = [{ // App.Pedido.FIXTURES = [{...}] Debe ser comentado si se activa la función REST de arriba
+     id:1,
+     product: "Pedido Anx3",
+     turn:4
+ },
+ {
+     id:2,
+     product: "Pedio Ztk1",
+     turn:2
+}];
