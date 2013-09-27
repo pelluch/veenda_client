@@ -2,14 +2,15 @@
 <html>
   <head>
     <meta charset=utf-8>
-    <title>Veenda Client</title>
+  <title>Veenda Client</title>
+
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
 
-    <!-- titulo -->
+       <!-- titulo -->
     <script type="text/x-handlebars">
       <div class="navbar text-center">
         <img src="veenda_logo.png">
@@ -17,17 +18,22 @@
       {{outlet}} 
     </script>
 
-    <script type="text/x-handlebars" data-template-name="pedido">
+    <script type="text/x-handlebars" data-template-name="dispatched_order">
      <div class="container text-center">
-      <h2 class="text-error">{{product}}</h2>
-      <small>Faltan {{turn}} pedidos</small>
-    </div>
+      <h2 class="text-error">{{name}}</h2>
+      {{#if delivered}}
+            <small>Producto Entregado</small>
+      {{else}}
+            <small>Faltan {{ rest }} pedidos</small></br></br>
+          <button class="btn" {{ action "insert"}} >Despacho Recibido</button>
+      {{/if}}
+  </div>
     </script>
 
     <script type="text/x-handlebars" data-template-name="login">
      <div class="container text-center">
         <div class="input-append">
-          {{view Ember.TextField valueBinding="codigo" placeholder="Código pedido" }}
+          {{view Ember.TextField valueBinding="codigo" placeholder="código pedido" }}
           <button class="btn" {{ action "insert"}} >Ver</button>
         </div>
       </div>
@@ -36,10 +42,11 @@
     <script src="js/libs/jquery-1.10.2.js"></script>
     <script src="js/libs/handlebars-1.0.0.js"></script>
     <script src="js/libs/ember.js"></script>
-    <script src="js/libs/ember-data.js"></script>
+    <script src="js/libs/ember-data.js"></script>    
     <script src="js/libs/showdown.js"></script>
     <script src="js/libs/moment.js"></script>
     <script src="js/app.js"></script>
+     
 
   </body>
 </html>
