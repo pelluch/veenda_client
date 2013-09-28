@@ -9,26 +9,30 @@ App.DispatchedOrderAdapter = DS.RESTAdapter.extend({
 });
 
 App.Router.map(function() {
-  this.resource('dispatched_order', { path: '/dispatched_orders/:dispatched_order_id' });
+  this.resource('dispatched_orders', function() {
+    this.route('dispatched_order', {path: ':dispatched_order_id'});
+  });
+  //this.resource('dispatched_order', { path: '/dispatched_orders/:dispatched_order_id' });
   this.route('login', {path: '/'});
 });
-/*
-// Se omite el '#' del URL
-App.Router.reopen({
-  location: 'history'
-});*/
 
 App.LoginController = Ember.Controller.extend({
   actions: {
       insert: function(event) {
         var dispatched_order = this.get('store').find('dispatched_order', this.get('codigo'));
-        this.transitionToRoute('dispatched_order', dispatched_order);
+        this.transitionToRoute('dispatched_orders.dispatched_order', dispatched_order);
       }
   }
 });
 
+App.DispatchedOrdersIndexRoute = Ember.Controller.extend({
+    model: function() {
+      models = this.get('store').find('dispatched_order');
+      return models;
+    }
+});
 
-App.DispatchedOrderController = Ember.ObjectController.extend({
+App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
   init: function() {
 
     var self = this;
@@ -36,8 +40,8 @@ App.DispatchedOrderController = Ember.ObjectController.extend({
       self.refreshMyData()
     }, 5000);
   },
-  refreshMyData: function() {
-  this.transitionToRoute('dispatched_order');
+  refreshMyData: function(params) {
+   this.transitionToRoute('dispatched_orders.dispatched_order', this.get('dispatched_order_id'));
   }
   
 });
@@ -45,5 +49,10 @@ App.DispatchedOrderController = Ember.ObjectController.extend({
 App.DispatchedOrder = DS.Model.extend({
   name: DS.attr(),
   delivered: DS.attr(),
-  rest: DS.attr()
+  rest: DS.attr(),
+  dispatcher_latitude: DS.attr(),
+  dispatcher_longitude: DS.attr(),
+  destination_latitude: DS.attr(),
+  destination_longitude: DS.attr(),
+  dispatch_time: DS.attr()
 });

@@ -18,7 +18,7 @@
       {{outlet}} 
     </script>
 
-    <script type="text/x-handlebars" data-template-name="dispatched_order">
+    <script type="text/x-handlebars" data-template-name="dispatched_orders.dispatched_order">
      <div class="container text-center">
       <h2 class="text-error">{{name}}</h2>
       {{#if delivered}}
@@ -28,6 +28,7 @@
           <button class="btn" {{ action "insert"}} >Despacho Recibido</button>
       {{/if}}
   </div>
+    {{outlet}} 
     </script>
 
     <script type="text/x-handlebars" data-template-name="login">
@@ -37,6 +38,7 @@
           <button class="btn" {{ action "insert"}} >Ver</button>
         </div>
       </div>
+      {{outlet}} 
     </script>
 
     <script src="js/libs/jquery-1.10.2.js"></script>
