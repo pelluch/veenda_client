@@ -1,0 +1,11 @@
+Cosas por hacer:
+
+1. En el inicio, en vez de ingresar un código correspondiente a una orden, sería mucho mejor que desplegara una lista de las órdenes que tiene el cliente, ordenando quizá según la que se despachó hace más tiempo. Para esto, se necesitaría que tuvieran una fecha de envío (que ya tengo en la API, tendría que pasárselas no más). De parte de ustedes, se necesitaría:
+
+	- Agregar la ruta extra dispatched_orders para mostrar TODOS los pedidos del cliente (eso ya casi está, si se fijan está la ruta dispatched_orders/:dispatched_order_id, que es una "subruta")
+	- Yo mismo ya tengo la ruta dispatched_oders en la API, pero les debo generar el Json adecuado para que obtengan la lista compleda
+	- Al obtener la lista de pedidos, pueden actualizar ahí mismo el modelo que ya existe de DispatchedOrder y agregar todas las que encuentren
+
+2. Al seleccionar uno de los pedidos en la lista, ahí te mostraría el tema de las órdenes restantes y la descripción de ella. Basta con ir a la ruta que ya tenemos.
+
+3. Además de mostrar las órdenes restantes, nos pidieron que mostráramos la distancia actual a la que está el despacho del cliente, o sea un número que esté en metros o kilómetros.

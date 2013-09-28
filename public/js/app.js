@@ -12,11 +12,11 @@ App.Router.map(function() {
   this.resource('dispatched_order', { path: '/dispatched_orders/:dispatched_order_id' });
   this.route('login', {path: '/'});
 });
-
+/*
 // Se omite el '#' del URL
 App.Router.reopen({
   location: 'history'
-});
+});*/
 
 App.LoginController = Ember.Controller.extend({
   actions: {
