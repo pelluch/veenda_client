@@ -20,13 +20,21 @@
 
     <script type="text/x-handlebars" data-template-name="dispatched_orders.dispatched_order">
      <div class="container text-center">
-      <h2 class="text-error">{{name}}</h2>
-      {{#if delivered}}
+      <h2 class="text-error">{{this.name}}</h2>
+        {{#if delivered}}
             <small>Producto Entregado</small>
-      {{else}}
+        {{else}}
             <small>Faltan {{ rest }} pedidos</small></br></br>
-          <button class="btn" {{ action "insert"}} >Despacho Recibido</button>
-      {{/if}}
+        <button class="btn" {{ action "insert"}} >Despacho Recibido</button>
+        {{/if}}
+  </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="dispatched_order-notfound">
+     <div class="container text-center">
+      <h2 class="text-error">{{this.name}}</h2>
+          <small>Código de pedido inválido</small></br></br>
+          <button class="btn" {{ action "insert"}} >Volver</button>
   </div>
     {{outlet}} 
     </script>
