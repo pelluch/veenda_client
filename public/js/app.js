@@ -1,7 +1,14 @@
 App = Ember.Application.create({
   // Para efectos de debugging
-  LOG_TRANSITIONS: true
+  LOG_TRANSITIONS: true,
+  currentPath: '',
 });
+
+App.ApplicationController = Ember.Controller.extend({
+  updateCurrentPath: function() {
+    App.set('currentPath', this.get('currentPath'));
+  }.observes('currentPath')
+}),
 
 App.DispatchedOrderAdapter = DS.RESTAdapter.extend({
   host: 'http://veenda01.herokuapp.com',
@@ -34,14 +41,14 @@ App.DispatchedOrdersIndexRoute = Ember.Controller.extend({
 
 App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
   init: function() {
-
     var self = this;
     setInterval(function() {
       self.refreshMyData()
     }, 5000);
   },
   refreshMyData: function(params) {
-   this.transitionToRoute('dispatched_orders.dispatched_order', this.get('dispatched_order_id'));
+
+      this.transitionToRoute(App.get('currentPath'));
   },
   actions: {
       insert: function(event) {
@@ -49,6 +56,9 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
 	    this.set('delivered', true);
 		this.get('store').commit();
       }
+
+  
+
   }
   
 });
