@@ -42,6 +42,13 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
   },
   refreshMyData: function(params) {
    this.transitionToRoute('dispatched_orders.dispatched_order', this.get('dispatched_order_id'));
+  },
+  actions: {
+      insert: function(event) {
+        var order = this.get('store').find('dispatched_order');
+	    this.set('delivered', true);
+		this.get('store').commit();
+      }
   }
   
 });
