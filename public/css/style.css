@@ -3,9 +3,18 @@ html, body {
     margin: 20px;
     background-color: #2E2E2E;
     color:#fff;
+    height: 100%;
 }
 
 .active {
     color: black;
     font-weight: bold;
 }
+
+#map_canvas { 
+
+}
+#map_canvas label { width: auto; display:inline; }
+#map_canvas img { max-width: none; }
+.gm-style img { max-width: none; }
+.gm-style label { width: auto; display: inline; }
