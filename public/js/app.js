@@ -53,8 +53,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
   actions: {
       insert: function(event) {
         var order = this.get('store').find('dispatched_order');
-	    this.set('delivered', true);
-		this.get('store').commit();
+		 this.set('delivered', true);
       }
 
   
@@ -71,5 +70,6 @@ App.DispatchedOrder = DS.Model.extend({
   dispatcher_longitude: DS.attr(),
   destination_latitude: DS.attr(),
   destination_longitude: DS.attr(),
-  dispatch_time: DS.attr()
+  dispatch_time: DS.attr(),
+   post: DS.belongsTo('App.Post')
 });
