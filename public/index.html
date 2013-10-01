@@ -26,7 +26,6 @@
         {{#if delivered}}
             <small>Producto Entregado</small>
             </br>
-            </br>
             <button class="btn" {{ action "back"}} >Volver</button>
         {{else}}
             {{#view App.MapView }}<br/>
@@ -67,7 +66,7 @@
 	<script type="text/x-handlebars" data-template-name="ranking">
 		 <div class="container text-center">			
 				<h2>{{rating max="5"}}</h2>
-				<textarea placeholder="Añadir Comentario"></textarea><br></br>
+				<textarea placeholder="Añadir Comentario" class="comment-box"></textarea><br></br>
 				<button class="btn" {{ action "vote"}} >Rankear Despachador</button>
 				
  		 </div>

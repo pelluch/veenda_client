@@ -20,7 +20,7 @@ App.Router.map(function() {
     });
     //this.resource('dispatched_order', { path: '/dispatched_orders/:dispatched_order_id' });
     this.route('login', {path: '/'});
-	this.route('ranking');
+	  this.route('ranking', {path: '/rankings/:order'});
 });
 
 App.LoginController = Ember.Controller.extend({
@@ -38,8 +38,33 @@ App.RankingController = Ember.Controller.extend({
 			for (var i = 0; i < elements.length; i++) {
 				starvalue = elements[i].id; 
 			}
-		 alert(starvalue);
-        }
+      var box = document.getElementsByClassName("comment-box");
+      var comment = box[0].value;
+  
+     $.ajax({
+             
+             url: 'http://veenda01.herokuapp.com/ratings',
+             type: 'POST',
+             data: JSON.stringify({
+                  rating: {
+                    rating: starvalue,
+                    comment: comment
+                  }
+              }),
+             contentType: "application/json",
+             dataType: "text",
+             success: function(response) {
+              console.log('response: ' + response);
+             // store.find('dispatched_order', order_id).then( function(model) {
+              //  model.set('delivered', true);
+              //});
+      
+          }
+       });
+      this.transitionToRoute('dispatched_orders.dispatched_order', this.get('content.order'));
+		  //alert(starvalue);
+
+     }
     }
 });
 App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
@@ -94,20 +119,20 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
                type: 'PUT',
                data: JSON.stringify({
                     dispatched_order: {
-                      delivered: false
+                      delivered: true
                     }
                 }),
                contentType: "application/json",
                dataType: "text",
                success: function(response) {
-                //console.log('response: ' + response);
-               // store.find('dispatched_order', order_id).then( function(model) {
-                //  model.set('delivered', true);
-                //});
+                console.log('response: ' + response);
+               store.find('dispatched_order', order_id).then( function(model) {
+                  model.set('delivered', true);
+                });
 				
             }
          });
-		this.transitionToRoute('ranking');
+		  this.transitionToRoute('ranking', order_id);
       },
       back: function(event) {
           this.transitionToRoute('login');
