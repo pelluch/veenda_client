@@ -24,9 +24,9 @@
         {{#if delivered}}
             <small>Producto Entregado</small>
         {{else}}
-            {{#view App.MapView}}{{/view}}
+            {{#view App.MapView }}
+            {{/view}}
             </br>
-            <p>{{ distance }} km</p>
             <p>Faltan {{ rest }} pedidos</p>
             </br>
             </br>
@@ -35,11 +35,11 @@
   </div>
     </script>
 
-    <script type="text/x-handlebars" data-template-name="dispatched_order-notfound">
+    <script type="text/x-handlebars" data-template-name="order_notfound">
      <div class="container text-center">
       <h2 class="text-error">{{this.name}}</h2>
           <small>Código de pedido inválido</small></br></br>
-          <button class="btn" {{ action "insert"}} >Volver</button>
+          <button class="btn" {{ action "redirect"}} >Volver</button>
   </div>
     {{outlet}} 
     </script>
