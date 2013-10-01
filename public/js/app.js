@@ -11,8 +11,7 @@ App.ApplicationController = Ember.Controller.extend({
 }),
 
 App.DispatchedOrderAdapter = DS.RESTAdapter.extend({
-    host: 'http://veenda01.herokuapp.com',
-    namespace: 'consumers/1'
+    host: 'http://veenda01.herokuapp.com'
 });
 
 App.Router.map(function() {
@@ -21,6 +20,7 @@ App.Router.map(function() {
     });
     //this.resource('dispatched_order', { path: '/dispatched_orders/:dispatched_order_id' });
     this.route('login', {path: '/'});
+    this.route('dispatched_order-notfound');
 });
 
 App.LoginController = Ember.Controller.extend({
@@ -50,11 +50,26 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
         this.transitionToRoute(App.get('currentPath'));
     },
     insert: function(event) {
-      var transaction = this.get('store').transaction();
-          this.set('delivered', true);
-          App.store.commit();
+      
     }
 });
+
+
+
+App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
+  actions: {
+   // then this hook will be fired with the error and most importantly a Transition
+   // object which you can use to retry the transition after you handled the error
+    error: function(error, transition) {
+      sendToWeb;
+    },
+    sendToWeb: function(event){
+      console.log(2);
+      this.transitionToRoute('dispatched_order-notfound');
+    }
+  }
+});
+
 
 
 //Google Map
@@ -64,25 +79,21 @@ App.MapView = Ember.View.extend({
   id: 'map_canvas',
   tagName: 'div',
   attributeBindings: ['style'],
-  style:"width:85%; height:400px",
+  style:"width:95%; height:400px",
   map:null,
   markers:[],
+  distance:0,
   didInsertElement: function(event) {
     var dispatcher_latitude = this.get('context').get('dispatcher_latitude');
     var dispatcher_longitude = this.get('context').get('dispatcher_longitude');
     var destination_latitude = this.get('context').get('destination_latitude');
     var destination_longitude = this.get('context').get('destination_longitude');
 
-    console.log(dispatcher_latitude);
-    console.log(dispatcher_longitude);
-    console.log(destination_latitude);
-    console.log(destination_longitude);
     var mapOptions = {
       center: new google.maps.LatLng(dispatcher_latitude, dispatcher_longitude),
       zoom: 10,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    console.log(this.get('context').get('dispatcher_latitude'));
     var controller = this.get("controller");
     var map = new google.maps.Map(this.$().get(0),mapOptions);
     
@@ -95,6 +106,8 @@ App.MapView = Ember.View.extend({
     var locationArray = [current_pos, end_pos];
     var locationNameArray = ['Posición Actual', 'Posición Llegada'];
     var locationColorArray = ['red', 'green'];
+
+    distance = (google.maps.geometry.spherical.computeDistanceBetween(current_pos, end_pos) / 1000).toFixed(1);
 
     var coord;
     for (coord in locationArray) {

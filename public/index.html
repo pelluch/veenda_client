@@ -24,8 +24,12 @@
         {{#if delivered}}
             <small>Producto Entregado</small>
         {{else}}
-            <span class="text-center">{{#view App.MapView}}{{/view}}</span>
-            <small>Faltan {{ rest }} pedidos</small></br></br>
+            {{#view App.MapView}}{{/view}}
+            </br>
+            <p>{{ distance }} km</p>
+            <p>Faltan {{ rest }} pedidos</p>
+            </br>
+            </br>
             <button class="btn" {{ action "insert"}} >Despacho Recibido</button>
         {{/if}}
   </div>
@@ -57,7 +61,8 @@
     <script src="js/libs/showdown.js"></script>
     <script src="js/libs/moment.js"></script>
     <script src="js/app.js"></script>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
+
      
   </body>
 </html>
