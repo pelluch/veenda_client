@@ -20,12 +20,21 @@ App.Router.map(function() {
     });
     //this.resource('dispatched_order', { path: '/dispatched_orders/:dispatched_order_id' });
     this.route('login', {path: '/'});
+	this.route('ranking');
 });
 
 App.LoginController = Ember.Controller.extend({
     actions: {
         insert: function(event) {
 		      this.transitionToRoute('dispatched_orders.dispatched_order', this.get('codigo'));
+        }
+    }
+});
+App.RankingController = Ember.Controller.extend({
+    actions: {
+        vote: function(event) {
+		
+		      this.transitionToRoute('login');
         }
     }
 });
@@ -87,12 +96,14 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
                contentType: "application/json",
                dataType: "text",
                success: function(response) {
-                console.log('response: ' + response);
-                store.find('dispatched_order', order_id).then( function(model) {
-                  model.set('delivered', true);
-                });
+                //console.log('response: ' + response);
+               // store.find('dispatched_order', order_id).then( function(model) {
+                //  model.set('delivered', true);
+                //});
+				
             }
          });
+		this.transitionToRoute('ranking');
       },
       back: function(event) {
           this.transitionToRoute('login');
@@ -117,7 +128,30 @@ App.OrderNotfoundController = Ember.Controller.extend( {
         }
     }
 });
-
+Ember.Handlebars.helper("rating", Ember.View.extend({
+  classNames: ["rating"],
+  symbol: "☆",
+  max: 5,
+  value: 0,
+  render: function(buffer){
+		var max = this.get("max");
+		for(var i = max; i > 0; i--) {
+		  buffer.push("<span data-value='" + i + "' class='" + (i === this.get("value") ? "active" : "") + "'>" + this.get("symbol") + "</span>");
+		}
+  },
+  didInsertElement: function(){
+		var _this = this;
+		this.$("span").on("click.rating", function(e){
+		  _this.$("span").removeClass("active");
+		  var $target = $(e.currentTarget);
+		  $target.addClass("active");
+		  _this.set("value", $target.data("value"));
+		});
+  },
+  willDestroyElement: function(){
+		this.$("span").off("click.rating");
+  }
+}));
 //Google Map
 App.Marker = Ember.Object.extend({
 });

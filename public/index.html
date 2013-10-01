@@ -62,7 +62,14 @@
       </div>
       {{outlet}} 
     </script>
-
+	
+	<script type="text/x-handlebars" data-template-name="ranking">
+		 <div class="container text-center">			
+				<h2>{{rating max="5"}}</h2><br></br>
+				<button class="btn" {{ action "vote"}} >Rankear Despachador</button>
+ 		 </div>
+		  {{outlet}} 
+	</script>
     <script src="js/libs/jquery-1.10.2.js"></script>
     <script src="js/libs/handlebars-1.0.0.js"></script>
     <script src="js/libs/ember.js"></script>
