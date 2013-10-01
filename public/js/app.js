@@ -33,8 +33,12 @@ App.LoginController = Ember.Controller.extend({
 App.RankingController = Ember.Controller.extend({
     actions: {
         vote: function(event) {
-		
-		      this.transitionToRoute('login');
+			var elements = document.getElementsByClassName("active");
+			var starvalue = 0;
+			for (var i = 0; i < elements.length; i++) {
+				starvalue = elements[i].id; 
+			}
+		 alert(starvalue);
         }
     }
 });
@@ -136,7 +140,7 @@ Ember.Handlebars.helper("rating", Ember.View.extend({
   render: function(buffer){
 		var max = this.get("max");
 		for(var i = max; i > 0; i--) {
-		  buffer.push("<span data-value='" + i + "' class='" + (i === this.get("value") ? "active" : "") + "'>" + this.get("symbol") + "</span>");
+		  buffer.push("<span id='" + i + "' class='" + (i === this.get("value") ? "active" : "") + "'>" + this.get("symbol") + "</span>");
 		}
   },
   didInsertElement: function(){
