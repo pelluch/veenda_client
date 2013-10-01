@@ -20,17 +20,12 @@ App.Router.map(function() {
     });
     //this.resource('dispatched_order', { path: '/dispatched_orders/:dispatched_order_id' });
     this.route('login', {path: '/'});
-    this.route('dispatched_order-notfound', {path: ':codigo'});
 });
 
 App.LoginController = Ember.Controller.extend({
     actions: {
         insert: function(event) {
 		      this.transitionToRoute('dispatched_orders.dispatched_order', this.get('codigo'));
-          //if(App.get('currentPath') == 'login') {
-          //    this.transitionToRoute('dispatched_order-notfound', this.get('codigo'));
-          //}
-		
         }
     }
 });
@@ -58,22 +53,50 @@ App.DispatchedOrdersIndexRoute = Ember.Controller.extend({
 });
 
 App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
-    init: function(params) {
+
+  init: function(params) {
       var self = this;
-      setInterval(function() {
+      
+      var id = setInterval(function() {
         self.refreshMyData()
       }, 5000);
+      this.interval_id = id;
     },
     refreshMyData: function(params) {
+      if(App.get('currentPath') == 'dispatched_orders.dispatched_order') {
         this.transitionToRoute(App.get('currentPath'));
+      }
     },
-    insert: function(event) {
-      var transaction = this.get('store').transaction();
-          this.set('delivered', true);
-          App.store.commit();
+    actions: {
+      
+      insert: function(event) {
+          
+      },
+      back: function(event) {
+          this.transitionToRoute('login');
+      }
     }
 });
 
+App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
+
+  
+  actions: {
+   // then this hook will be fired with the error and most importantly a Transition
+   // object which you can use to retry the transition after you handled the error
+    error: function(error, transition) {
+      this.transitionToRoute('order_notfound');
+    }
+
+  }
+});
+App.OrderNotfoundController = Ember.Controller.extend( {
+    actions: {
+        redirect: function(event) {
+        alert('entra');
+        }
+    }
+});
 
 //Google Map
 App.Marker = Ember.Object.extend({
@@ -82,7 +105,7 @@ App.MapView = Ember.View.extend({
   id: 'map_canvas',
   tagName: 'div',
   attributeBindings: ['style'],
-  style:"width:85%; height:400px",
+  style:"width:95%; height:400px",
   map:null,
   markers:[],
   didInsertElement: function(event) {
@@ -92,20 +115,15 @@ App.MapView = Ember.View.extend({
     var destination_latitude = this.get('context').get('destination_latitude');
     var destination_longitude = this.get('context').get('destination_longitude');
 
-    console.log(dispatcher_latitude);
-    console.log(dispatcher_longitude);
-    console.log(destination_latitude);
-    console.log(destination_longitude);
     var mapOptions = {
       center: new google.maps.LatLng(dispatcher_latitude, dispatcher_longitude),
       zoom: 10,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    console.log(this.get('context').get('dispatcher_latitude'));
     var controller = this.get("controller");
     var map = new google.maps.Map(this.$().get(0),mapOptions);
     
-    this.set("map",map);
+    this.set("map", map);
     
     var that = this;
     
@@ -114,6 +132,8 @@ App.MapView = Ember.View.extend({
     var locationArray = [current_pos, end_pos];
     var locationNameArray = ['Posición Actual', 'Posición Llegada'];
     var locationColorArray = ['red', 'green'];
+
+    var distance = (google.maps.geometry.spherical.computeDistanceBetween(current_pos, end_pos) / 1000).toFixed(1);
 
     var coord;
     for (coord in locationArray) {
@@ -124,8 +144,10 @@ App.MapView = Ember.View.extend({
         icon: "http://maps.google.com/mapfiles/ms/icons/"+locationColorArray[coord]+"-dot.png"
       });
     }
-  }
+    return distance;
+  },
 });
+
 // Close Google Map
 
 App.DispatchedOrder = DS.Model.extend({
