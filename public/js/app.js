@@ -57,15 +57,6 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
 });
 
 
-      this.transitionToRoute(App.get('currentPath'));
-  },
-  actions: {
-      insert: function(event) {
-        var order = this.get('store').find('dispatched_order');
-		 this.set('delivered', true);
-      }
-
-
 //Google Map
 App.Marker = Ember.Object.extend({
 });
@@ -119,17 +110,6 @@ App.MapView = Ember.View.extend({
 // Close Google Map
 
 App.DispatchedOrder = DS.Model.extend({
-<<<<<<< HEAD
-  name: DS.attr(),
-  delivered: DS.attr(),
-  rest: DS.attr(),
-  dispatcher_latitude: DS.attr(),
-  dispatcher_longitude: DS.attr(),
-  destination_latitude: DS.attr(),
-  destination_longitude: DS.attr(),
-  dispatch_time: DS.attr(),
-   post: DS.belongsTo('App.Post')
-=======
     name: DS.attr(),
     delivered: DS.attr(),
     rest: DS.attr(),
@@ -138,5 +118,4 @@ App.DispatchedOrder = DS.Model.extend({
     destination_latitude: DS.attr(),
     destination_longitude: DS.attr(),
     dispatch_time: DS.attr()
->>>>>>> 381b192374f770e2443820f39366ba2915cfc41e
 });
