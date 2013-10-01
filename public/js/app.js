@@ -90,7 +90,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
                type: 'PUT',
                data: JSON.stringify({
                     dispatched_order: {
-                      delivered: true
+                      delivered: false
                     }
                 }),
                contentType: "application/json",

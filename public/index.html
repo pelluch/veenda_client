@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
+	
   </head>
   <body>
 
@@ -65,8 +66,10 @@
 	
 	<script type="text/x-handlebars" data-template-name="ranking">
 		 <div class="container text-center">			
-				<h2>{{rating max="5"}}</h2><br></br>
+				<h2>{{rating max="5"}}</h2>
+				<textarea placeholder="Añadir Comentario"></textarea><br></br>
 				<button class="btn" {{ action "vote"}} >Rankear Despachador</button>
+				
  		 </div>
 		  {{outlet}} 
 	</script>
