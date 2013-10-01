@@ -20,24 +20,33 @@ App.Router.map(function() {
     });
     //this.resource('dispatched_order', { path: '/dispatched_orders/:dispatched_order_id' });
     this.route('login', {path: '/'});
-    this.route('dispatched_order-notfound');
+    this.route('dispatched_order-notfound', {path: ':codigo'});
 });
 
 App.LoginController = Ember.Controller.extend({
     actions: {
         insert: function(event) {
-          var dispatched_order = this.get('store').find('dispatched_order', this.get('codigo'));
-		  this.transitionToRoute('dispatched_orders.dispatched_order', dispatched_order);
+		      this.transitionToRoute('dispatched_orders.dispatched_order', this.get('codigo'));
+          //if(App.get('currentPath') == 'login') {
+          //    this.transitionToRoute('dispatched_order-notfound', this.get('codigo'));
+          //}
 		
         }
     }
 });
 App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
+    
+    model: function(params) {
+       dispatched_order = this.get('store').find('dispatched_order', params.dispatched_order_id);
+       //alert(dispatched_order);
+       this.set('query_id', params.dispatched_order_id);
+       return dispatched_order;
+    },
     actions: {
    // then this hook will be fired with the error and most importantly a Transition
    // object which you can use to retry the transition after you handled the error
    error: function(error, transition) {
-		    this.route('dispatched_order-notfound');
+		    this.transitionToRoute('dispatched_order-notfound');
 	 
    }}
 });
@@ -49,7 +58,7 @@ App.DispatchedOrdersIndexRoute = Ember.Controller.extend({
 });
 
 App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
-    init: function() {
+    init: function(params) {
       var self = this;
       setInterval(function() {
         self.refreshMyData()
@@ -77,6 +86,7 @@ App.MapView = Ember.View.extend({
   map:null,
   markers:[],
   didInsertElement: function(event) {
+
     var dispatcher_latitude = this.get('context').get('dispatcher_latitude');
     var dispatcher_longitude = this.get('context').get('dispatcher_longitude');
     var destination_latitude = this.get('context').get('destination_latitude');
