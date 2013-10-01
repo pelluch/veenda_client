@@ -11,8 +11,7 @@ App.ApplicationController = Ember.Controller.extend({
 }),
 
 App.DispatchedOrderAdapter = DS.RESTAdapter.extend({
-    host: 'http://veenda01.herokuapp.com',
-    namespace: 'consumers/1'
+    host: 'http://veenda01.herokuapp.com'
 });
 
 App.Router.map(function() {
@@ -21,17 +20,27 @@ App.Router.map(function() {
     });
     //this.resource('dispatched_order', { path: '/dispatched_orders/:dispatched_order_id' });
     this.route('login', {path: '/'});
+    this.route('dispatched_order-notfound');
 });
 
 App.LoginController = Ember.Controller.extend({
     actions: {
         insert: function(event) {
           var dispatched_order = this.get('store').find('dispatched_order', this.get('codigo'));
-          this.transitionToRoute('dispatched_orders.dispatched_order', dispatched_order);
+		  this.transitionToRoute('dispatched_orders.dispatched_order', dispatched_order);
+		
         }
     }
 });
-
+App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
+    actions: {
+   // then this hook will be fired with the error and most importantly a Transition
+   // object which you can use to retry the transition after you handled the error
+   error: function(error, transition) {
+		    this.route('dispatched_order-notfound');
+	 
+   }}
+});
 App.DispatchedOrdersIndexRoute = Ember.Controller.extend({
     model: function() {
       models = this.get('store').find('dispatched_order');
