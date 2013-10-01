@@ -67,6 +67,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
         this.transitionToRoute(App.get('currentPath'));
       }
     },
+
     actions: {
       
       insert: function(event) {
@@ -80,14 +81,12 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
 
 App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
 
-  
   actions: {
    // then this hook will be fired with the error and most importantly a Transition
    // object which you can use to retry the transition after you handled the error
     error: function(error, transition) {
       this.transitionToRoute('order_notfound');
     }
-
   }
 });
 App.OrderNotfoundController = Ember.Controller.extend( {
@@ -136,7 +135,7 @@ App.MapView = Ember.View.extend({
     var distance = (google.maps.geometry.spherical.computeDistanceBetween(current_pos, end_pos) / 1000).toFixed(1);
 
     var coord;
-    for (coord in locationArray) {
+    for (var coord = 0; coord < 2; coord++) {
       new google.maps.Marker({
         position: locationArray[coord],
         map: map,
