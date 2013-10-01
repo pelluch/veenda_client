@@ -27,11 +27,20 @@ App.LoginController = Ember.Controller.extend({
     actions: {
         insert: function(event) {
           var dispatched_order = this.get('store').find('dispatched_order', this.get('codigo'));
-          this.transitionToRoute('dispatched_orders.dispatched_order', dispatched_order);
+		  this.transitionToRoute('dispatched_orders.dispatched_order', dispatched_order);
+		
         }
     }
 });
-
+App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
+    actions: {
+   // then this hook will be fired with the error and most importantly a Transition
+   // object which you can use to retry the transition after you handled the error
+   error: function(error, transition) {
+		    this.route('dispatched_order-notfound');
+	 
+   }}
+});
 App.DispatchedOrdersIndexRoute = Ember.Controller.extend({
     model: function() {
       models = this.get('store').find('dispatched_order');
