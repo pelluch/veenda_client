@@ -24,12 +24,17 @@
       <h2 class="text-error">{{this.name}}</h2>
         {{#if delivered}}
             <small>Producto Entregado</small>
+            </br>
+            </br>
+            <button class="btn" {{ action "back"}} >Volver</button>
         {{else}}
-            {{#view App.MapView }}
+            {{#view App.MapView }}<br/>
             {{/view}}
             </br>
             <img src="pos_icon.png">
             <p>Faltan {{ rest }} pedidos</p>
+            </br>
+            Distancia del despachador a su destino: {{ distance }} km
             </br>
             </br>
             <button class="btn" {{ action "insert"}} >Despacho Recibido</button>

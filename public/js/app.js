@@ -71,7 +71,28 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
     actions: {
       
       insert: function(event) {
-          
+
+        var order_id = this.get('content.id');
+        var store = this.get('store');
+        var self = this;
+          $.ajax({
+               
+               url: 'http://veenda01.herokuapp.com/dispatched_orders/' + order_id,
+               type: 'PUT',
+               data: JSON.stringify({
+                    dispatched_order: {
+                      delivered: true
+                    }
+                }),
+               contentType: "application/json",
+               dataType: "text",
+               success: function(response) {
+                console.log('response: ' + response);
+                store.find('dispatched_order', order_id).then( function(model) {
+                  model.set('delivered', true);
+                });
+            }
+         });
       },
       back: function(event) {
           this.transitionToRoute('login');
@@ -104,7 +125,7 @@ App.MapView = Ember.View.extend({
   id: 'map_canvas',
   tagName: 'div',
   attributeBindings: ['style'],
-  style:"width:95%; height:400px",
+  style:"margin-left:auto; height:400px",
   map:null,
   markers:[],
   didInsertElement: function(event) {
@@ -133,7 +154,8 @@ App.MapView = Ember.View.extend({
     var locationColorArray = ['red', 'green'];
 
     var distance = (google.maps.geometry.spherical.computeDistanceBetween(current_pos, end_pos) / 1000).toFixed(1);
-
+    this.get('context').set('distance', distance);
+    //alert(distance);
     var coord;
     for (var coord = 0; coord < 2; coord++) {
       new google.maps.Marker({
@@ -157,5 +179,6 @@ App.DispatchedOrder = DS.Model.extend({
     dispatcher_longitude: DS.attr(),
     destination_latitude: DS.attr(),
     destination_longitude: DS.attr(),
-    dispatch_time: DS.attr()
+    dispatch_time: DS.attr(),
+    distance: DS.attr()
 });
