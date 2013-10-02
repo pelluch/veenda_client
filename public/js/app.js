@@ -225,8 +225,9 @@ App.MapView = Ember.View.extend({
       zoom: 10,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var controller = this.get("controller");
+	var controller = this.get("controller");
     var map = new google.maps.Map(this.$().get(0),mapOptions);
+	
     
     this.set("map", map);
     

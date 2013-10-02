@@ -35,16 +35,17 @@
             </br>
             <button class="btn" {{ action "back"}} >Volver</button>
         {{else}}
+		</br>
+			<h4>Faltan {{ rest }} pedidos</h4>
+            </br>
+            Distancia del despachador a su destino: {{ distance }} km                   
+            </br></br>
+            <button class="btn" {{ action "insert"}} >Despacho Recibido</button> </br>
+			</br></br>			
             {{#view App.MapView }}<br/>
             {{/view}}
             </br>
-            <img src="pos_icon.png">
-            <p>Faltan {{ rest }} pedidos</p>
-            </br>
-            Distancia del despachador a su destino: {{ distance }} km
-            </br>
-            </br>
-            <button class="btn" {{ action "insert"}} >Despacho Recibido</button>
+           
         {{/if}}
     </div>
     {{else}}
