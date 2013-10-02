@@ -24,7 +24,14 @@
        <div class="container text-center">
       <h2 class="text-error">{{this.name}}</h2>
         {{#if delivered}}
-            <small>Producto Entregado</small>
+            <small>Producto Entregado</small></br>
+            {{#if comment}}
+            <center>{{rating_helper this}}</center>
+              
+              </br>
+              Comentario: {{comment}}
+            {{/if}}
+            </br>
             </br>
             <button class="btn" {{ action "back"}} >Volver</button>
         {{else}}

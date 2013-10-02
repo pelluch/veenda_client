@@ -30,10 +30,26 @@ App.LoginController = Ember.Controller.extend({
         }
     }
 });
+
+Ember.Handlebars.registerHelper('rating_helper', function(condition, options) {
+    //alert(condition);
+    var returnValue = '<div class="ember-view rating">';
+    var rating = this.get('rating_value');
+    for(var i = 5; i >= 1; i--) {
+       returnValue = returnValue + '<span id="' + i + '" class';
+       if(i == rating) {
+          returnValue = returnValue + '="active"';
+       }
+       returnValue = returnValue + '></span>\n';
+    }
+    returnValue = returnValue + "\n</div></br>";
+    return new Ember.Handlebars.SafeString(returnValue);
+});
+
 App.RankingController = Ember.Controller.extend({
     actions: {
         vote: function(event) {
-			var elements = document.getElementsByClassName("active");
+      var elements = document.getElementsByClassName("active");
 			var starvalue = 0;
 			for (var i = 0; i < elements.length; i++) {
 				starvalue = elements[i].id; 
@@ -48,7 +64,8 @@ App.RankingController = Ember.Controller.extend({
              data: JSON.stringify({
                   rating: {
                     rating: starvalue,
-                    comment: comment
+                    comment: comment,
+                    dispatched_order_id: this.get('content.order')
                   }
               }),
              contentType: "application/json",
@@ -61,6 +78,11 @@ App.RankingController = Ember.Controller.extend({
       
           }
        });
+
+      this.get('store').find('dispatched_order', this.get('content.order')).then( function(model) {
+                    model.set('rating_value', starvalue);
+                    model.set('comment', comment);
+                  });
       this.transitionToRoute('dispatched_orders.dispatched_order', this.get('content.order'));
 		  //alert(starvalue);
 
@@ -243,5 +265,7 @@ App.DispatchedOrder = DS.Model.extend({
     destination_latitude: DS.attr(),
     destination_longitude: DS.attr(),
     dispatch_time: DS.attr(),
-    distance: DS.attr()
+    distance: DS.attr(),
+    rating_value: DS.attr(),
+    comment: DS.attr()
 });
