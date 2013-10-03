@@ -1,14 +1,31 @@
 /* Put your CSS here */
 html, body {
-    margin: 20px;
-    background-color: #2E2E2E;
-    color:#fff;
-    height: 100%;
+    background-color: #fff;
+    color:#000;
 }
 
 .active {
     color: black;
     font-weight: bold;
+}
+
+.navbar {
+    
+    background-color: #000;
+    color:#fff;
+    padding:20px;
+}
+.alert {
+    padding:12px;
+    padding-right: 30px;
+    margin-bottom: 1px;
+}
+.orders-tittle {
+    padding:0px;
+    margin-bottom: 1px;
+    background-color: #4285f4;
+    border: solid 1px #3079ed;
+    color: #fff;
 }
 
 #map_canvas { 
