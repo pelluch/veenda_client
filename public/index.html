@@ -22,7 +22,7 @@
     <script type="text/x-handlebars" data-template-name="dispatched_orders/dispatched_order">
     {{#if dispatch_time}}
        <div class="container text-center">
-      <h2 class="text-error">{{this.name}}</h2>
+      <h2 class="text-info">{{this.name}}</h2>
         {{#if delivered}}
             <small>Producto Entregado</small></br>
             {{#if comment}}
@@ -33,14 +33,14 @@
             {{/if}}
             </br>
             </br>
-            <button class="btn" {{ action "back"}} >Volver</button>
+            <button class="btn btn-large" {{ action "back"}} >Volver</button>
         {{else}}
 		</br>
 			<h4>Faltan {{ rest }} pedidos</h4>
             </br>
             Distancia del despachador a su destino: {{ distance }} km                   
             </br></br>
-            <button class="btn" {{ action "insert"}} >Despacho Recibido</button> </br>
+            <button class="btn btn-large" {{ action "insert"}} >Despacho Recibido</button> </br>
 			</br></br>			
             {{#view App.MapView }}<br/>
             {{/view}}
@@ -53,7 +53,7 @@
     <div class="container text-center">
       <h2 class="text-error">{{this.name}}</h2>
           <small>Código de pedido inválido</small></br></br>
-          <button class="btn" {{ action "back"}} >Volver</button>
+          <button class="btn btn-large" {{ action "back"}} >Volver</button>
       </div>
 
   </div>
@@ -63,23 +63,23 @@
 
     <script type="text/x-handlebars" data-template-name="login">
      <div class="container text-center">
-        <div class="input-append">
+        <div class="">
 
           {{view Ember.TextField valueBinding="codigo" placeholder="código pedido" }}
-          <button class="btn" {{ action "insert"}} >Ver</button>
+          </br></br>
+          <button class="btn btn-info btn-large" {{ action "insert"}} >Ver</button>
 
         </div>
         <br/>
         <br/>
-          <ul>
+        <div class="orders-tittle"><h4>Pedidos</h4></div>
           {{#each saved_order in saved_orders}}
-         <br/>
-            <li>{{#link-to 'dispatched_orders.dispatched_order' saved_order.key}} {{saved_order.name}} {{/link-to}}
+         <div class="alert alert-info">
+            {{#link-to 'dispatched_orders.dispatched_order' saved_order.key}} {{saved_order.name}} {{/link-to}}
              delivered: {{saved_order.delivered}}
-             <button {{action removeLink saved_order.key}}>X</button>
-            </li>
+             <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
+          </div>
           {{/each}}
-          </ul>
       </div>
       {{outlet}} 
     </script>
@@ -88,7 +88,7 @@
 		 <div class="container text-center">			
 				<h2>{{rating max="5"}}</h2>
 				<textarea placeholder="Añadir Comentario" class="comment-box"></textarea><br></br>
-				<button class="btn" {{ action "vote"}} >Rankear Despachador</button>
+				<button class="btn btn-large" {{ action "vote"}} >Rankear Despachador</button>
 				
  		 </div>
 		  {{outlet}} 
