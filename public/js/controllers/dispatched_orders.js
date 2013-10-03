@@ -44,7 +44,14 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
       },
       back: function(event) {
           this.transitionToRoute('login');
+      },
+      mapTrue: function() {
+          this.set('isMap', true)
+      },
+      mapFalse: function() {
+          this.set('isMap', false)
       }
-    }
+    },
+    isMap: false
 });
 

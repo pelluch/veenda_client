@@ -40,12 +40,17 @@
             </br>
             Distancia del despachador a su destino: {{ distance }} km                   
             </br></br>
-            <button class="btn btn-large" {{ action "insert"}} >Despacho Recibido</button> </br>
-			</br></br>			
-            {{#view App.MapView }}<br/>
-            {{/view}}
-            </br>
-           
+            <button class="btn btn-large" {{ action "insert"}} >Despacho Recibido</button> </br></br>
+            {{#if isMap}}
+              <button class="btn btn-large" {{ action "mapFalse"}} >Ocultar mapa</button>
+  			      </br></br>	
+              {{#view App.MapView }}<br/>
+              {{/view}}
+            {{else}}
+              <button class="btn btn-large" {{ action "mapTrue"}} >Mostrar mapa</button>
+              </br>
+            {{/if}}
+            
         {{/if}}
     </div>
     {{else}}
