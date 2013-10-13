@@ -1,108 +1,173 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset=utf-8>
-  <title>Veenda Client</title>
+    <head>
+        <meta charset=utf-8>
+        <title>Veenda Client</title>
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="css/style.css">
-	
-  </head>
-  <body>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
 
        <!-- titulo -->
     <script type="text/x-handlebars">
-      <div class="navbar text-center">
-        <img src="veenda_logo.png">
-      </div> 
-      {{outlet}} 
+        <div class="page-header">
+            <div class="container">
+                <img src="veenda_logo_2.png">
+            </div>
+        </div>
+        {{outlet}} 
     </script>
 
-    <script type="text/x-handlebars" data-template-name="dispatched_orders/dispatched_order">
-    {{#if dispatch_time}}
-       <div class="container text-center">
-      <h2 class="text-info">{{this.name}}</h2>
-        {{#if delivered}}
-            <small>Producto Entregado</small></br>
-            {{#if comment}}
-            <h2>{{rating_helper this}}</h2>
-              
-              </br>
-              Comentario: {{comment}}
-            {{/if}}
-            </br>
-            </br>
-            <button class="btn btn-large" {{ action "back"}} >Volver</button>
-        {{else}}
-		</br>
-			<h4>Faltan {{ rest }} pedidos</h4>
-            </br>
-            Distancia del despachador a su destino: {{ distance }} km                   
-            </br></br>
-            <button class="btn btn-large" {{ action "insert"}} >Despacho Recibido</button> </br></br>
-            {{#if isMap}}
-              <button class="btn btn-large" {{ action "mapFalse"}} >Ocultar mapa</button>
-  			      </br></br>	
-              {{#view App.MapView }}<br/>
-              {{/view}}
-            {{else}}
-              <button class="btn btn-large" {{ action "mapTrue"}} >Mostrar mapa</button>
-              </br>
-            {{/if}}
-            
-        {{/if}}
-    </div>
-    {{else}}
     
-    <div class="container text-center">
-      <h2 class="text-error">{{this.name}}</h2>
-          <small>Código de pedido inválido</small></br></br>
-          <button class="btn btn-large" {{ action "back"}} >Volver</button>
-      </div>
+    <script type="text/x-handlebars" data-template-name="dispatched_orders/dispatched_order">
 
-  </div>
-    {{/if}}
-    {{outlet}}
+        {{#if dispatch_time}}
+
+            <div class="container text-center">
+                {{#if delivered}}
+                    <div class="details">
+                        <div class="panel panel-default text-left">
+                          <!-- Table -->
+                          <table class="table">
+                            <tr class="active">
+                              <th>Producto</th>
+                              <th>{{this.name}}</th>
+                            </tr>
+                            <tr>
+                              <td>Estado</td>
+                              <td>Recibido</td>
+                            </tr>
+                          </table>
+                        </div>
+
+                    {{#if comment}}
+                    <h2>{{rating_helper this}}</h2>
+
+                        <div class="panel panel-info">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Comentarios</h3>
+                          </div>
+                          <div class="panel-body">
+                            {{comment}}
+                          </div>
+                        </div>
+                    {{/if}}
+                    <button class="btn btn-default" {{ action "back"}}>Volver</button>
+
+                </div>
+
+                {{else}}
+
+                    {{#if isMap}}
+                        <div class="btn-group btn-group-lg-50">
+                            <button type="button" {{ action "mapFalse"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
+                            <button type="button" {{ action "mapTrue"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-pushpin"></span> Mapa</button>
+                        </div>
+                        <div class="details">
+                            {{#view App.MapView }}<br/>{{/view}}
+                        </div>
+                    {{else}}
+                        <div class="btn-group btn-group-lg-50">
+                            <button type="button" {{ action "mapFalse"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
+                            <button type="button" {{ action "mapTrue"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-pushpin"></span> Mapa</button>
+                        </div>
+                        <div class="details">
+
+                            <div class="panel panel-default text-left">
+                              <!-- Table -->
+                              <table class="table">
+                                <tr class="active">
+                                  <th>Producto</th>
+                                  <th>{{this.name}}</th>
+                                </tr>
+                                <tr>
+                                  <td>Estado</td>
+                                  <td>Traslado</td>
+                                </tr>
+                                <tr>
+                                  <td>Pedidos restantes</td>
+                                  <td>{{ rest }}</td>
+                                </tr>
+                                <tr>
+                                  <td>Distancia a destino aproximada</td>
+                                  <td>{{ distance }} km</td>
+                                </tr>
+                              </table>
+                            </div>
+
+                            <button class="btn btn-success btn-lg-300" {{ action "insert"}} >Despacho Recibido</button>
+                        </div>
+                    {{/if}}
+
+                {{/if}}
+            </div>
+
+        {{else}}
+        
+            <div class="container text-center">
+                <div class="panel panel-danger">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Código Inválido</h3>
+                  </div>
+                  <div class="panel-body">
+                    Producto ingresado no existe
+                  </div>
+                </div>
+                <button class="btn btn-default" {{ action "back"}}>Volver</button>
+            </div>
+            </div>
+
+        {{/if}}
+        {{outlet}}
     </script>
 
     <script type="text/x-handlebars" data-template-name="login">
-     <div class="container text-center">
-        <div class="">
+      <div class="container text-center">
+        
 
-          {{view Ember.TextField valueBinding="codigo" placeholder="código pedido" }}
-          </br></br>
-          <button class="btn btn-info btn-large" {{ action "insert"}} >Ver</button>
-
-        </div>
-        <br/>
-        <br/>
-        <div class="orders-tittle"><h4>Pedidos</h4></div>
-          {{#each saved_order in saved_orders}}
-         <div class="alert alert-info">
-            {{#link-to 'dispatched_orders.dispatched_order' saved_order.key}} {{saved_order.name}} {{/link-to}} 
-              {{#if saved_order.delivered}}
-			  <img src="check.png" width="13" height="13">
-			   {{else}}
-             <img src="Cross.png" width="13" height="13">
-            {{/if}}
-             <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button {{ action insert}} class="btn btn-default" type="button">Buscar</button>
+            </span>
+            {{view Ember.TextField valueBinding="codigo" placeholder="Buscar pedido" class= "form-control"}}
           </div>
+
+        <h4>Mis pedidos</h4>
+        <div class="list-group">
+          {{#each saved_order in saved_orders}}
+            {{#link-to 'dispatched_orders.dispatched_order' saved_order.key classNames="list-group-item"}} 
+              <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
+              {{saved_order.name}}
+              {{#if saved_order.delivered}}
+               <span class="badge badge-success">
+                Recibido
+              {{else}} 
+                <span class="badge">
+                Traslado
+              {{/if}}
+              </span>
+            {{/link-to}}
           {{/each}}
+        </div>
       </div>
       {{outlet}} 
     </script>
 	
 	<script type="text/x-handlebars" data-template-name="ranking">
-		 <div class="container text-center">			
-				<h2>{{rating max="5"}}</h2>
-				<textarea placeholder="Añadir Comentario" class="comment-box"></textarea><br></br>
-				<button class="btn btn-large" {{ action "vote"}} >Rankear Despachador</button>
-				
- 		 </div>
-		  {{outlet}} 
+		<div class="container text-center">			
+			<h2>{{rating max="5"}}</h2>
+			<div class="form-group">
+                <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+			    <button class="btn btn-primary" {{ action "vote"}} >Valorar</button>
+                <button class="btn btn-default" {{ action "vote"}} >Saltar</button>
+            </div>
+ 		</div>
+		{{outlet}} 
 	</script>
+
     <script src="js/libs/jquery-1.10.2.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
     <script src="js/libs/handlebars-1.0.0.js"></script>

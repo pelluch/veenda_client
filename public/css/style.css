@@ -8,6 +8,10 @@ html, body {
     color: black;
     font-weight: bold;
 }
+.page-header {
+    
+    margin-top: 9px;
+}
 
 .navbar {
     
@@ -20,13 +24,32 @@ html, body {
     padding-right: 30px;
     margin-bottom: 1px;
 }
-.orders-tittle {
-    padding:0px;
-    margin-bottom: 1px;
-    background-color: #4285f4;
-    border: solid 1px #3079ed;
-    color: #fff;
+
+.list-group-item > .close {
+    float: left;
+    margin-right: 54px;
 }
+.badge-success {
+    background-color: #5cb85c;
+}
+.btn-lg-50 {
+    width: 50%;
+}
+.btn-group-lg-50 {
+    max-width: 700px;
+    width: 100%;
+}
+.details {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+    text-align: center;
+}
+.btn-lg-300 {
+    max-width: 400px;
+    width: 100%;
+}
+
 
 #map_canvas { 
 
