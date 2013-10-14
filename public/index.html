@@ -3,7 +3,6 @@
     <head>
         <meta charset=utf-8>
         <title>Veenda Client</title>
-
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
@@ -126,15 +125,15 @@
       <div class="container text-center">
         
 
-          <div class="input-group">
+          <div class="input-group details">
             <span class="input-group-btn">
               <button {{ action insert}} class="btn btn-default" type="button">Buscar</button>
             </span>
             {{view Ember.TextField valueBinding="codigo" placeholder="Buscar pedido" class= "form-control"}}
           </div>
 
-        <h4>Mis pedidos</h4>
-        <div class="list-group">
+        <h3 class="margin-20">Mis pedidos</h3>
+        <div class="list-group pedidos">
           {{#each saved_order in saved_orders}}
             {{#link-to 'dispatched_orders.dispatched_order' saved_order.key classNames="list-group-item"}} 
               <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
@@ -155,15 +154,18 @@
     </script>
 	
 	<script type="text/x-handlebars" data-template-name="ranking">
-		<div class="container text-center">			
-			<h2>{{rating max="5"}}</h2>
-			<div class="form-group">
-                <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-			    <button class="btn btn-primary" {{ action "vote"}} >Valorar</button>
-                <button class="btn btn-default" {{ action "vote"}} >Saltar</button>
-            </div>
+		<div class="container text-center">		
+      <div class="details">	
+        <h3>¿Quieres valorar el servicio?</h3>
+  			<h2>{{rating max="5"}}</h2>
+  			<div class="form-group">
+            <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="3"></textarea>
+        </div>
+        <p class="form-group-lg-400 text-center">
+          <button class="btn btn-primary btn-lg-47" {{ action "vote"}} >Valorar</button>
+          <button class="btn btn-default btn-lg-47" {{ action "vote"}} >Saltar</button>
+        </p>
+      </div>
  		</div>
 		{{outlet}} 
 	</script>
