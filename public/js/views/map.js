@@ -14,7 +14,7 @@ App.MapView = Ember.View.extend({
 
     var mapOptions = {
       center: new google.maps.LatLng(dispatcher_latitude, dispatcher_longitude),
-      zoom: 10,
+      zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 	var controller = this.get("controller");
