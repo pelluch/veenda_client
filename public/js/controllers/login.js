@@ -9,14 +9,12 @@ App.LoginController = Ember.Controller.extend({
     },
     actions: {
         insert: function(event) {
-			
-			if(typeof this.get('codigo') == 'undefined' || this.get('codigo').match(/^\s*$/))
-			{		      
-			}
-			else
-			{
-				this.transitionToRoute('dispatched_orders.dispatched_order', this.get('codigo'));
-			}
+    			if(typeof this.get('codigo') == 'undefined' || this.get('codigo').match(/^\s*$/)) {
+            
+          }
+    			else {
+    				this.transitionToRoute('dispatched_orders.dispatched_order', this.get('codigo'));
+    			}
         },
         removeLink: function(param) {
           store.remove(param);

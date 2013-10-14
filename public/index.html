@@ -159,7 +159,7 @@
         <h3>¿Quieres valorar el servicio?</h3>
   			<h2>{{rating max="5"}}</h2>
   			<div class="form-group">
-            <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="3"></textarea>
+            <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="7"></textarea>
         </div>
         <p class="form-group-lg-400 text-center">
           <button class="btn btn-primary btn-lg-47" {{ action "vote"}} >Valorar</button>
@@ -195,14 +195,7 @@
     <script src="js/handlebars/rating_helper.js"></script>
     <script src="js/handlebars/rating.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
-    <script type="text/javascript">
-      var script = '<script type="text/javascript" src="../src/richmarker';
-      if (document.location.search.indexOf('compiled') !== -1) {
-        script += '-compiled';
-      }
-      script += '.js"><' + '/script>';
-      document.write(script);
-    </script>
+    
 
      
   </body>

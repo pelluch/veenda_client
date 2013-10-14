@@ -3,13 +3,13 @@ App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
     //alert('tf');
     //alert(order.get('isError'));
     var dispatched_order = this.get('store').find('dispatched_order', params.dispatched_order_id).then( function(order) {
-      if(order.id != -1) {
-        //alert(order.get('name'));
-        var toSave = { key : params.dispatched_order_id, name: order.get('name'), delivered: order.get('delivered')};
-        store.save(toSave);
-        return order;
-      }
-      return null;
+    if(order.id != -1) {
+      //alert(order.get('name'));
+      var toSave = { key : params.dispatched_order_id, name: order.get('name'), delivered: order.get('delivered')};
+      store.save(toSave);
+      return order;
+    }
+    return null;
     });
     return dispatched_order;
   },
@@ -17,7 +17,7 @@ App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
     // then this hook will be fired with the error and most importantly a Transition
     // object which you can use to retry the transition after you handled the error
     error: function(error, transition) {
-      alert(error);
+      alert("No hay conexión de datos. Asegúrese de que está conectado a una red, diríjase a Configuración.");
       this.transitionToRoute('order_notfound');
     }
   }
