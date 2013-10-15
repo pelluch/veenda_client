@@ -7,10 +7,13 @@ App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
       //alert(order.get('name'));
       var toSave = { key : params.dispatched_order_id, name: order.get('name'), delivered: order.get('delivered')};
       store.save(toSave);
+
       return order;
     }
     return null;
     });
+
+
     return dispatched_order;
   },
   actions: {
