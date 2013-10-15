@@ -23,7 +23,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
         var self = this;
           $.ajax({
                
-               url: 'http://veenda-api-staging.herokuapp.com/dispatched_orders/' + order_id,
+               url: 'http://veenda01.herokuapp.com/api/v1/client/dispatched_orders/' + order_id,
                type: 'PUT',
                data: JSON.stringify({
                     dispatched_order: {
