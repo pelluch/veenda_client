@@ -41,16 +41,17 @@
                         </div>
 
                     {{#if comment}}
-                    <h2>{{rating_helper this}}</h2>
+                      <h3 class="margin-30-0">Ranking</h3>
+                      {{rating_helper this}}
 
-                        <div class="panel panel-info">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">Comentarios</h3>
+                          <div class="panel panel-info">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">Comentarios</h3>
+                            </div>
+                            <div class="panel-body">
+                              {{comment}}
+                            </div>
                           </div>
-                          <div class="panel-body">
-                            {{comment}}
-                          </div>
-                        </div>
                     {{/if}}
                     <button class="btn btn-default" {{ action "back"}}>Volver</button>
 
@@ -157,7 +158,11 @@
 		<div class="container text-center">		
       <div class="details">	
         <h3>¿Quieres valorar el servicio?</h3>
-  			<h2>{{rating max="5"}}</h2>
+
+        <h3 class="margin-30-0">Ranking</h3>
+  			{{rating max="5"}}
+        <p id="ranking-value" class="margin-0-20">0 puntos (0%)</p>
+
   			<div class="form-group">
             <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="7"></textarea>
         </div>

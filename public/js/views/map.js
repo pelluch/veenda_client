@@ -31,7 +31,7 @@ App.MapView = Ember.View.extend({
     var locationNameArray = ['Posición Actual', 'Posición Llegada'];
     var locationColorArray = ['red', 'green'];
 
-    var distance = (google.maps.geometry.spherical.computeDistanceBetween(current_pos, end_pos) / 1000).toFixed(1);
+    var distance = Math.floor((google.maps.geometry.spherical.computeDistanceBetween(current_pos, end_pos) / 1000).toFixed(1));
     this.get('context').set('distance', distance);
     //alert(distance);
     var coord;
