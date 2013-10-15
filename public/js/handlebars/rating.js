@@ -16,28 +16,35 @@ Ember.Handlebars.helper("rating", Ember.View.extend({
   didInsertElement: function(){
 		var _this = this;
 		var mouse_down = false;
+		var rating; 
+
 		$("body").mousemove("rating", function(e){
-			if(mouse_down == true){
-				var x = e.pageX - ($(".progress").offset().left);
+			var x = e.pageX - ($(".progress").offset().left);
 				var width = $(".progress").width();
 				if(x <= 0){ 
 					x = 0;
 				}
 				if(x >= width){
-					x = width;
+					x = width-1;
 				}
-				var rating = Math.floor(x*(5+1)/width);
+				rating = Math.floor(x*(5+1)/width);
+			if(mouse_down == true){
+				
 			    _this.$(".progress-bar").css("width", rating*20 +'%');
 			    _this.$(".progress-bar").attr("aria-valuenow", rating);
 			    $("#ranking-value").html(rating + ' puntos (' + rating*20 + '%)');
 			}
 		});
-
 		this.$(".progress").mousedown("rating", function(e){
 			mouse_down = true;
 		});
 		$("body").mouseup("rating", function(e){
 			mouse_down = false;
+		});
+		this.$(".progress").click("rating", function(e){
+			_this.$(".progress-bar").css("width", rating*20 +'%');
+			_this.$(".progress-bar").attr("aria-valuenow", rating);
+			$("#ranking-value").html(rating + ' puntos (' + rating*20 + '%)');
 		});
   },
   willDestroyElement: function(){
