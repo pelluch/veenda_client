@@ -71,13 +71,13 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
             contentType: "application/json",
             dataType: "text",
             success: function(response) {
-              console.log('response: ' + response);
-              store.find('dispatched_order', order_id).then( function(model) {
-                 model.set('delivered', false);
-              });
-            }
-        });
-  		  this.transitionToRoute('login');
+                console.log('response: ' + response);
+                store.find('dispatched_order', order_id).then( function(model) {
+                   model.set('delivered', false);
+                  });
+                }
+         });
+		    this.transitionToRoute('dispatched_orders.dispatched_order', this.get('content.order'));
       },
       mapTrue: function() {
           this.set('isMap', true)
