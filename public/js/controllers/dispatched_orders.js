@@ -60,6 +60,55 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
       back: function(event) {
           this.transitionToRoute('login');
       },
+	  reset: function(event) {
+	    var order_id = this.get('content.id');
+        var store = this.get('store');
+        var self = this;
+        $.ajax({               
+            url: 'http://veenda01.herokuapp.com/api/v1/client/dispatched_orders/' + order_id,
+            type: 'PUT',
+            data: JSON.stringify({
+                dispatched_order: {
+                    delivered: false
+                    }
+                }),
+            contentType: "application/json",
+            dataType: "text",
+            success: function(response) {
+                console.log('response: ' + response);
+                store.find('dispatched_order', order_id).then( function(model) {
+                   model.set('delivered', false);
+                  });
+                }
+         });
+		 /*var starvalue = 2;
+         var comment = "hola";
+      
+          $.ajax({
+             url: 'http://veenda01.staging.herokuapp.com/api/v1/client/ratings',
+             type: 'UPDATE',
+             data: JSON.stringify({
+                  rating: {
+                    rating: starvalue,
+                    comment: comment,
+                    dispatched_order_id: order_id
+                  }
+              }),
+             contentType: "application/json",
+             dataType: "text",
+             success: function(response) {
+                  console.log('response: ' + response);
+              }
+          });
+
+          this.get('store').find('dispatched_order', this.get('content.order')).then( function(model) {
+                        model.set('rating_value', starvalue);
+                        model.set('comment', comment);
+                    });
+					*/
+		  this.transitionToRoute('login');
+		  
+      },
       mapTrue: function() {
           this.set('isMap', true)
       },

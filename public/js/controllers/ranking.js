@@ -1,7 +1,7 @@
 App.RankingController = Ember.Controller.extend({
     actions: {
         vote: function(event) {
-    			var starvalue = $('.progress-bar').attr('aria-valuenow');
+    	  var starvalue = $('.progress-bar').attr('aria-valuenow');
           var box = document.getElementsByClassName("comment-box");
           var comment = box[0].value;
       
