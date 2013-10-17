@@ -1,7 +1,6 @@
 App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
   model: function(params) {
-    //alert('tf');
-    //alert(order.get('isError'));
+
     var dispatched_order = this.get('store').find('dispatched_order', params.dispatched_order_id).then( function(order) {
     if(order.id != -1) {
       //alert(order.get('name'));
@@ -17,12 +16,10 @@ App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
     return dispatched_order;
   },
   actions: {
-    // then this hook will be fired with the error and most importantly a Transition
-    // object which you can use to retry the transition after you handled the error
-    error: function(error, transition) {
+    /*error: function(error, transition) {
       alert("No hay conexión de datos. Asegúrese de que está conectado a una red, diríjase a Configuración.");
       this.transitionToRoute('order_notfound');
-    }
+    }*/
   }
 });
 

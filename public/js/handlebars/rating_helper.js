@@ -10,7 +10,8 @@ Ember.Handlebars.registerHelper('rating_helper', function(condition, options) {
     returnValue += rating;
     returnValue += '" aria-valuemin="0" aria-valuemax="100" style="width: ';
     returnValue += rating*20;
-    returnValue += '%"></div></div>';
+    returnValue += '%"></div>';
+    returnValue += '</div>';
     returnValue += '<p id="ranking-value" class="margin-0-20">' + rating + ' puntos ('+ rating*20 + '%)</p>';
     return new Ember.Handlebars.SafeString(returnValue);
 

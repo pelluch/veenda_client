@@ -16,10 +16,13 @@ Ember.Handlebars.helper("rating", Ember.View.extend({
   didInsertElement: function(){
 		var _this = this;
 		var mouse_down = false;
+		var mouse_click = false;
 		var rating; 
 
 		$("body").mousemove("rating", function(e){
-			var x = e.pageX - ($(".progress").offset().left);
+			
+			if(mouse_down == true){ // ¡Arreglar! duplicacion de metodo
+				var x = e.pageX - ($(".progress").offset().left);
 				var width = $(".progress").width();
 				if(x <= 0){ 
 					x = 0;
@@ -28,7 +31,6 @@ Ember.Handlebars.helper("rating", Ember.View.extend({
 					x = width-1;
 				}
 				rating = Math.floor(x*(5+1)/width);
-			if(mouse_down == true){
 				
 			    _this.$(".progress-bar").css("width", rating*20 +'%');
 			    _this.$(".progress-bar").attr("aria-valuenow", rating);
@@ -42,9 +44,19 @@ Ember.Handlebars.helper("rating", Ember.View.extend({
 			mouse_down = false;
 		});
 		this.$(".progress").click("rating", function(e){
-			_this.$(".progress-bar").css("width", rating*20 +'%');
-			_this.$(".progress-bar").attr("aria-valuenow", rating);
-			$("#ranking-value").html(rating + ' puntos (' + rating*20 + '%)');
+			var x = e.pageX - ($(".progress").offset().left);
+			var width = $(".progress").width();
+			if(x <= 0){ 
+				x = 0;
+			}
+			if(x >= width){
+				x = width-1;
+			}
+			rating = Math.floor(x*(5+1)/width);
+			
+		    _this.$(".progress-bar").css("width", rating*20 +'%');
+		    _this.$(".progress-bar").attr("aria-valuenow", rating);
+		    $("#ranking-value").html(rating + ' puntos (' + rating*20 + '%)');
 		});
   },
   willDestroyElement: function(){
