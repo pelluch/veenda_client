@@ -8,24 +8,23 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
       }, 5000);
       this.interval_id = id;
 
-      self.getDistance();
+      self.getDistance(this);
     },
     refreshMyData: function(params) {
       if(App.get('currentPath') == 'dispatched_orders.dispatched_order') {
         this.transitionToRoute(App.get('currentPath'));
       }
     },
-    getDistance: function(params) {
-      var dispatcher_latitude = this.get('dispatcher_latitude');
+    getDistance: function(this) {
+      var dispatcher_latitude = this.get('store').get('dispatcher_latitude');
       var dispatcher_longitude = this.get('dispatcher_longitude');
       var destination_latitude = this.get('destination_latitude');
       var destination_longitude = this.get('destination_longitude');
-      
+
       var current_pos = new google.maps.LatLng(dispatcher_latitude, dispatcher_longitude);
       var end_pos = new google.maps.LatLng(destination_latitude, destination_longitude);
       var distance = Math.floor((google.maps.geometry.spherical.computeDistanceBetween(current_pos, end_pos) / 1000).toFixed(1));
       //this.set("distance", distance);
-      console.log(dispatcher_latitude);
     },
 
     actions: {
