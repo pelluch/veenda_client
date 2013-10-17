@@ -81,32 +81,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
                   });
                 }
          });
-		 /*var starvalue = 2;
-         var comment = "hola";
-      
-          $.ajax({
-             url: 'http://veenda01.staging.herokuapp.com/api/v1/client/ratings',
-             type: 'UPDATE',
-             data: JSON.stringify({
-                  rating: {
-                    rating: starvalue,
-                    comment: comment,
-                    dispatched_order_id: order_id
-                  }
-              }),
-             contentType: "application/json",
-             dataType: "text",
-             success: function(response) {
-                  console.log('response: ' + response);
-              }
-          });
-
-          this.get('store').find('dispatched_order', this.get('content.order')).then( function(model) {
-                        model.set('rating_value', starvalue);
-                        model.set('comment', comment);
-                    });
-					*/
-		  this.transitionToRoute('login');
+		this.transitionToRoute('login');
 		  
       },
       mapTrue: function() {
