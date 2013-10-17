@@ -62,7 +62,7 @@
                 {{else}}
 
                     {{#if isMap}}
-                        <div class="btn-group btn-group-lg-50">
+                        <div class="btn-group btn-group-lg-50 margin-15">
                             <button type="button" {{ action "mapFalse"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
                             <button type="button" {{ action "mapTrue"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-pushpin"></span> Mapa</button>
                         </div>
@@ -70,7 +70,7 @@
                             {{#view App.MapView }}<br/>{{/view}}
                         </div>
                     {{else}}
-                        <div class="btn-group btn-group-lg-50">
+                        <div class="btn-group btn-group-lg-50 margin-15">
                             <button type="button" {{ action "mapFalse"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
                             <button type="button" {{ action "mapTrue"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-pushpin"></span> Mapa</button>
                         </div>
@@ -161,7 +161,7 @@
 	<script type="text/x-handlebars" data-template-name="ranking">
 		<div class="container text-center">		
       <div class="details">	
-        <h3 class="alert alert-success">El despacho ha sido recibido</h3>
+        <h4 class="alert alert-success margin-0">El despacho ha sido recibido</h4>
         <h3>¿Quieres valorar el servicio?</h3>
 
         <h3 class="margin-30-0">Ranking</h3>
