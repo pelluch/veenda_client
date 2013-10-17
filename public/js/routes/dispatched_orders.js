@@ -16,10 +16,10 @@ App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
     return dispatched_order;
   },
   actions: {
-    /*error: function(error, transition) {
+    error: function(error, transition) {
       alert("No hay conexión de datos. Asegúrese de que está conectado a una red, diríjase a Configuración.");
       this.transitionToRoute('order_notfound');
-    }*/
+    }
   }
 });
 

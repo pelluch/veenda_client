@@ -64,15 +64,21 @@
                     {{#if isMap}}
                         <div class="btn-group btn-group-lg-50">
                             <button type="button" {{ action "mapFalse"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
-                            <button type="button" {{ action "mapTrue"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-pushpin"></span> Mapa</button>
+                            <button type="button" {{ action "mapTrue"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-screenshot"></span> Mapa</button>
                         </div>
                         <div class="details">
                             {{#view App.MapView }}<br/>{{/view}}
+                            <table class="table table-bordered table-margin-3">
+                              <tr>
+                                <td><img src="gps-icon-spec.png"> Destinatario</td>
+                                <td><img src="gps-icon-dispatcher-spec.png"> Zona despachador</td>
+                              </tr>
+                            </table>
                         </div>
                     {{else}}
                         <div class="btn-group btn-group-lg-50">
                             <button type="button" {{ action "mapFalse"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
-                            <button type="button" {{ action "mapTrue"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-pushpin"></span> Mapa</button>
+                            <button type="button" {{ action "mapTrue"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-screenshot"></span> Mapa</button>
                         </div>
                         <div class="details">
 
