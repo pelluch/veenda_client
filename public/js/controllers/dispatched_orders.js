@@ -80,7 +80,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
                   });
                 }
          });
-		this.transitionToRoute('login');
+		 this.transitionToRoute('dispatched_orders.dispatched_order', this.get('content.order'));
 		  
       },
       mapTrue: function() {
