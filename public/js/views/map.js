@@ -2,7 +2,7 @@ App.MapView = Ember.View.extend({
   id: 'map_canvas',
   tagName: 'div',
   attributeBindings: ['style'],
-  style:"margin-left:auto; height: 350px",
+  style:"margin-left:auto; height: 320px",
   map:null,
   markers:[],
   didInsertElement: function(event) {
