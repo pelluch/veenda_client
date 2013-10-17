@@ -20,7 +20,6 @@ Ember.Handlebars.helper("rating", Ember.View.extend({
 		var rating; 
 
 		$("body").mousemove("rating", function(e){
-			
 			if(mouse_down == true){ // ¡Arreglar! duplicacion de metodo
 				var x = e.pageX - ($(".progress").offset().left);
 				var width = $(".progress").width();

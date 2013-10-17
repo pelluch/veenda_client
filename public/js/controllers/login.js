@@ -1,5 +1,7 @@
 App.LoginController = Ember.Controller.extend({
-
+    init: function(params) {
+        this.refreshSavedOrders();
+    },
     refreshSavedOrders: function() {
        var self = this;
       store.all( function(records) {

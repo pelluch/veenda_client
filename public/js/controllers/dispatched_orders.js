@@ -9,7 +9,6 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
       this.interval_id = id;
 
       self.getDistance();
-
     },
     refreshMyData: function(params) {
       if(App.get('currentPath') == 'dispatched_orders.dispatched_order') {
@@ -30,9 +29,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
     },
 
     actions: {
-      
       insert: function(event) {
-
         var order_id = this.get('content.id');
         var store = this.get('store');
         var self = this;
@@ -59,29 +56,28 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
       back: function(event) {
           this.transitionToRoute('login');
       },
-	  reset: function(event) {
-	    var order_id = this.get('content.id');
+  	  reset: function(event) {
+  	    var order_id = this.get('content.id');
         var store = this.get('store');
         var self = this;
         $.ajax({               
             url: 'http://veenda01.herokuapp.com/api/v1/client/dispatched_orders/' + order_id,
             type: 'PUT',
             data: JSON.stringify({
-                dispatched_order: {
-                    delivered: false
-                    }
-                }),
+              dispatched_order: {
+                  delivered: false
+                  }
+              }),
             contentType: "application/json",
             dataType: "text",
             success: function(response) {
-                console.log('response: ' + response);
-                store.find('dispatched_order', order_id).then( function(model) {
-                   model.set('delivered', false);
-                  });
-                }
-         });
-		this.transitionToRoute('login');
-		  
+              console.log('response: ' + response);
+              store.find('dispatched_order', order_id).then( function(model) {
+                 model.set('delivered', false);
+              });
+            }
+        });
+  		  this.transitionToRoute('login');
       },
       mapTrue: function() {
           this.set('isMap', true)
@@ -92,4 +88,3 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
     },
     isMap: false
 });
-
