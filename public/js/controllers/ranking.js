@@ -4,7 +4,10 @@ App.RankingController = Ember.Controller.extend({
     	  var starvalue = $('.progress-bar').attr('aria-valuenow');
           var box = document.getElementsByClassName("comment-box");
           var comment = box[0].value;
-      
+		  if(comment=="")
+			{
+				comment = " ";
+			}
           $.ajax({
              url: 'http://veenda01.staging.herokuapp.com/api/v1/client/ratings',
              type: 'POST',
