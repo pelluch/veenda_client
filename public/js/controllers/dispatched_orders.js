@@ -1,5 +1,4 @@
 App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
-  distance: null,
 
   init: function(params) {
       var self = this;
