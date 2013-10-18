@@ -1,14 +1,62 @@
 App.LoginController = Ember.Controller.extend({
-    init: function(params) {
+
+    saved_orders: null,
+    refresh_idx: null,
+    init: function() {
         this.refreshSavedOrders();
     },
     refreshSavedOrders: function() {
-       var self = this;
-      App.chair.all( function(records) {
-        self.set('saved_orders', records); 
 
-          }
-      );
+      if(this.get('refresh_idx') != null)
+      {
+        alert(this.get('refresh_idx'));
+      }
+       var self = this;
+       console.log('refreshing orders');
+       var old_values;
+      App.chair.all( function(records) {
+     
+          old_values = records;
+           self.set('saved_orders', records); 
+        });
+        
+        // for(var i = 0; i < records.length; ++i)
+        // {
+        //   var idx = i;
+        //     var dispatched_order = self.get('store').find('dispatched_order', records[i].key).then( function(order) {
+            
+        //         $.ajax({               
+        //         url: 'http://veenda01.herokuapp.com/api/v1/client/dispatched_orders/' + order.id,
+        //         type: 'GET',
+        //         contentType: "application/json",
+        //         dataType: "json",
+        //         success: function(response) {
+        //           var delivered = response['dispatched_order']['delivered'];
+        //             console.log('response: ' + response['dispatched_order']['delivered']);
+        //              updated_value = {id : response['dispatched_order']['id'], name : response['dispatched_order']['name'], 
+        //             delivered: response['dispatched_order']['delivered'] };
+        //             console.log(idx);
+        //            var old_value = records[idx];
+        //            console.log(old_value);
+        //             //self.set('saved_orders', updated_value);
+        //             //store.find('dispatched_order', order_id).then( function(model) {
+        //              //  model.set('delivered', false);
+        //             //  });
+        //             }
+        //      });
+
+        //       //console.log(records[i].delivered);
+        //       //records[i].delivered = order.delivered;
+        //       //App.chair.save(records[i]);
+        //     });
+
+        // }
+        //self.set('saved_orders', records); 
+        //console.log(records);
+        //self.set('saved_orders', new_list);
+          
+      
+    
     },
     actions: {
         insert: function(event) {
