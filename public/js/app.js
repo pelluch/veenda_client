@@ -10,12 +10,3 @@ App.chair = new Lawnchair({
         name: "veenda_client"
     }, function(store) {
 });
-
-App.refreshSavedOrders = function() {
-	alert('hi');
-      App.chair.all( function(records) {
-        loginController.set('saved_orders', records);
-
-          }
-      );
-    };

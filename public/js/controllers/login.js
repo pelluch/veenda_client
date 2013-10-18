@@ -5,12 +5,11 @@ App.LoginController = Ember.Controller.extend({
     refreshSavedOrders: function() {
        var self = this;
       App.chair.all( function(records) {
-        self.set('saved_orders', records);
+        self.set('saved_orders', records); 
 
           }
       );
     },
-
     actions: {
         insert: function(event) {
     			if(typeof this.get('codigo') == 'undefined' || this.get('codigo').match(/^\s*$/)) {
@@ -24,7 +23,5 @@ App.LoginController = Ember.Controller.extend({
           App.chair.remove(param);
           this.refreshSavedOrders();
         }
-     }
+    }
 });
-
-var loginController = App.LoginController.create();
