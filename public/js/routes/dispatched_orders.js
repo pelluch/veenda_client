@@ -4,8 +4,9 @@ App.DispatchedOrdersDispatchedOrderRoute = Ember.Route.extend( {
     var dispatched_order = this.get('store').find('dispatched_order', params.dispatched_order_id).then( function(order) {
     if(order.id != -1) {
       //alert(order.get('name'));
-      var toSave = { key : params.dispatched_order_id, name: order.get('name'), delivered: order.get('delivered')};
-      store.save(toSave);
+      var toSave = { key : params.dispatched_order_id, name: order.get('name'), delivered: order.get('delivered'),
+       type : 'dispatched_order'};
+      App.chair.save(toSave);
 
       return order;
     }

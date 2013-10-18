@@ -9,7 +9,7 @@ App.RankingController = Ember.Controller.extend({
 				comment = " ";
 			}
           $.ajax({
-             url: 'http://veenda01.staging.herokuapp.com/api/v1/client/ratings',
+             url: 'http://veenda01.herokuapp.com/api/v1/client/ratings',
              type: 'POST',
              data: JSON.stringify({
                   rating: {

@@ -76,6 +76,11 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
                   });
                 }
          });
+        App.chair.get(order_id, function(obj) {
+          console.log(obj);
+          obj.delivered = false;
+          App.chair.save(obj);
+        });
 		    this.transitionToRoute('dispatched_orders.dispatched_order', this.get('content.order'));
       },
       mapTrue: function() {
