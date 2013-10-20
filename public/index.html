@@ -146,20 +146,24 @@
 
         <h3 class="margin-20">Mis pedidos</h3>
         <div class="list-group pedidos">
-          {{#each saved_order in saved_orders}}
-            {{#link-to 'dispatched_orders.dispatched_order' saved_order.key classNames="list-group-item"}} 
-              <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
-              {{saved_order.name}}
-              {{#if saved_order.delivered}}
-               <span class="badge badge-success">
-                Recibido
-              {{else}} 
-                <span class="badge">
-                Traslado
-              {{/if}}
-              </span>
-            {{/link-to}}
-          {{/each}}
+          {{#if saved_orders}}
+            {{#each saved_order in saved_orders}}
+              {{#link-to 'dispatched_orders.dispatched_order' saved_order.key classNames="list-group-item"}} 
+                <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
+                {{saved_order.name}}
+                {{#if saved_order.delivered}}
+                 <span class="badge badge-success">
+                  Recibido
+                {{else}} 
+                  <span class="badge">
+                  Traslado
+                {{/if}}
+                </span>
+              {{/link-to}}
+            {{/each}}
+          {{else}}
+            <h4 class="margin-0-10">No está siguiendo ningún pedido</h4>
+          {{/if}}
         </div>
       </div>
       {{outlet}} 
