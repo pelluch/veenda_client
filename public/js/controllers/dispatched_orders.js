@@ -34,7 +34,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
         var self = this;
           $.ajax({
                
-               url: 'http://veenda01.herokuapp.com/api/v1/client/dispatched_orders/' + order_id,
+               url: VEENDA_FULL_URL + '/dispatched_orders/' + order_id,
                type: 'PUT',
                data: JSON.stringify({
                     dispatched_order: {
@@ -60,7 +60,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
         var store = this.get('store');
         var self = this;
         $.ajax({               
-            url: 'http://veenda01.herokuapp.com/api/v1/client/dispatched_orders/' + order_id,
+            url: VEENDA_FULL_URL + '/dispatched_orders/' + order_id,
             type: 'PUT',
             data: JSON.stringify({
               dispatched_order: {

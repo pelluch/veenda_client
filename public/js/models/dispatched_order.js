@@ -1,7 +1,7 @@
 
 App.DispatchedOrderAdapter = DS.RESTAdapter.extend({
-    host: 'http://veenda01.herokuapp.com',
-    namespace: 'api/v1/client'
+    host: VEENDA_HOST,
+    namespace: VEENDA_NAMESPACE
 });
 
 App.DispatchedOrder = DS.Model.extend({
