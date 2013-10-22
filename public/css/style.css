@@ -29,8 +29,46 @@ html, body {
     margin-bottom: 1px;
 }
 
+.list-items-properties {
+    border: 1px solid #dddddd;
+    margin: 0 auto;
+    padding: 0 auto;
+    margin-bottom: 4px;
+}
+
+.list-items-button {
+    margin: 0 auto;
+    padding: 0 auto;
+    padding:5px;
+    border: 1px solid #dddddd;
+    color: #ffffff;
+}
+.list-items-button:hover {
+    cursor: pointer;
+}
+
+.list-items-button-state_agendado {
+    background-color: #999999;
+    border: 1px solid #cccccc;
+}
+.list-items-button-state_en_despacho {
+    background-color: #428bca;
+    border: 1px solid #357ebd;
+}  
+.list-items-button-state_recibido {
+    background-color: #5cb85c;
+    border: 1px solid #4cae4c;
+}  
+.list-items-button-num_orders {
+    background-color: #d9534f;
+    border: 1px solid #d43f3a;
+} 
+.list-items-button-distance {
+    background-color: #5bc0de;
+    border: 1px solid #46b8da;
+} 
+
 .list-group-item > .close {
-    float: left;
     margin-right: 54px;
 }
 .badge-success {
