@@ -71,6 +71,7 @@ html, body {
 .pedidos {
     max-width: 390px;
     margin: 0 auto;
+    margin-bottom: 15px;
 }
 .btn-lg-300 {
     max-width: 400px;
@@ -104,7 +105,8 @@ h5{
     font-weight: 200;
 }
 .margin-20{
-    padding-top: 20px;
+    margin-top: 0px;
+    margin-bottom: 10px;
 }
 .margin-30-0{
     margin-top: 30px;
