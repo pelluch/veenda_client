@@ -6,7 +6,7 @@ Ember.Handlebars.helper("rating", Ember.View.extend({
    render: function(buffer){
  		var max = this.get("max");
  		for(var i = max; i > 0; i--) {
- 		  buffer.push("<span data-value='" + i + "' class='" + (i === this.get("value") ? "active" : "") + "'>" + this.get("symbol") + "</span>");
+ 		  buffer.push("<span id='" + i + "' class='" + (i === this.get("value") ? "active" : "") + "'>" + this.get("symbol") + "</span>");
  		}
    },
    didInsertElement: function(){
