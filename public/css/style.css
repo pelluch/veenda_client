@@ -94,6 +94,23 @@ html, body {
     margin-top: 12px;
 }
 
+.btn-gray {
+  color: #ffffff;
+  background-color: #787878;
+  border-color: #666666;
+}
+
+.btn-gray:hover,
+.btn-gray:focus,
+.btn-gray:active,
+.btn-gray.active,
+.open .dropdown-toggle.btn-gray {
+  color: #ffffff;
+  background-color: #555555;
+  border-color: #444444;
+}
+
+
 h3{
     font-weight: 200;
 }
