@@ -146,26 +146,29 @@
 
         <h3 class="margin-20">Mis pedidos</h3>
         <div class="pedidos">
-          {{#each saved_order in saved_orders}}
+          {{#if saved_orders}}
+            {{#each saved_order in saved_orders}}
+              <div class="row list-items-properties">
+                {{#link-to 'dispatched_orders.dispatched_order' saved_order.key}}
+                  <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
+                  <h4>Empresa</h4>
+                  <h3>#{{saved_order.name}}</h3>
+                {{/link-to}}
 
-            <div class="row list-items-properties">
-              {{#link-to 'dispatched_orders.dispatched_order' saved_order.key}}
-                <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
-                <h4>Empresa</h4>
-                <h3>#{{saved_order.name}}</h3>
-              {{/link-to}}
-
-              {{#if saved_order.delivered}}
-                <div class="col-xs-4 col-md-4 list-items-button list-items-button-state_recibido">Recibido</div>
-                <div class="col-xs-4 col-md-4 list-items-button">&nbsp</div>
-                <div class="col-xs-4 col-md-4 list-items-button">&nbsp</div>
-              {{else}} 
-                <div class="col-xs-4 col-md-4 list-items-button list-items-button-state_en_despacho">En despacho</div>
-                <div class="col-xs-4 col-md-4 list-items-button list-items-button-num_orders">{{saved_order.rest}} pedidos pendientes</div>
-                <div class="col-xs-4 col-md-4 list-items-button list-items-button-distance">&nbsp</div>
-              {{/if}}
+                {{#if saved_order.delivered}}
+                  <div class="col-xs-4 col-md-4 list-items-button list-items-button-state_recibido">Recibido</div>
+                  <div class="col-xs-4 col-md-4 list-items-button">&nbsp</div>
+                  <div class="col-xs-4 col-md-4 list-items-button">&nbsp</div>
+                {{else}} 
+                  <div class="col-xs-4 col-md-4 list-items-button list-items-button-state_en_despacho">En despacho</div>
+                  <div class="col-xs-4 col-md-4 list-items-button list-items-button-num_orders">{{saved_order.rest}} pedidos pendientes</div>
+                  <div class="col-xs-4 col-md-4 list-items-button list-items-button-distance">&nbsp</div>
+                {{/if}}
             </div>
           {{/each}}
+          {{else}}
+            <h4 class="margin-0-10">No está siguiendo ningún pedido</h4>
+          {{/if}}
         </div>
       </div>
       {{outlet}} 
