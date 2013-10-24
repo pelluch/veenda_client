@@ -34,51 +34,28 @@ html, body {
     margin: 0 auto;
     padding: 0 auto;
     margin-bottom: 4px;
+    text-align: center;
 }
 
-.list-items-button {
-    margin: 0 auto;
-    padding: 0 auto;
-    padding:5px;
-    border: 1px solid #dddddd;
-    color: #ffffff;
-}
-.list-items-button:hover {
-    cursor: pointer;
-}
-
-.list-items-button-state_agendado {
-    background-color: #999999;
-    border: 1px solid #cccccc;
-}
-.list-items-button-state_en_despacho {
-    background-color: #428bca;
-    border: 1px solid #357ebd;
-}  
-.list-items-button-state_recibido {
-    background-color: #5cb85c;
-    border: 1px solid #4cae4c;
-}  
-.list-items-button-num_orders {
-    background-color: #d9534f;
-    border: 1px solid #d43f3a;
-} 
-.list-items-button-distance {
-    background-color: #5bc0de;
-    border: 1px solid #46b8da;
-} 
-
-.list-group-item > .close {
-    margin-right: 54px;
+.list-items-properties > .close {
+    margin-right: 10px;
 }
 .badge-success {
     background-color: #5cb85c;
+}
+.btn-group-lg-100 {
+    width: 100%;
+    text-align: center;
+    padding: 3px;
 }
 .btn-lg-50 {
     width: 50%;
 }
 .btn-lg-47 {
     width: 49%;
+}
+.btn-lg-32 {
+    width: 33.5%;
 }
 .btn-group-lg-50 {
     max-width: 700px;
@@ -133,6 +110,10 @@ h4{
 
 .margin-0{
     margin-top: 0;
+}
+
+.margin-0-0{
+    margin: 0;
 }
 
 .margin-15{
