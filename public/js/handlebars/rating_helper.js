@@ -16,7 +16,7 @@ Ember.Handlebars.registerHelper('rating_helper', function(condition, options) {
     return new Ember.Handlebars.SafeString(returnValue);
 */
 
-    var returnValue = '<div class="ember-view rating">';
+    var returnValue = '<h2><div class="ember-view rating">';
     var rating = this.get('rating_value');
     for(var i = 5; i >= 1; i--) {
        returnValue = returnValue + '<span id="' + i + '" class';
@@ -25,6 +25,6 @@ Ember.Handlebars.registerHelper('rating_helper', function(condition, options) {
        }
        returnValue = returnValue + '></span>\n';
     }
-    returnValue = returnValue + "\n</div></br>";
+    returnValue = returnValue + "\n</div></h2></br></br>";
     return new Ember.Handlebars.SafeString(returnValue);
 });
