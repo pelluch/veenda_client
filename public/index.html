@@ -143,8 +143,9 @@
               <div class="list-items-properties">
                 {{#link-to 'dispatched_orders.dispatched_order' saved_order.key}}
                   <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
-                  <h4>Empresa</h4>
-                  <h3 class="margin-0">#{{saved_order.id}}</h3>
+                  <img class="logo-list" src="empresa.png"/>
+                  <h5>Dominos Pizza</h5>
+                  <h3 class="margin-0">#{{saved_order.key}}</h3>
                 {{/link-to}}
                 <div class="btn-group btn-group-lg-100">
                 {{#if saved_order.delivered}}
