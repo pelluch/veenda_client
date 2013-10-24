@@ -12,12 +12,6 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
 
     },
     refreshMyData: function(params) {
-      var order_id = this.get('content.id');
-      this.get('store').find('dispatched_order', order_id).then(function(rec){
-            rec.deleteRecord();
-            rec.save();
-          });
-
       if(App.get('currentPath') == 'dispatched_orders.dispatched_order') {
         this.transitionToRoute(App.get('currentPath'));
       }
