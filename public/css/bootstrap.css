@@ -248,7 +248,7 @@ a {
 	.rating > span:hover ~ span,
 	.rating > span.active,
 	.rating > span.active ~ span {
-	  color: transparent;
+	  color: #000000;
 	}
 	.rating > span:hover:before,
 	.rating > span:hover ~ span:before,
@@ -256,6 +256,10 @@ a {
 	.rating > span.active ~ span:before {
 	  position: absolute;
 	  color: gold;
+	}
+	.rating > span:hover ~ span:after {
+	  position: absolute;
+	  color: #000000;
 	}
 	.rating > span:hover:before,
 	.rating > span:hover ~ span:before,
