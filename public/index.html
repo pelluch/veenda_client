@@ -57,7 +57,7 @@
                           </div>
                     {{/if}}
                     <button class="btn btn-default" {{ action "back"}}>Volver</button>
-					<button class="btn btn-danger" {{ action "reset"}}>Despacho No Recibido</button>
+					           <button class="btn btn-danger" {{ action "reset"}}>Despacho No Recibido</button>
                 </div>
 
                 {{else}}
@@ -135,14 +135,6 @@
 
     <script type="text/x-handlebars" data-template-name="login">
       <div class="container text-center">
-          <h3 class="margin-0-10">Ingrese código de pedido</h3>
-
-          <div class="input-group details">
-            {{view Ember.TextField valueBinding="codigo" placeholder="Buscar pedido" class= "form-control"}}
-            <span class="input-group-btn">
-              <button {{ action insert}} class="btn btn-default" type="button">Buscar</button>
-            </span>
-          </div>
 
         <h3 class="margin-20">Mis pedidos</h3>
         <div class="pedidos">
@@ -171,6 +163,11 @@
             <h4 class="margin-0-10">No está siguiendo ningún pedido</h4>
           {{/if}}
         </div>
+        <div class=" details jumbotron margin-0-0">
+           <h4>Seguir nuevo despacho</h4>
+            {{view Ember.TextField valueBinding="codigo" placeholder="Buscar pedido" class= "form-control"}}
+            <button {{ action insert}} class="btn btn-info margin-15 width-40" type="button">Seguir</button>
+          </div>
       </div>
       {{outlet}} 
     </script>

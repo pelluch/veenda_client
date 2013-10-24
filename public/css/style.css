@@ -112,7 +112,7 @@ h4{
 }
 
 .margin-0-0{
-    margin: 0;
+    padding: 15px 30px 15px 30px;
 }
 
 .margin-15{
@@ -125,6 +125,11 @@ h4{
 }
 .table-margin-3{
     margin-top: 3px;
+}
+
+.width-40{
+    max-width:220px;
+    width: 60%;
 }
 
 #map_canvas label { width: auto; display:inline; }
