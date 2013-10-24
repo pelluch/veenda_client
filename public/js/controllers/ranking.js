@@ -6,7 +6,7 @@ App.RankingController = Ember.Controller.extend({
 			for (var i = 0; i < elements.length; i++) {
 				starvalue = elements[i].id; 
 			}
-
+			
           var box = document.getElementsByClassName("comment-box");
           var comment = box[0].value;
 		  if(comment=="")
