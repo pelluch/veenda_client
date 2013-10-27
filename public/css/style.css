@@ -35,10 +35,13 @@ html, body {
     padding: 0 auto;
     margin-bottom: 4px;
     text-align: center;
+    border-radius: 4px;
 }
-
-.list-items-properties > .close {
-    margin-right: 10px;
+.cl{
+    clear:both;
+}
+.list-items-properties .close {
+    margin-right: 5px;
 }
 .badge-success {
     background-color: #5cb85c;
@@ -50,16 +53,30 @@ html, body {
 }
 .btn-lg-50 {
     width: 50%;
+}.btn-mg-14-14 {
+    padding-left: 15px;
+    float:left;
 }
 .btn-lg-47 {
     width: 49%;
 }
+.btn-gr-300max {
+    max-width: 300px;
+}
 .btn-lg-32 {
     width: 33.5%;
+    border-radius: 4px;
 }
 .btn-group-lg-50 {
     max-width: 700px;
     width: 100%;
+}
+.btn-pdg-up-25 {
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+.status:hover {
+    cursor:default;
 }
 .details {
     width: 100%;
@@ -67,6 +84,13 @@ html, body {
     margin: 0 auto;
     margin-top: 20px;
     text-align: center;
+}
+.details_left {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: left;
 }
 .pedidos {
     max-width: 390px;

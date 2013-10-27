@@ -29,21 +29,14 @@
             <div class="container text-center">
                 {{#if delivered}}
                     <div class="details">
-                        <div class="panel panel-default text-left">
-                          <!-- Table -->
-                          <table class="table">
-                            <tr class="active">
-                              <th>Producto</th>
-                              <th>{{this.name}}</th>
-                            </tr>
-                            <tr>
-                              <td>Estado</td>
-                              <td>Recibido</td>
-                            </tr>
-                          </table>
-                        </div>
+                      <h5 class="btn btn-success btn-xs btn-mg-14-14 btn-lg-50 status">Recibido</h5>
+                      <div class="cl"></div>
+                      <p><img class="margin-30-0" src="empresa.png"/></p>
+                        <h3>#{{ this.id }}</h3>
+                        <h4>{{ this.name }}</h4>
 
                     {{#if comment}}
+
                       <h3 class="margin-30-0">Ranking</h3>
                       {{rating_helper this}}
 
@@ -77,38 +70,21 @@
                             </table>
                         </div>
                     {{else}}
-						<div class="btn-group btn-group-lg-50 margin-15">
-                            <button type="button" {{ action "mapFalse"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
-                            <button type="button" {{ action "mapTrue"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-screenshot"></span> Mapa</button>
-                        </div>
-						<div class="container text-center">
-							<img class="margin-30-0" src="empresa.png"/>
-						</div>
-                        <div class="details">
-                            <div class="panel panel-default text-left">
-                              <!-- Table -->
-                              <table class="table">
-                                <tr class="active">
-                                  <th>Producto</th>
-                                  <th>{{this.name}}</th>
-                                </tr>
-                                <tr>
-                                  <td>Estado</td>
-                                  <td>Traslado</td>
-                                </tr>
-                                <tr>
-                                  <td>Pedidos restantes</td>
-                                  <td>{{ rest }}</td>
-                                </tr>
-                                <tr>
-                                  <td>Distancia a destino aproximada</td>
-                                  <td>{{ distance }} km</td>
-                                </tr>
-                              </table>
-                            </div>
+                    <div class="container text-center">
+                      <div class="details">
+                        <h5 class="btn btn-primary btn-xs btn-mg-14-14 btn-lg-50 status">Agendado</h5>
+                        <div class="cl"></div>
 
-                            <button class="btn btn-success btn-lg-300" {{ action "insert"}} >Despacho Recibido</button>
-                        </div>
+                        <p><img class="margin-30-0" src="empresa.png"/></p>
+                        <h3>#{{ this.id }}</h3>
+                        <h4>{{ this.name }}</h4>
+                        <p>
+                          <button class="btn btn-gray btn-lg-47 btn-pdg-up-25" ><span class="glyphicon glyphicon-time"></span> {{this.rest}} pedidos pen</button>
+                          <button class="btn btn-danger btn-lg-47 btn-pdg-up-25" {{ action "mapTrue"}} ><span class="glyphicon glyphicon-map-marker"></span> {{this.distance}} 30 cuadras</button>
+                        </p>
+                        <button class="btn btn-success btn-lg-300" {{ action "insert"}} >Llegó mi pedido</button>
+                      </div>
+                    </div>
                     {{/if}}
 
                 {{/if}}
