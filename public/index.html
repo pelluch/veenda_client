@@ -179,7 +179,7 @@
 		<div class="container text-center">		
       <div class="details">	
         <h4 class="alert alert-success margin-0">El despacho ha sido recibido</h4>
-        <h3>¿Quieres valorar el servicio?</h3>
+        <h3>¿Qué opinas del despacho?</h3>
 
         <h3 class="margin-30-0">Ranking</h3>
   			<h2>{{rating max="5"}}</h2>
@@ -187,9 +187,11 @@
   			<div class="form-group">
             <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="7"></textarea>
         </div>
-        <p class="form-group-lg-400 text-center">
-          <button class="btn btn-primary btn-lg-47" {{ action "vote"}} >Valorar</button>
-          <button class="btn btn-default btn-lg-47" {{ action "skip"}} >Saltar</button>
+        <p>
+          <button class="btn btn-primary btn-lg-300" {{ action "vote"}} >Evaluar</button>
+        </p>
+        <p>
+          <button class="btn btn-link btn-lg-300" {{ action "skip"}} >No gracias, no quiero evaluar</button>
         </p>
       </div>
  		</div>
