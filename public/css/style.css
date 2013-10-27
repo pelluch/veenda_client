@@ -17,6 +17,9 @@ html, body {
     margin-top: 9px;
 }
 
+.container{
+    margin-bottom: 20px;
+}
 .navbar {
     
     background-color: #000;
