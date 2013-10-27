@@ -75,6 +75,8 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
                 console.log('response: ' + response);
                 store.find('dispatched_order', order_id).then( function(model) {
                    model.set('delivered', false);
+				   model.set('comment', "");
+				   model.set('rating_value', 0);
                   });
                 }
          });
