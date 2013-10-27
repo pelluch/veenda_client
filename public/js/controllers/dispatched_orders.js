@@ -7,7 +7,10 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
         self.refreshMyData()
       }, 5000);
       this.interval_id = id;
-
+	  //if(sessionStorage.get('map')==true)
+		//{
+		//	isMap = true;
+		//}
       self.getDistance();
 
     },

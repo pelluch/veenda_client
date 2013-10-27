@@ -67,6 +67,10 @@ App.LoginController = Ember.Controller.extend({
     				this.transitionToRoute('dispatched_orders.dispatched_order', this.get('codigo'));
     			}
         },
+		activatemap: function(key) {
+				sessionStorage.setItem('map', true);
+				this.transitionToRoute('dispatched_orders.dispatched_order', key);
+        },
         removeLink: function(param) {
           App.chair.remove(param);
           this.refreshSavedOrders();
