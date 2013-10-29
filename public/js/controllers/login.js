@@ -15,9 +15,28 @@ App.LoginController = Ember.Controller.extend({
        console.log('refreshing orders');
        var old_values;
       App.chair.all( function(records) {
-     
-          old_values = records;
-		  self.set('saved_orders', records); 
+		  
+		  var final = new Array();
+		  var aux = 0;
+		  for(i = 0; i<records.length;i++)
+		  {
+			  if(records[i].delivered==false)
+			  {
+				  final.push(records[i]);
+				  
+			  }
+		  }
+		  for(i = 0; i<records.length;i++)
+		  {
+			  if(records[i].delivered==true)
+			  {
+				  final.push(records[i]);
+				  aux++;
+			  }
+		 }
+		  
+		  old_values = final;
+		  self.set('saved_orders', final); 
         });
         
         // for(var i = 0; i < records.length; ++i)
