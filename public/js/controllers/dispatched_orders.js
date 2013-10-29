@@ -6,7 +6,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
       var id = setInterval(function() {
         self.refreshMyData()
       }, 5000);
-      this.interval_id = id;
+      this.interval_id = id;	  
 	  //if(sessionStorage.get('map')==true)
 		//{
 		//	isMap = true;

@@ -17,7 +17,7 @@ App.LoginController = Ember.Controller.extend({
       App.chair.all( function(records) {
      
           old_values = records;
-           self.set('saved_orders', records); 
+		  self.set('saved_orders', records); 
         });
         
         // for(var i = 0; i < records.length; ++i)

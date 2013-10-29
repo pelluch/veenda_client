@@ -8,10 +8,15 @@ App.RankingController = Ember.Controller.extend({
 			}
 			
           var box = document.getElementsByClassName("comment-box");
-          var comment = box[0].value;
+		  var resumen = box[0].value;
+          var comment = box[1].value;
 		  if(comment=="")
 			{
 				comment = " ";
+			}
+		  if(resumen=="")
+			{
+				resumen = " ";
 			}
           $.ajax({
              url: VEENDA_FULL_URL + '/ratings',

@@ -78,6 +78,12 @@ html, body {
     padding-top: 13px;
     padding-bottom: 13px;
 }
+.btn-border-white {
+	border: solid 1px #ffffff;
+   }
+.btn-border-white:hover {
+	border: solid 1px #ffffff;
+   }
 .status:hover {
     cursor:default;
 }
@@ -87,6 +93,12 @@ html, body {
     margin: 0 auto;
     margin-top: 20px;
     text-align: center;
+}
+.float_left {
+    width: 70%;
+}
+.navbar-inverse {
+	background-color: #428bca;
 }
 .details_left {
     width: 100%;
@@ -175,6 +187,10 @@ h5{
 .margin-15{
     margin-top: 15px;
 }
+.margin-0-5{
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
 
 #map_canvas { 
     height: 100%;
@@ -186,7 +202,7 @@ h5{
 
 .width-40{
     max-width:220px;
-    width: 60%;
+    width: 19%;
 }
 
 #map_canvas label { width: auto; display:inline; }
