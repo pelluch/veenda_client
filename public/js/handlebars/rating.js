@@ -11,7 +11,7 @@ Ember.Handlebars.helper("rating", Ember.View.extend({
    },
    didInsertElement: function(){
 	 	var _this = this;
-	 	this.$("span").on("click.rating", function(e){
+	 	this.$("span").on("click tap", function(e){
 	 	_this.$("span").removeClass("active");
 	 	var $target = $(e.currentTarget);
 	    $target.addClass("active");
@@ -19,7 +19,7 @@ Ember.Handlebars.helper("rating", Ember.View.extend({
 	 	});
    }, 
    willDestroyElement: function(){
-	 	this.$("span").off("click.rating");
+	 	this.$("span").off("click tap");
    }
  }));
 
