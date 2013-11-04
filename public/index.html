@@ -79,8 +79,24 @@
                         <h3>#{{ this.id }}</h3>
                         <h4>{{ this.name }}</h4>
                         <p>
-                          <button class="btn btn-gray btn-lg-47" ><span class="glyphicon glyphicon-time"></span> {{this.rest}} pedidos pendientes</button>
-                          <button class="btn btn-danger btn-lg-47" {{ action "mapTrue"}} ><span class="glyphicon glyphicon-map-marker"></span> {{this.distance}} cuadras</button>
+                          <button class="btn btn-gray btn-lg-47" >
+                              <span class="glyphicon glyphicon-time btn-icon"></span>
+                              <span class="btn-inline text-left"> 
+                                <small>
+                                  <p class="margin-0-0-0">{{this.rest}} pedidos</p>
+                                  <p class="margin-0-0-0">pendientes</p>
+                                </small>
+                              </span>
+                          </button>
+                          <button class="btn btn-danger btn-lg-47" {{ action "mapTrue"}} >
+                              <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
+                              <span class="btn-inline text-left"> 
+                                <small>
+                                  <p class="margin-0-0-0">{{this.distance}} cuadras</p>
+                                  <p class="margin-0-0-0">restantes</p>
+                                </small>
+                              </span>
+                          </button>
                         </p>
                         <button class="btn btn-success btn-group-lg-100_1 btn-lg" {{ action "insert"}} >Llegó mi pedido</button>
                       </div>
@@ -127,7 +143,7 @@
       <div class="container text-center">
 
         <h3 class="margin-20">Mis pedidos</h3>
-        <div class="row">
+        <div class="row margin-0-100">
           {{#if saved_orders}}
             {{#each saved_order in saved_orders}}
               <div class="col-md-4">
@@ -139,11 +155,28 @@
                     <h3 class="margin-0">#{{saved_order.key}}</h3>
                   <div class="btn-group btn-group-lg-100">
                   {{#if saved_order.delivered}}
-                    <span  class="btn btn-success btn-fix btn-group-lg-100_1">Recibido</span>
+                    <span  class="btn btn-success btn-fix btn-group-lg-100_1 btn-height">Recibido</span>
                   {{else}} 
-                    <span  class="btn btn-primary btn-lg-32 btn-fix">Traslado</span>
-                    <span  class="btn btn-gray btn-lg-32 btn-fix">{{saved_order.rest}} pedidos pendientes</span>
-                    <span  class="btn btn-default btn-lg-32 btn-fix"><span class="glyphicon glyphicon-map-marker"></span> {{saved_order.distance}} cuadras</span>
+                    <span  class="btn btn-primary btn-lg-32 btn-fix btn-height">Traslado</span>
+                    <span  class="btn btn-gray btn-lg-32 btn-fix">
+                            <span class="glyphicon glyphicon-time btn-icon"></span> 
+                              <span class="btn-inline text-left"> 
+                                <small>
+                                  <p class="margin-0-0-0">{{saved_order.rest}} pedidos</p>
+                                  <p class="margin-0-0-0">pendientes</p>
+                                </small>
+                              </span>
+                    </span>
+
+                    <span  class="btn btn-default btn-lg-32 btn-fix">
+                            <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
+                              <span class="btn-inline text-left"> 
+                                <small>
+                                  <p class="margin-0-0-0">{{saved_order.distance}} cuadras</p>
+                                  <p class="margin-0-0-0">restantes</p>
+                                </small>
+                              </span>
+                    </span>
                   {{/if}}
                   </div>
                 </div>
