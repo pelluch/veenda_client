@@ -219,7 +219,7 @@ li {
 	list-style:none;
 }
 
-
+/*
 .rating {
     unicode-bidi: bidi-override;
     direction: rtl;
@@ -254,7 +254,15 @@ li {
 .rating.sun > span.active:before,
 .rating.sun > span.active ~ span:before {
     content: "\2600";
+}*/
+
+.rating-star-active {
+    color: gold;
+    content: "\2600";
 }
+.rating-star {
+}
+
 
 .btn-fix {
    cursor:default;

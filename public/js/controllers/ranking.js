@@ -1,11 +1,17 @@
 App.RankingController = Ember.Controller.extend({
     actions: {
         vote: function(event) {
-    	  	var elements = document.getElementsByClassName("active");
-			var starvalue = 0;
-			for (var i = 0; i < elements.length; i++) {
-				starvalue = elements[i].id; 
-			}
+    	  	/*var elements = document.getElementsByClassName("active");
+      			var starvalue = 0;
+      			for (var i = 0; i < elements.length; i++) {
+      				starvalue = elements[i].id; 
+      			}*/
+            var starvalue = 0;
+            var rating = document.getElementsByClassName("rating");
+            var rating_pre_value = $(".rating").attr('rating-value');
+            if(rating_pre_value != null){
+              starvalue = parseInt(rating_pre_value)+1;
+            }
 			
           var box = document.getElementsByClassName("comment-box");
 		  var resumen = box[0].value;

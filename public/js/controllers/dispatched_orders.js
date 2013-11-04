@@ -15,6 +15,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
 
     },
     refreshMyData: function(params) {
+      
       if(App.get('currentPath') == 'dispatched_orders.dispatched_order') {
         this.transitionToRoute(App.get('currentPath'));
       }

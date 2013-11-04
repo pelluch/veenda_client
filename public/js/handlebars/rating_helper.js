@@ -18,12 +18,14 @@ Ember.Handlebars.registerHelper('rating_helper', function(condition, options) {
 
     var returnValue = '<h2><div class="ember-view rating">';
     var rating = this.get('rating_value');
-    for(var i = 5; i >= 1; i--) {
-       returnValue = returnValue + '<span id="' + i + '" class';
-       if(i == rating) {
-          returnValue = returnValue + '="active"';
+
+    for(var i = 1; i <= 5; i++) {
+       if(i <= rating) {
+          returnValue = returnValue + '<span class="rating-star rating-star-active">☆</span>';
        }
-       returnValue = returnValue + '></span>\n';
+       else{
+            returnValue = returnValue + '<span class="rating-star">☆</span>';
+       }
     }
     returnValue = returnValue + "\n</div></h2></br></br>";
     return new Ember.Handlebars.SafeString(returnValue);
