@@ -50,7 +50,7 @@
                           </div>
                     {{/if}}
                     <button class="btn btn-default" {{ action "back"}}>Volver</button>
-					           <button class="btn btn-danger" {{ action "reset"}}>Despacho No Recibido</button>
+                     <button class="btn btn-danger" {{ action "reset"}}>Despacho No Recibido</button>
                 </div>
 
                 {{else}}
@@ -84,6 +84,7 @@
                               <span class="btn-inline text-left"> 
                                 <small>
                                   <p class="margin-0-0-0">{{this.rest}} pedidos</p>
+                                  <p class="margin-0-0-0">pendientes</p>
                                 </small>
                               </span>
                           </button>
@@ -127,18 +128,18 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="login">
-  	  <div class="navbar navbar-inverse navbar-fixed-bottom">
-  		 <div class="row">
+      <div class="navbar navbar-inverse navbar-fixed-bottom">
+       <div class="row">
        <div class="col-xs-9">
-  			{{view Ember.TextField valueBinding="codigo" placeholder="Seguir nuevo pedido" class= "form-control"}}
+        {{view Ember.TextField valueBinding="codigo" placeholder="Seguir nuevo pedido" class= "form-control"}}
         </div>  
         <div class="col-xs-3">
-  			    <button {{ action insert}} class="btn btn-primary btn-border-white btn-lg-300" type="button">Seguir
-            </button>	
-        </div>      	
-  		 </div>				 		  
+            <button {{ action insert}} class="btn btn-primary btn-border-white btn-lg-300" type="button">Seguir
+            </button> 
+        </div>        
+       </div>             
       </div>
-		  
+      
       <div class="container text-center">
 
         <h3 class="margin-20">Mis pedidos</h3>
@@ -162,6 +163,7 @@
                               <span class="btn-inline text-left"> 
                                 <small>
                                   <p class="margin-0-0-0">{{saved_order.rest}} pedidos</p>
+                                  <p class="margin-0-0-0">pendientes</p>
                                 </small>
                               </span>
                     </span>
@@ -189,18 +191,18 @@
       </div>
       {{outlet}} 
     </script>
-	
-	<script type="text/x-handlebars" data-template-name="ranking">
-		<div class="container text-center">		
-      <div class="details">	
+  
+  <script type="text/x-handlebars" data-template-name="ranking">
+    <div class="container text-center">   
+      <div class="details"> 
         <h4 class="alert alert-success margin-0">El despacho ha sido recibido</h4>
         <h3>¿Qué opinas del despacho?</h3>
 
         <h3 class="margin-30-0">Ranking</h3>
-  			<h2>{{rating max="5"}}</h2>
+        <h2>{{rating max="5"}}</h2>
 
-  			<div class="form-group">
-			<textarea placeholder="Resumen Comentario" class="form-control comment-box margin-0-5" rows="1"></textarea>
+        <div class="form-group">
+      <textarea placeholder="Resumen Comentario" class="form-control comment-box margin-0-5" rows="1"></textarea>
             <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="4"></textarea>
         </div>
         <p>
@@ -210,9 +212,9 @@
           <button class="btn btn-link btn-lg-300" {{ action "skip"}} >No gracias, no quiero evaluar</button>
         </p>
       </div>
- 		</div>
-		{{outlet}} 
-	</script>
+    </div>
+    {{outlet}} 
+  </script>
 
     <script src="js/config.js"></script>
     <script src="js/libs/jquery-1.10.2.js"></script>
