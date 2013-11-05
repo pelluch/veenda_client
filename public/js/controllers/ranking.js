@@ -14,15 +14,15 @@ App.RankingController = Ember.Controller.extend({
             }
 			
           var box = document.getElementsByClassName("comment-box");
-		  var resumen = box[0].value;
+		  var summary = box[0].value;
           var comment = box[1].value;
 		  if(comment=="")
 			{
 				comment = " ";
 			}
-		  if(resumen=="")
+		  if(summary=="")
 			{
-				resumen = " ";
+				summary = " ";
 			}
           $.ajax({
              url: VEENDA_FULL_URL + '/ratings',
@@ -31,6 +31,7 @@ App.RankingController = Ember.Controller.extend({
                   rating: {
                     rating: starvalue,
                     comment: comment,
+                    summary: summary,
                     dispatched_order_id: this.get('content.order')
                   }
               }),
