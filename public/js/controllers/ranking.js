@@ -31,7 +31,7 @@ App.RankingController = Ember.Controller.extend({
                   rating: {
                     rating: starvalue,
                     comment: comment,
-                    dispatched_order_id: this.get('content.order');
+                    dispatched_order_id: this.get('content.order')
                   }
               }),
              contentType: "application/json",
