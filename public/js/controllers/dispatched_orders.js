@@ -11,8 +11,8 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
 		//{
 		//	isMap = true;
 		//}
+		
       self.getDistance();
-
     },
     refreshMyData: function(params) {
       

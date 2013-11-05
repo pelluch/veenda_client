@@ -54,55 +54,69 @@
                 </div>
 
                 {{else}}
+					{{#if dispatch_time}}
+						{{#if isMap}}
+							<div class="btn-group btn-group-lg-50 margin-15">
+								<button type="button" {{ action "mapFalse"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
+								<button type="button" {{ action "mapTrue"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-screenshot"></span> Mapa</button>
+							</div>
+							<div class="details">
+								{{#view App.MapView }}<br/>{{/view}}
+								<table class="table table-bordered table-margin-3">
+								  <tr>
+									<td><img src="gps-icon-spec.png"> Destinatario</td>
+									<td><img src="gps-icon-dispatcher-spec.png"> Zona despachador</td>
+								  </tr>
+								</table>
+							</div>
+						{{else}}
+						<div class="container text-center">
+						  <div class="details">
+							<h5 class="btn btn-primary btn-xs btn-mg-14-14 btn-lg-50 status">Traslado</h5>
+							<div class="cl"></div>
 
-                    {{#if isMap}}
-                        <div class="btn-group btn-group-lg-50 margin-15">
-                            <button type="button" {{ action "mapFalse"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
-                            <button type="button" {{ action "mapTrue"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-screenshot"></span> Mapa</button>
-                        </div>
-                        <div class="details">
-                            {{#view App.MapView }}<br/>{{/view}}
-                            <table class="table table-bordered table-margin-3">
-                              <tr>
-                                <td><img src="gps-icon-spec.png"> Destinatario</td>
-                                <td><img src="gps-icon-dispatcher-spec.png"> Zona despachador</td>
-                              </tr>
-                            </table>
-                        </div>
-                    {{else}}
-                    <div class="container text-center">
-                      <div class="details">
-                        <h5 class="btn btn-primary btn-xs btn-mg-14-14 btn-lg-50 status">Traslado</h5>
-                        <div class="cl"></div>
+							<p><img class="margin-30-0" src="empresa.png"/></p>
+							<h3>#{{ this.id }}</h3>
+							<h4>{{ this.name }}</h4>
+							<p>
+							  <button class="btn btn-gray btn-lg-47" >
+								  <span class="glyphicon glyphicon-time btn-icon"></span>
+								  <span class="btn-inline text-left"> 
+									<small>
+									  <p class="margin-0-0-0">{{this.rest}} pedidos</p>
+									  <p class="margin-0-0-0">pendientes</p>
+									</small>
+								  </span>
+							  </button>
+							  <button class="btn btn-danger btn-lg-47" {{ action "mapTrue"}} >
+								  <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
+								  <span class="btn-inline text-left"> 
+									<small>
+									  <p class="margin-0-0-0">{{this.distance}} cuadras</p>
+									  <p class="margin-0-0-0">restantes</p>
+									</small>
+								  </span>
+							  </button>
+							</p>
+							<button class="btn btn-success btn-group-lg-100_1 btn-lg" {{ action "insert"}} >Llegó mi pedido</button>
+						  </div>
+						</div>
+						{{/if}}
+					{{else}}	
+						<div class="container text-center">
+						  <div class="details">
+							<h5 class="btn btn-primary btn-xs btn-mg-14-14 btn-lg-50 status">Agendado</h5>
+							<div class="cl"></div>
 
-                        <p><img class="margin-30-0" src="empresa.png"/></p>
-                        <h3>#{{ this.id }}</h3>
-                        <h4>{{ this.name }}</h4>
-                        <p>
-                          <button class="btn btn-gray btn-lg-47" >
-                              <span class="glyphicon glyphicon-time btn-icon"></span>
-                              <span class="btn-inline text-left"> 
-                                <small>
-                                  <p class="margin-0-0-0">{{this.rest}} pedidos</p>
-                                  <p class="margin-0-0-0">pendientes</p>
-                                </small>
-                              </span>
-                          </button>
-                          <button class="btn btn-danger btn-lg-47" {{ action "mapTrue"}} >
-                              <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
-                              <span class="btn-inline text-left"> 
-                                <small>
-                                  <p class="margin-0-0-0">{{this.distance}} cuadras</p>
-                                  <p class="margin-0-0-0">restantes</p>
-                                </small>
-                              </span>
-                          </button>
-                        </p>
-                        <button class="btn btn-success btn-group-lg-100_1 btn-lg" {{ action "insert"}} >Llegó mi pedido</button>
-                      </div>
-                    </div>
-                    {{/if}}
-
+							<p><img class="margin-30-0" src="empresa.png"/></p>
+							<h3>#{{ this.id }}</h3>
+							<h4>{{ this.name }}</h4>
+							<h5 class="btn btn-warning btn-group-lg-100_1 btn-lg status">Su producto aún no ha sido despachado</h5>
+						  </div>
+						</div>
+						
+						
+					{{/if}}
                 {{/if}}
             </div>
 
@@ -157,26 +171,31 @@
                   {{#if saved_order.delivered}}
                     <span  class="btn btn-success btn-fix btn-group-lg-100_1 btn-height">Recibido</span>
                   {{else}} 
-                    <span  class="btn btn-primary btn-lg-32 btn-fix btn-height">Traslado</span>
-                    <span  class="btn btn-gray btn-lg-32 btn-fix">
-                            <span class="glyphicon glyphicon-time btn-icon"></span> 
-                              <span class="btn-inline text-left"> 
-                                <small>
-                                  <p class="margin-0-0-0">{{saved_order.rest}} pedidos</p>
-                                  <p class="margin-0-0-0">pendientes</p>
-                                </small>
-                              </span>
-                    </span>
+					{{#if saved_order.dispatch_time}}
+						<span  class="btn btn-primary btn-lg-32 btn-fix btn-height">Traslado</span>
+						<span  class="btn btn-gray btn-lg-32 btn-fix">
+								<span class="glyphicon glyphicon-time btn-icon"></span> 
+								  <span class="btn-inline text-left"> 
+									<small>
+									  <p class="margin-0-0-0">{{saved_order.rest}} pedidos</p>
+									  <p class="margin-0-0-0">pendientes</p>
+									</small>
+								  </span>
+						</span>
 
-                    <span  class="btn btn-default btn-lg-32 btn-fix">
-                            <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
-                              <span class="btn-inline text-left"> 
-                                <small>
-                                  <p class="margin-0-0-0">{{saved_order.distance}} cuadras</p>
-                                  <p class="margin-0-0-0">restantes</p>
-                                </small>
-                              </span>
-                    </span>
+						<span  class="btn btn-default btn-lg-32 btn-fix">
+								<span class="glyphicon glyphicon-map-marker btn-icon"></span> 
+								  <span class="btn-inline text-left"> 
+									<small>
+									  <p class="margin-0-0-0">{{saved_order.distance}} cuadras</p>
+									  <p class="margin-0-0-0">restantes</p>
+									</small>
+								  </span>
+						</span>
+					{{else}} 
+						<span  class="btn btn-warning btn-fix btn-group-lg-100_1 btn-height">Agendado</span>					
+					{{/if}}
+					
                   {{/if}}
                   </div>
                 </div>
