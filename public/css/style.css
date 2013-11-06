@@ -41,6 +41,13 @@ html, body {
     border-radius: 4px;
     margin-bottom: 18px;
 }
+.list-items-properties:hover {
+    background-color: #fafafa;
+}
+.list-items-properties a:hover{
+    text-decoration: none;
+}
+
 .cl{
     clear:both;
 }
@@ -92,6 +99,19 @@ html, body {
 .status:hover {
     cursor:default;
 }
+.status-primary:hover {
+    background-color: #428bca;
+}
+.status-success:hover {
+    background-color: #5cb85c;
+}
+.status-warning:hover {
+    background-color: #f0ad4e;
+}
+.status-default:hover {
+    background-color: #ffffff;
+}
+
 .details {
     width: 100%;
     max-width: 600px;
@@ -151,8 +171,6 @@ html, body {
 .btn-gray.active,
 .open .dropdown-toggle.btn-gray {
   color: #ffffff;
-  background-color: #555555;
-  border-color: #444444;
 }
 
 
@@ -273,8 +291,9 @@ li {
 
 
 .btn-fix {
-   cursor:default;
+
 }
+
 .btn-icon {
    font-size: 20px;
 }
