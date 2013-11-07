@@ -15,7 +15,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
       self.getDistance();
     },
     refreshMyData: function(params) {
-      
+      this.get('content').reload();
       if(App.get('currentPath') == 'dispatched_orders.dispatched_order') {
         this.transitionToRoute(App.get('currentPath'));
       }
