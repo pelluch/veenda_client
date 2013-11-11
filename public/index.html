@@ -22,7 +22,7 @@
     </script>
 
     
-    <script type="text/x-handlebars" data-template-name="dispatched_orders/dispatched_order">
+    <script type="text/x-handlebars" data-template-name="deliveries/delivery">
 
         {{#if destination_latitude }}
 
@@ -163,7 +163,7 @@
               <div class="col-md-4">
 
                 <div class="list-items-properties">
-                  {{#link-to 'dispatched_orders.dispatched_order' saved_order.key}}
+                  {{#link-to 'deliveries.delivery' saved_order.key}}
                     <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
                     <img class="logo-list" src="empresa.png"/>
                     <h5>Dominos Pizza</h5>
@@ -249,13 +249,13 @@
     <script src="js/libs/lawnchair-pagination-0.6.1.js"></script>
     <script src="js/libs/lawnchair-aggregation-0.6.1.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/models/dispatched_order.js"></script>
+    <script src="js/models/delivery.js"></script>
     <script src="js/controllers/login.js"></script>
     <script src="js/controllers/application.js"></script>
     <script src="js/controllers/ranking.js"></script>
-    <script src="js/controllers/dispatched_orders.js"></script>
+    <script src="js/controllers/deliveries.js"></script>
     <script src="js/views/map.js"></script>
-    <script src="js/routes/dispatched_orders.js"></script>
+    <script src="js/routes/deliveries.js"></script>
     <script src="js/routes/login.js"></script>
     <script src="js/routes/router.js"></script>
     <script src="js/handlebars/rating_helper.js"></script>

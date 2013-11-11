@@ -13,7 +13,7 @@ App.LoginController = Ember.Controller.extend({
     },
     refreshMyData: function(params) {
       this.refreshSavedOrders();
-      if(App.get('currentPath') == 'dispatched_orders.dispatched_order') {
+      if(App.get('currentPath') == 'deliveries.delivery') {
         this.transitionToRoute(App.get('currentPath'));
       }
     },
@@ -53,23 +53,23 @@ App.LoginController = Ember.Controller.extend({
         // for(var i = 0; i < records.length; ++i)
         // {
         //   var idx = i;
-        //     var dispatched_order = self.get('store').find('dispatched_order', records[i].key).then( function(order) {
+        //     var delivery = self.get('store').find('delivery', records[i].key).then( function(order) {
             
         //         $.ajax({               
-        //         url: 'http://veenda01.herokuapp.com/api/v1/client/dispatched_orders/' + order.id,
+        //         url: 'http://veenda01.herokuapp.com/api/v1/client/deliveries/' + order.id,
         //         type: 'GET',
         //         contentType: "application/json",
         //         dataType: "json",
         //         success: function(response) {
-        //           var delivered = response['dispatched_order']['delivered'];
-        //             console.log('response: ' + response['dispatched_order']['delivered']);
-        //              updated_value = {id : response['dispatched_order']['id'], name : response['dispatched_order']['name'], 
-        //             delivered: response['dispatched_order']['delivered'] };
+        //           var delivered = response['delivery']['delivered'];
+        //             console.log('response: ' + response['delivery']['delivered']);
+        //              updated_value = {id : response['delivery']['id'], name : response['delivery']['name'], 
+        //             delivered: response['delivery']['delivered'] };
         //             console.log(idx);
         //            var old_value = records[idx];
         //            console.log(old_value);
         //             //self.set('saved_orders', updated_value);
-        //             //store.find('dispatched_order', order_id).then( function(model) {
+        //             //store.find('delivery', order_id).then( function(model) {
         //              //  model.set('delivered', false);
         //             //  });
         //             }
@@ -94,12 +94,12 @@ App.LoginController = Ember.Controller.extend({
             
           }
     			else {
-    				this.transitionToRoute('dispatched_orders.dispatched_order', this.get('codigo'));
+    				this.transitionToRoute('deliveries.delivery', this.get('codigo'));
     			}
         },
 		activatemap: function(key) {
 				sessionStorage.setItem('map', true);
-				this.transitionToRoute('dispatched_orders.dispatched_order', key);
+				this.transitionToRoute('deliveries.delivery', key);
         },
         removeLink: function(param) {
           App.chair.remove(param);

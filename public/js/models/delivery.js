@@ -1,10 +1,10 @@
 
-App.DispatchedOrderAdapter = DS.RESTAdapter.extend({
+App.DeliveryAdapter = DS.RESTAdapter.extend({
     host: VEENDA_HOST,
     namespace: VEENDA_NAMESPACE
 });
 
-App.DispatchedOrder = DS.Model.extend({
+App.Delivery = DS.Model.extend({
     name: DS.attr(),
     delivered: DS.attr(),
     rest: DS.attr(),

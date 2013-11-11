@@ -1,6 +1,6 @@
 App.Router.map(function() {
-    this.resource('dispatched_orders', function() {
-      this.route('dispatched_order', {path: ':dispatched_order_id'});
+    this.resource('deliveries', function() {
+      this.route('delivery', {path: ':delivery_id'});
     });
 
     this.route('login', {path: '/'});

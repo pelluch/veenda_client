@@ -1,4 +1,4 @@
-App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
+App.DeliveriesDeliveryController = Ember.ObjectController.extend({
 
   init: function(params) {
       var self = this;
@@ -16,7 +16,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
     },
     refreshMyData: function(params) {
       this.get('content').reload();
-      if(App.get('currentPath') == 'dispatched_orders.dispatched_order') {
+      if(App.get('currentPath') == 'deliveries.delivery') {
         this.transitionToRoute(App.get('currentPath'));
       }
     },
@@ -39,10 +39,10 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
         var self = this;
           $.ajax({
                
-               url: VEENDA_FULL_URL + '/dispatched_orders/' + order_id,
+               url: VEENDA_FULL_URL + '/deliveries/' + order_id,
                type: 'PUT',
                data: JSON.stringify({
-                    dispatched_order: {
+                    delivery: {
                       delivered: true
                     }
                 }),
@@ -50,7 +50,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
                dataType: "text",
                success: function(response) {
                   console.log('response: ' + response);
-                  store.find('dispatched_order', order_id).then( function(model) {
+                  store.find('delivery', order_id).then( function(model) {
                     model.set('delivered', true);
                   });
               }
@@ -66,10 +66,10 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
         var store = this.get('store');
         var self = this;
         $.ajax({               
-            url: VEENDA_FULL_URL + '/dispatched_orders/' + order_id,
+            url: VEENDA_FULL_URL + '/deliveries/' + order_id,
             type: 'PUT',
             data: JSON.stringify({
-              dispatched_order: {
+              delivery: {
                   delivered: false
                   }
               }),
@@ -77,7 +77,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
             dataType: "text",
             success: function(response) {
                 console.log('response: ' + response);
-                store.find('dispatched_order', order_id).then( function(model) {
+                store.find('delivery', order_id).then( function(model) {
                    model.set('delivered', false);
 				   model.set('comment', "");
 				   model.set('rating_value', 0);
@@ -89,7 +89,7 @@ App.DispatchedOrdersDispatchedOrderController = Ember.ObjectController.extend({
           obj.delivered = false;
           App.chair.save(obj);
         });
-		    this.transitionToRoute('dispatched_orders.dispatched_order', this.get('content.order'));
+		    this.transitionToRoute('deliveries.delivery', this.get('content.order'));
       },
       mapTrue: function() {
           this.set('isMap', true)
