@@ -52,6 +52,7 @@ App.OrdersOrderController = Ember.ObjectController.extend({
   	    var order_id = this.get('content.id');
         var store = this.get('store');
         var self = this;
+        this.get('content').reload();
         $.ajax({               
             url: VEENDA_FULL_URL + '/deliveries/' + order_id,
             type: 'PUT',
@@ -76,6 +77,7 @@ App.OrdersOrderController = Ember.ObjectController.extend({
           obj.delivered = false;
           App.chair.save(obj);
         });
+        this.get('content').reload();
 		    this.transitionToRoute('orders.order', this.get('content.order'));
       },
       mapTrue: function() {
