@@ -18,9 +18,6 @@ App.MapView = Ember.View.extend({
     var locationNameArray = ['Posición Actual', 'Posición Llegada'];
     var locationColorArray = ['red', 'green'];
 
-    var distance = Math.floor((google.maps.geometry.spherical.computeDistanceBetween(current_pos, end_pos) / 1000).toFixed(1));
-    this.get('context').set('distance', distance);
-
     var mapOptions = {
       center: new google.maps.LatLng(destination_latitude, destination_longitude),
       zoom: 9,

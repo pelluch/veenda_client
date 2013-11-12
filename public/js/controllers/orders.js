@@ -12,7 +12,6 @@ App.OrdersOrderController = Ember.ObjectController.extend({
 		//	isMap = true;
 		//}
 		
-      self.getDistance();
     },
     refreshMyData: function(params) {
       this.get('content').reload();
@@ -20,18 +19,6 @@ App.OrdersOrderController = Ember.ObjectController.extend({
         this.transitionToRoute(App.get('currentPath'));
       }
     },
-    getDistance: function() {
-      var dispatcher_latitude = this.get('store').get('dispatcher_latitude');
-      var dispatcher_longitude = this.get('dispatcher_longitude');
-      var destination_latitude = this.get('destination_latitude');
-      var destination_longitude = this.get('destination_longitude');
-
-      var current_pos = new google.maps.LatLng(dispatcher_latitude, dispatcher_longitude);
-      var end_pos = new google.maps.LatLng(destination_latitude, destination_longitude);
-      var distance = Math.floor((google.maps.geometry.spherical.computeDistanceBetween(current_pos, end_pos) / 1000).toFixed(1));
-      //this.set("distance", distance);
-    },
-
     actions: {
       insert: function(event) {
         var order_id = this.get('content.id');
