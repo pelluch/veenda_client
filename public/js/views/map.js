@@ -18,6 +18,8 @@ App.MapView = Ember.View.extend({
     var locationNameArray = ['Posición Actual', 'Posición Llegada'];
     var locationColorArray = ['red', 'green'];
 
+    var distance = this.get('context').get('distance', distance);
+
     var mapOptions = {
       center: new google.maps.LatLng(destination_latitude, destination_longitude),
       zoom: 9,
@@ -29,7 +31,7 @@ App.MapView = Ember.View.extend({
     
     //alert(distance);
     var coord;
-    for (var coord = 1; coord < 2; coord++) {
+    for (var coord = 0; coord < 2; coord++) {
       var image = new google.maps.MarkerImage("gps-icon.png",
           new google.maps.Size(60, 60),
           new google.maps.Point(0,0),
@@ -49,7 +51,7 @@ App.MapView = Ember.View.extend({
         fillOpacity: 0.25,
         map: map,
         center: locationArray[coord],
-        radius: distance*1000
+        radius: distance*54
       };
       // Add the circle for this city to the map.
       cityCircle = new google.maps.Circle(circleOptions);
