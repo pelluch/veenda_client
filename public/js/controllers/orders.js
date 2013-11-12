@@ -5,7 +5,7 @@ App.OrdersOrderController = Ember.ObjectController.extend({
       
       var id = setInterval(function() {
         self.refreshMyData()
-      }, 5000);
+      }, 1000);
       this.interval_id = id;	  
 	  //if(sessionStorage.get('map')==true)
 		//{
