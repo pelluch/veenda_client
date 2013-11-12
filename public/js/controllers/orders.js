@@ -1,4 +1,4 @@
-App.DeliveriesDeliveryController = Ember.ObjectController.extend({
+App.OrdersOrderController = Ember.ObjectController.extend({
 
   init: function(params) {
       var self = this;
@@ -16,7 +16,7 @@ App.DeliveriesDeliveryController = Ember.ObjectController.extend({
     },
     refreshMyData: function(params) {
       this.get('content').reload();
-      if(App.get('currentPath') == 'deliveries.delivery') {
+      if(App.get('currentPath') == 'orders.order') {
         this.transitionToRoute(App.get('currentPath'));
       }
     },
@@ -42,7 +42,7 @@ App.DeliveriesDeliveryController = Ember.ObjectController.extend({
                url: VEENDA_FULL_URL + '/deliveries/' + order_id,
                type: 'PUT',
                data: JSON.stringify({
-                    delivery: {
+                    order: {
                       delivered: true
                     }
                 }),
@@ -50,13 +50,13 @@ App.DeliveriesDeliveryController = Ember.ObjectController.extend({
                dataType: "text",
                success: function(response) {
                   console.log('response: ' + response);
-                  store.find('delivery', order_id).then( function(model) {
+                  store.find('order', order_id).then( function(model) {
                     model.set('delivered', true);
                   });
               }
          });
 
-		  this.transitionToRoute('ranking', order_id);
+		  this.transitionToRoute('rating', order_id);
       },
       back: function(event) {
           this.transitionToRoute('login');
@@ -69,7 +69,7 @@ App.DeliveriesDeliveryController = Ember.ObjectController.extend({
             url: VEENDA_FULL_URL + '/deliveries/' + order_id,
             type: 'PUT',
             data: JSON.stringify({
-              delivery: {
+              order: {
                   delivered: false
                   }
               }),
@@ -77,7 +77,7 @@ App.DeliveriesDeliveryController = Ember.ObjectController.extend({
             dataType: "text",
             success: function(response) {
                 console.log('response: ' + response);
-                store.find('delivery', order_id).then( function(model) {
+                store.find('order', order_id).then( function(model) {
                    model.set('delivered', false);
 				   model.set('comment', "");
 				   model.set('rating_value', 0);
@@ -89,7 +89,7 @@ App.DeliveriesDeliveryController = Ember.ObjectController.extend({
           obj.delivered = false;
           App.chair.save(obj);
         });
-		    this.transitionToRoute('deliveries.delivery', this.get('content.order'));
+		    this.transitionToRoute('orders.order', this.get('content.order'));
       },
       mapTrue: function() {
           this.set('isMap', true)

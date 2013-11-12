@@ -1,4 +1,4 @@
-App.RankingController = Ember.Controller.extend({
+App.RatingController = Ember.Controller.extend({
     actions: {
         vote: function(event) {
     	  	/*var elements = document.getElementsByClassName("active");
@@ -29,8 +29,9 @@ App.RankingController = Ember.Controller.extend({
              type: 'POST',
              data: JSON.stringify({
                   rating: {
-                    rating: starvalue,
+                    value: starvalue,
                     comment: comment,
+                    summary: summary,
                     delivery_id: this.get('content.order')
                   }
               }),
@@ -38,20 +39,21 @@ App.RankingController = Ember.Controller.extend({
              dataType: "text",
              success: function(response) {
                   console.log('response: ' + response);
-                  // store.find('delivery', order_id).then( function(model) {
+                  // store.find('order', order_id).then( function(model) {
                   //  model.set('delivered', true);
                   //});
               }
           });
 
-          this.get('store').find('delivery', this.get('content.order')).then( function(model) {
+          this.get('store').find('order', this.get('content.order')).then( function(model) {
                         model.set('rating_value', starvalue);
                         model.set('comment', comment);
+                        model.set('summary', summary);
                     });
-          this.transitionToRoute('deliveries.delivery', this.get('content.order'));
+          this.transitionToRoute('orders.order', this.get('content.order'));
         },
         skip: function(){
-          this.transitionToRoute('deliveries.delivery', this.get('content.order'));
+          this.transitionToRoute('orders.order', this.get('content.order'));
         }
     }
 });
