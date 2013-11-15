@@ -1,6 +1,6 @@
 App.RatingController = Ember.Controller.extend({
     init: function (params){
-        this.get('content').reload();
+        //this.get('content').reload();
     },
     actions: {
         vote: function(event) {
