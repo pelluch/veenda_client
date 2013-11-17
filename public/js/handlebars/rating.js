@@ -4,9 +4,16 @@ Ember.Handlebars.helper("rating", Ember.View.extend({
    value: 0,
    render: function(buffer){
       var max = this.get("max");
+      buffer.push('<div class="row">');
       for(var i = 0; i < max; i++) {
-         buffer.push('<i id="'+i+'" class="fa fa-star-o"> </i>');
+         if(i == 0) {
+            buffer.push('<div class="col-xs-2 col-xs-offset-1 col-sm-2 col-sm-offset-1"><p><i id="'+i+'" class="fa fa-star-o"></i></p></div>');
+         }
+         else {
+            buffer.push('<div class="col-xs-2 col-sm-2"><p><i id="'+i+'" class="fa fa-star-o"></i></p></div>');
+         }
       }
+      buffer.push('</div>');
       $(".rating").attr("value", 0);
    },
    didInsertElement: function(){
