@@ -21,10 +21,10 @@ Ember.Handlebars.registerHelper('rating_helper', function(condition, options) {
 
     for(var i = 1; i <= 5; i++) {
        if(i <= rating) {
-          returnValue = returnValue + '<span class="rating-star rating-star-active">☆</span>';
+          returnValue = returnValue + '<i class="fa fa-star"></i>';
        }
        else{
-            returnValue = returnValue + '<span class="rating-star">☆</span>';
+            returnValue = returnValue + '<i class="fa fa-star-o"></i>';
        }
     }
     returnValue = returnValue + "\n</div></h2></br></br>";

@@ -5,6 +5,7 @@
         <title>Veenda Client</title>
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="css/style.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     </head>
     <body>
 
@@ -37,7 +38,7 @@
 
                     {{#if comment}}
 
-                      <h3 class="margin-30-0">Ranking</h3>
+                     
                       {{rating_helper this}}
 
                           <div class="panel panel-info">
@@ -166,7 +167,7 @@
                   {{#link-to 'orders.order' saved_order.key}}
                     <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
                     <img class="logo-list" src="LaLeona.png"/>
-                    <h5>Dominos Pizza</h5>
+                    <h5>La Leona</h5>
                     <h3 class="margin-0">#{{saved_order.key}}</h3>
                   <div class="btn-group btn-group-lg-100">
                   {{#if saved_order.delivered}}

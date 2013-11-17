@@ -282,11 +282,23 @@ li {
     content: "\2600";
 }*/
 
-.rating-star-active {
-    color: gold;
-    content: "\2600";
+.fa-star-o
+{
+
 }
-.rating-star {
+
+.fa-star
+{
+    color: gold;
+}
+
+i.fa
+{
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 80px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 
