@@ -13,7 +13,7 @@ html, body {
     font-weight: bold;
 }
 .page-header {
-    
+
     margin-top: 9px;
 }
 
@@ -21,7 +21,7 @@ html, body {
     margin-bottom: 20px;
 }
 .navbar {
-    
+
     background-color: #000;
     color:#fff;
     padding:20px;
@@ -68,35 +68,35 @@ html, body {
 }
 .btn-lg-50 {
     width: 50%;
-}.btn-mg-14-14 {
-    padding-left: 15px;
-    float:left;
-}
-.btn-lg-47 {
-    width: 49%;
-}
-.btn-gr-300max {
-    max-width: 300px;
-}
-.btn-lg-32 {
-    width: 33.5%;
-    border-radius: 4px;
-}
-.btn-group-lg-50 {
-    max-width: 700px;
-    width: 100%;
-}
-.btn-pdg-up-25 {
-    padding-top: 13px;
-    padding-bottom: 13px;
-}
-.btn-border-white {
-	border: solid 1px #ffffff;
+    }.btn-mg-14-14 {
+        padding-left: 15px;
+        float:left;
+    }
+    .btn-lg-47 {
+        width: 49%;
+    }
+    .btn-gr-300max {
+        max-width: 300px;
+    }
+    .btn-lg-32 {
+        width: 33.5%;
+        border-radius: 4px;
+    }
+    .btn-group-lg-50 {
+        max-width: 700px;
+        width: 100%;
+    }
+    .btn-pdg-up-25 {
+        padding-top: 13px;
+        padding-bottom: 13px;
+    }
+    .btn-border-white {
+       border: solid 1px #ffffff;
    }
-.btn-border-white:hover {
-	border: solid 1px #ffffff;
+   .btn-border-white:hover {
+       border: solid 1px #ffffff;
    }
-.status:hover {
+   .status:hover {
     cursor:default;
 }
 .status-primary:hover {
@@ -280,12 +280,14 @@ li {
 .rating.sun > span.active:before,
 .rating.sun > span.active ~ span:before {
     content: "\2600";
-}*/
+    }*/
 
-.fa-star-o
+
+.fa 
 {
-
+    text-rendering: auto;
 }
+
 
 .fa-star
 {
@@ -307,10 +309,10 @@ i.fa
 }
 
 .btn-icon {
-   font-size: 20px;
+ font-size: 20px;
 }
 .btn-inline {
-   display: inline-block;
+ display: inline-block;
 }
 .btn-height{
     padding: 13px 0 13px 0;
