@@ -49,9 +49,16 @@
                               {{comment}}
                             </div>
                           </div>
+                          <button class="btn btn-default" {{ action "back"}}>Volver</button>
+                          <button class="btn btn-danger" {{ action "reset"}}>Despacho No Recibido</button>
+                    {{else}}
+                      <p>
+                        <button class="btn btn-primary btn-lg-300" {{ action "rate"}}>Evaluar/comentar despacho</button>
+                      </p>
+                      <p>
+                        <button class="btn btn-link btn-lg-300" {{ action "reset"}}>No he recibido mi despacho aún</button>
+                      </p>
                     {{/if}}
-                    <button class="btn btn-default" {{ action "back"}}>Volver</button>
-                     <button class="btn btn-danger" {{ action "reset"}}>Despacho No Recibido</button>
                 </div>
 
                 {{else}}
