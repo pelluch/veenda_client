@@ -31,7 +31,11 @@ html, body {
     padding-right: 30px;
     margin-bottom: 1px;
 }
-
+.alert1 {
+    padding:5px;
+    padding-right: 30px;
+    margin-bottom: 4px;
+}
 .list-items-properties {
     border: 1px solid #dddddd;
     margin: 0 auto;

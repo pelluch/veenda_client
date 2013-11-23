@@ -17,7 +17,7 @@ App.LoginController = Ember.Controller.extend({
         this.transitionToRoute(App.get('currentPath'));
       }
     },
-    refreshSavedOrders: function() {
+	  refreshSavedOrders: function() {
       if(this.get('refresh_idx') != null)
       {
         alert(this.get('refresh_idx'));
@@ -101,9 +101,13 @@ App.LoginController = Ember.Controller.extend({
 				sessionStorage.setItem('map', true);
 				this.transitionToRoute('orders.order', key);
         },
-        removeLink: function(param) {
+		removeLink: function(param) {
           App.chair.remove(param);
           this.refreshSavedOrders();
         }
-    }
+    },
+	isClose: function() {
+		alert(this.get('saved_orders'));
+		return true;
+	}.property('afd')
 });

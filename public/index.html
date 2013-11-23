@@ -148,6 +148,7 @@
        <div class="col-xs-9">
         {{view Ember.TextField valueBinding="codigo" placeholder="Seguir nuevo pedido" class= "form-control"}}
         </div>  
+		
         <div class="col-xs-3">
             <button {{ action insert}} class="btn btn-primary btn-border-white btn-lg-300" type="button">Seguir
             </button> 
@@ -158,6 +159,8 @@
       <div class="container text-center">
 
         <h3 class="margin-20">Mis pedidos</h3>
+		<div id="jquery-orders" class = "alert1 alert-success">
+		</div>
         <div class="row margin-0-100">
           {{#if saved_orders}}
             {{#each saved_order in saved_orders}}
@@ -208,7 +211,7 @@
             <h4 class="margin-0-10">No está siguiendo ningún pedido</h4>
           {{/if}}
         </div>
-       
+		
       </div>
       {{outlet}} 
     </script>
@@ -235,6 +238,7 @@
     </div>
     {{outlet}} 
   </script>
+
 
     <script src="js/config.js"></script>
     <script src="js/libs/jquery-1.10.2.js"></script>
@@ -263,7 +267,34 @@
     <script src="js/handlebars/rating.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
     
+  <script type="text/javascript">
+  $(document).ready( function() {
 
+	App.chair.all(function(records) {
+		 var closeOrders = [];
+		for(var i = 0; i < records.length; ++i) {
+			if(records[i].distance < 220 && records[i].delivered == false) {
+			closeOrders.push(records[i].key);
+			
+			}
+			
+	
+		}
+		if(closeOrders.length > 1)
+		{
+			$('#jquery-orders').html('<h4> Los pedidos ' + closeOrders.join(', ') + ' están llegando</h4>');
+			$('#jquery-orders').fadeOut(10000);
+		}
+		else if(closeOrders.length == 1)
+		{
+			$('#jquery-orders').html('<h4> El pedido ' + closeOrders[0] + ' está llegando</h4>');
+			$('#jquery-orders').fadeOut(10000);
+		}
+		
+		
+	});
+  });
+  </script>
      
   </body>
 </html>
