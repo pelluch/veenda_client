@@ -43,15 +43,22 @@
 
                           <div class="panel panel-info">
                             <div class="panel-heading">
-                              <h3 class="panel-title">Comentarios</h3>
+                              <h3 class="panel-title">{{summary}}</h3>
                             </div>
                             <div class="panel-body">
                               {{comment}}
                             </div>
                           </div>
+                          <button class="btn btn-default" {{ action "back"}}>Volver</button>
+                          <button class="btn btn-danger" {{ action "reset"}}>Despacho No Recibido</button>
+                    {{else}}
+                      <p>
+                        <button class="btn btn-primary btn-lg-300" {{ action "rate"}}>Evaluar/comentar despacho</button>
+                      </p>
+                      <p>
+                        <button class="btn btn-link btn-lg-300" {{ action "reset"}}>No he recibido mi despacho aún</button>
+                      </p>
                     {{/if}}
-                    <button class="btn btn-default" {{ action "back"}}>Volver</button>
-                     <button class="btn btn-danger" {{ action "reset"}}>Despacho No Recibido</button>
                 </div>
 
                 {{else}}
@@ -93,7 +100,7 @@
 								  <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
 								  <span class="btn-inline text-left"> 
 									<small>
-									  <p class="margin-0-0-0">{{this.distance}} cuadras</p>
+									  <p class="margin-0-0-0">{{this.estimated_time}} minutos</p>
 									  <p class="margin-0-0-0">restantes</p>
 									</small>
 								  </span>
@@ -192,7 +199,7 @@
             								<span class="glyphicon glyphicon-map-marker btn-icon"></span> 
             								  <span class="btn-inline text-left"> 
             									<small>
-            									  <p class="margin-0-0-0">{{saved_order.distance}} cuadras</p>
+            									  <p class="margin-0-0-0">{{saved_order.estimated_time}} minutos</p>
             									  <p class="margin-0-0-0">restantes</p>
             									</small>
             								  </span>
@@ -226,7 +233,7 @@
 
         <div class="form-group">
           <textarea placeholder="Resumen Comentario" class="form-control comment-box margin-0-5" rows="1"></textarea>
-            <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="4"></textarea>
+          <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="4"></textarea>
         </div>
         <p>
           <button class="btn btn-primary btn-lg-300" {{ action "vote"}} >Evaluar</button>

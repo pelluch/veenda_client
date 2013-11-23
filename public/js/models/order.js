@@ -19,6 +19,7 @@ App.Order = DS.Model.extend({
     destination_longitude: DS.attr(),
     dispatch_time: DS.attr(),
     distance: DS.attr(),
+    estimated_time: DS.attr(),
     rating_value: DS.attr(),
     comment: DS.attr(),
     summary: DS.attr()

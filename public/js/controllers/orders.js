@@ -85,6 +85,10 @@ App.OrdersOrderController = Ember.ObjectController.extend({
       },
       mapFalse: function() {
           this.set('isMap', false)
+      },
+      rate: function(event) {
+        var order_id = this.get('content.id');
+        this.transitionToRoute('rating', order_id);
       }
     },
     isMap: false
