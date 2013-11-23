@@ -43,7 +43,7 @@
 
                           <div class="panel panel-info">
                             <div class="panel-heading">
-                              <h3 class="panel-title">Comentarios</h3>
+                              <h3 class="panel-title">{{summary}}</h3>
                             </div>
                             <div class="panel-body">
                               {{comment}}
@@ -223,7 +223,7 @@
 
         <div class="form-group">
           <textarea placeholder="Resumen Comentario" class="form-control comment-box margin-0-5" rows="1"></textarea>
-            <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="4"></textarea>
+          <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="4"></textarea>
         </div>
         <p>
           <button class="btn btn-primary btn-lg-300" {{ action "vote"}} >Evaluar</button>
