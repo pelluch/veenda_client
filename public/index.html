@@ -149,6 +149,7 @@
     {{outlet}}
 </script>
 
+<!-- ORDER LIST GOES HERE -->
 <script type="text/x-handlebars" data-template-name="login">
 
     <div class="navbar navbar-inverse navbar-fixed-bottom">
@@ -163,19 +164,17 @@
             </div>        
         </div>             
     </div>
-
-
      <div class="container text-center">
 
         <h3 class="margin-20">Mis pedidos</h3>
-        <div id="jquery-orders" class = "alert1 alert-success">
+        <div id="jquery-orders" class = "alert1 alert-success hidden">
         </div>
         <div class="row margin-0-100">
             {{#if saved_orders}}
             {{#each saved_order in saved_orders}}
+            
             <div class="col-md-4 col-xs-10 col-xs-offset-1">
-
-                <div class="list-items-properties">
+                <div {{bind-attr id="saved_order.key"}} class="list-items-properties">
                     {{#link-to 'orders.order' saved_order.key}}
                     <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
                     <img class="logo-list" src="LaLeona.png"/>
@@ -207,7 +206,7 @@
                             </span>
                         </span>
                         {{else}} 
-                        <span  class="btn btn-warning btn-fix btn-group-lg-100_1 btn-height status-warning">Agendado</span>					
+                        <span  class="btn btn-warning btn-fix btn-group-lg-100_1 btn-height status-warning">Agendado</span>                 
                         {{/if}}
 
                         {{/if}}
@@ -215,6 +214,7 @@
                 </div>
                 {{/link-to}}
             </div>
+
             {{/each}}
             {{else}}
             <h4 class="margin-0-10">No está siguiendo ningún pedido</h4>
@@ -223,6 +223,7 @@
     </div>
     {{outlet}} 
 </script>
+<!-- END ORDER LIST -->
 
 <script type="text/x-handlebars" data-template-name="rating">
     <div class="container text-center">   
@@ -277,7 +278,7 @@
 
 <script type="text/javascript">
   $(document).ready( function() {
-    $('#jquery-orders').hide();
+    //$('#jquery-orders').hide();
     App.chair.all(function(records) {
         var closeOrders = [];
         for(var i = 0; i < records.length; ++i) 
@@ -289,13 +290,13 @@
         }
         if(closeOrders.length > 1)
         {
-            $('#jquery-orders').show();
+            $('#jquery-orders').removeClass('hidden');
             $('#jquery-orders').html('<h4> Los pedidos ' + closeOrders.join(', ') + ' están llegando</h4>');
             $('#jquery-orders').fadeOut(10000);
         }
         else if(closeOrders.length == 1)
         {
-            $('#jquery-orders').show();
+            $('#jquery-orders').removeClass('hidden');
             $('#jquery-orders').html('<h4> El pedido ' + closeOrders[0] + ' está llegando</h4>');
             $('#jquery-orders').fadeOut(10000);
         }

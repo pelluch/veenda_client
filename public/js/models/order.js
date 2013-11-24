@@ -25,14 +25,3 @@ App.Order = DS.Model.extend({
     summary: DS.attr()
 });
 
-function refreshOrdersList() {
-    App.chair.all(function(records) {
-        for(var i = 0; i < records.length; ++i) {
-            var tmp = records[i];
-            console.log(tmp);
-            //tmp["delivered"] = false;
-            //App.chair.save(tmp);
-        }
-    });
-
-};
