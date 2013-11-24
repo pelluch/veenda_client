@@ -3,17 +3,10 @@ App.LoginController = Ember.Controller.extend({
     saved_orders: null,
     refresh_idx: null,
     init: function() {
-      var self = this;
       
       var id = setInterval(refreshOrdersList, 5000);
       this.interval_id = id;
 
-    },
-    refreshMyData: function(params) {
-      this.refreshSavedOrders();
-      if(App.get('currentPath') == 'orders.order') {
-        this.transitionToRoute(App.get('currentPath'));
-      }
     },
 	  refreshSavedOrders: function() {
       if(this.get('refresh_idx') != null)
