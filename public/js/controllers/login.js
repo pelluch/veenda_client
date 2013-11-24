@@ -5,9 +5,7 @@ App.LoginController = Ember.Controller.extend({
     init: function() {
       var self = this;
       
-      var id = setInterval(function() {
-        self.refreshMyData()
-      }, 5000);
+      var id = setInterval(refreshOrdersList, 5000);
       this.interval_id = id;
 
     },
@@ -50,41 +48,6 @@ App.LoginController = Ember.Controller.extend({
 		  self.set('saved_orders', final); 
         });
         
-        // for(var i = 0; i < records.length; ++i)
-        // {
-        //   var idx = i;
-        //     var order = self.get('store').find('order', records[i].key).then( function(order) {
-            
-        //         $.ajax({               
-        //         url: 'http://veenda01.herokuapp.com/api/v1/client/orders/' + order.id,
-        //         type: 'GET',
-        //         contentType: "application/json",
-        //         dataType: "json",
-        //         success: function(response) {
-        //           var delivered = response['order']['delivered'];
-        //             console.log('response: ' + response['order']['delivered']);
-        //              updated_value = {id : response['order']['id'], name : response['order']['name'], 
-        //             delivered: response['order']['delivered'] };
-        //             console.log(idx);
-        //            var old_value = records[idx];
-        //            console.log(old_value);
-        //             //self.set('saved_orders', updated_value);
-        //             //store.find('order', order_id).then( function(model) {
-        //              //  model.set('delivered', false);
-        //             //  });
-        //             }
-        //      });
-
-        //       //console.log(records[i].delivered);
-        //       //records[i].delivered = order.delivered;
-        //       //App.chair.save(records[i]);
-        //     });
-
-        // }
-        //self.set('saved_orders', records); 
-        //console.log(records);
-        //self.set('saved_orders', new_list);
-          
       
     
     },
