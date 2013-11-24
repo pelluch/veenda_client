@@ -150,17 +150,14 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="login">
-  <div class="navbar navbar-inverse navbar-fixed-bottom">
-   <div class="row">
-     <div class="col-xs-9">
-      {{view Ember.TextField valueBinding="codigo" placeholder="Seguir nuevo pedido" class= "form-control"}}
-    </div>  
+  <div class="navbar navbar-inverse navbar-fixed-bottom text-right">
 
-    <div class="col-xs-3">
-      <button {{ action insert}} class="btn btn-primary btn-border-white btn-lg-300" type="button">Seguir
-      </button> 
-    </div>        
-  </div>             
+    <span>
+      <button {{ action insert}} class="btn btn-primary btn-border-white btn-lg-20y100p" type="button">Seguir</button>
+    
+      {{view Ember.TextField valueBinding="codigo" placeholder="Seguir nuevo pedido" class= "form-control add-ons-button"}}
+    </span>
+
 </div>
 
   <div class="container text-center">
