@@ -116,6 +116,16 @@ html, body {
     background-color: #ffffff;
 }
 
+.btn-lg-20y100p {
+    width: 130px;
+    margin-left: 10px;
+    float: right;
+}
+.add-ons-button {
+    width: calc(100% - 150px);
+    float: right;
+}
+
 .details {
     width: 100%;
     max-width: 600px;
@@ -125,6 +135,9 @@ html, body {
 }
 .float_left {
     width: 70%;
+}
+.float_lft {
+    float: left;
 }
 .navbar-inverse {
 	background-color: #428bca;
@@ -249,6 +262,15 @@ li {
 	list-style:none;
 }
 
+#veenda-logo
+{
+    font-family: 'Sarina';
+    color: #4d4d4d;
+}
+a:hover
+{
+    text-decoration: none;
+}
 /*
 .rating {
     unicode-bidi: bidi-override;
