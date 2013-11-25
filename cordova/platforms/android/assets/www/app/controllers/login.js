@@ -108,7 +108,7 @@ App.LoginController = Ember.Controller.extend({
 			}
 			var interval_id = setInterval(self.refreshOrdersList, 5000);
 			self.set('interval_id', interval_id);
-
+			fixHeights();
 			});
 
 	},
