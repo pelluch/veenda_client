@@ -8,47 +8,68 @@ App.LoginController = Ember.Controller.extend({
 		self.refreshOrdersList();
 	},
 	refreshOrdersList: function() {
-		var newList = [];
+		
 		clearInterval(self.get('interval_id'));
 		App.chair.all(function(records) 
 		{
-			for(var i = 0; i < records.length; ++i) 
-			{
-				$.ajax({
-					url: VEENDA_FULL_URL + '/orders/' + records[i].id,
-					type: 'GET',
-					async: true
-				})
-				.done(function(data, status) {
-					var currentOrder, currentDelivered, currentDispatchTime;
-					App.chair.get(data.delivery.id, function(lawnOrder) {
-						currentOrder = lawnOrder;
-						currentDelivered = lawnOrder.delivered;
-						currentDispatchTime = lawnOrder.dispatch_time;
+			if(!self.get('saved_orders')) {
+				self.set('saved_orders', records);
+
+
+			}
+			else
+			{				
+				var ajaxArray = [];
+				for(var i = 0; i < records.length; ++i) 
+				{
+					ajaxArray.push(
+						$.ajax({
+							url: VEENDA_FULL_URL + '/orders/' + records[i].id,
+							type: 'GET',
+							async: true
+						}));				
+				}
+
+				var defer = $.when.apply($, ajaxArray);
+				defer.done(function() {
+					var changed = false, newList = [];
+					$.each(arguments, function(index, responseData) {
+						var data = responseData[0];
+						var currentOrder, currentDelivered, currentDispatchTime;
+						App.chair.get(data.id, function(lawnOrder) {
+							currentOrder = lawnOrder;
+							currentDelivered = lawnOrder.delivered;
+							currentDispatchTime = lawnOrder.dispatch_time;
+						});
+
+						var delivered = null, dispatchTime = null;
+						if(data.delivery) {
+							delivered = data.delivery.delivered;
+							dispatchTime = data.delivery.dispatch_time;
+						}					
+
+						if(currentDelivered != delivered || currentDispatchTime != dispatchTime) 
+						{
+							currentOrder.delivered = delivered;						
+							currentOrder.dispatch_time = currentDispatchTime;
+							App.chair.save(currentOrder);		
+							changed = true;			
+						}
+						newList.push(currentOrder);
 					});
-
-					var delivered = data.delivery.delivered;
-					var dispatchTime = data.delivery.dispatch_time;
-
-					if(currentDelivered != delivered || currentDispatchTime != dispatchTime) 
-					{
-						currentOrder.delivered = delivered;						
-						currentOrder.dispatch_time = currentDispatchTime;
-						App.chair.save(currentOrder);
+					if(changed) {
+						console.log('change');
+						self.set('saved_orders', newList);
 					}
-				})
-				.fail(function() {
-					console.log("error");
-				})
-				.always(function() {
+					
 
 				});
-				newList.push(records[i]);
 			}
-			self.set('saved_orders', newList);
 			var interval_id = setInterval(self.refreshOrdersList, 5000);
 			self.set('interval_id', interval_id);
+
 		});
+
 
 },
 actions: {
@@ -72,6 +93,9 @@ actions: {
 	orderList: function() {
 		return this.get('saved_orders');
 	}.property('saved_orders'),
+	orderListChanged: function() {
+		fixHeights();
+	}.observes('saved_orders')
 
 	
 });

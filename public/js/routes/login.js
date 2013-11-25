@@ -1,7 +1,8 @@
 
 App.LoginRoute = Ember.Route.extend({
-    enter: function() {
-      this.controllerFor("login").refreshOrdersList();
-      
-    }
+	enter: function() {
+		//this.controllerFor("login").refreshOrdersList();
+
+	}
 });
+

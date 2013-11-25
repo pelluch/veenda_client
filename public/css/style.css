@@ -17,8 +17,22 @@ html, body {
     margin-top: 9px;
 }
 
+html {
+  width: auto !important;
+  overflow-x: hidden !important;
+}
+
+body {
+  width: auto !important;
+  overflow-x: hidden !important;
+}
 .container{
+    width: 100%;
     margin-bottom: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 .navbar {
 
@@ -38,12 +52,11 @@ html, body {
 }
 .list-items-properties {
     border: 1px solid #dddddd;
-    margin: 0 auto;
-    padding: 0 auto;
     margin-bottom: 4px;
     text-align: center;
     border-radius: 4px;
     margin-bottom: 18px;
+    /*margin-left: 100px;*/
 }
 .list-items-properties:hover {
     background-color: #fafafa;
@@ -58,9 +71,14 @@ html, body {
 .list-items-properties .close {
     margin-right: 5px;
 }
+list-items-properties h3 {
+    margin-top: 5px;
+}
 .badge-success {
     background-color: #5cb85c;
 }
+
+
 .btn-group-lg-100 {
     width: 100%;
     text-align: center;
@@ -72,35 +90,39 @@ html, body {
 }
 .btn-lg-50 {
     width: 50%;
-    }.btn-mg-14-14 {
-        padding-left: 15px;
-        float:left;
-    }
-    .btn-lg-47 {
-        width: 49%;
-    }
-    .btn-gr-300max {
-        max-width: 300px;
-    }
-    .btn-lg-32 {
-        width: 33.5%;
-        border-radius: 4px;
-    }
-    .btn-group-lg-50 {
-        max-width: 700px;
-        width: 100%;
-    }
-    .btn-pdg-up-25 {
-        padding-top: 13px;
-        padding-bottom: 13px;
-    }
-    .btn-border-white {
-       border: solid 1px #ffffff;
-   }
-   .btn-border-white:hover {
-       border: solid 1px #ffffff;
-   }
-   .status:hover {
+}
+.btn-mg-14-14 {
+    padding-left: 15px;
+    float:left;
+}
+.btn-lg-47 {
+    width: 49%;
+}
+
+.btn-gr-300max {
+    max-width: 300px;
+}
+
+.btn-lg-100 {
+    width: 100%;
+    border-radius: 0px;
+}
+
+.btn-order-info span {
+    font-size: 1.2em;
+}
+.col-order-info .btn
+{
+    height: 100%;
+
+}
+.btn-border-white {
+   border: solid 1px #ffffff;
+}
+.btn-border-white:hover {
+   border: solid 1px #ffffff;
+}
+.status:hover {
     cursor:default;
 }
 .status-primary:hover {
@@ -271,50 +293,10 @@ a:hover
 {
     text-decoration: none;
 }
-/*
-.rating {
-    unicode-bidi: bidi-override;
-    direction: rtl;
-    text-align: center;      
-    }
-.rating > span {
-    display: inline-block;
-    position: relative;
-    width: 1em;
-}
-.rating > span:hover,
-.rating > span:hover ~ span,
-.rating > span.active,
-.rating > span.active ~ span {
-    color: transparent;
-}
-.rating > span:hover:before,
-.rating > span:hover ~ span:before,
-.rating > span.active:before,
-.rating > span.active ~ span:before {
-    position: absolute;
-    color: gold;
-}
-.rating > span:hover:before,
-.rating > span:hover ~ span:before,
-.rating > span.active:before,
-.rating > span.active ~ span:before {
-    content: "\2605";
-}
-.rating.sun > span:hover:before,
-.rating.sun > span:hover ~ span:before,
-.rating.sun > span.active:before,
-.rating.sun > span.active ~ span:before {
-    content: "\2600";
-    }*/
-
-
 i.fa 
 {
     text-rendering: auto;
 }
-
-
 .fa-star
 {
     color: gold;
@@ -329,17 +311,15 @@ i.fa
     margin-bottom: 15px;
 }
 
-
-.btn-fix {
-
-}
-
 .btn-icon {
  font-size: 20px;
 }
 .btn-inline {
  display: inline-block;
 }
-.btn-height{
-    padding: 13px 0 13px 0;
+
+.no-margin
+{
+    margin: 0px;
+    padding: 0px;
 }

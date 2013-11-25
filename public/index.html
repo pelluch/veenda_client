@@ -11,14 +11,14 @@
 <body>
     <!-- titulo -->
     <script type="text/x-handlebars">
-        <div class="page-header">
-            <div class="container" >
-                <a {{ action 'back'}} href='#'>
-                    <h2 id="veenda-logo">
-                        Veenda
-                    </h2>     
-                </a>
-            </div>
+        <div class="container" >
+            <div class="rowbootstra page-header">
+                <div class="col-md-offset-1 col-md-11">
+                    <a {{ action 'back'}} href='#'>
+                        <h2 id="veenda-logo">Veenda</h2>     
+                    </a>
+                </div>
+            </div>            
         </div>
         {{outlet}} 
     </script>
@@ -149,77 +149,104 @@
     {{outlet}}
 </script>
 
-<!-- ORDER LIST GOES HERE -->
+
 <script type="text/x-handlebars" data-template-name="login">
 
+    <!-- INPUT CODE GOES HERE -->
     <div class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="row">
-            <div class="col-xs-9">
+            <div class="col-xs-9 col-md-9">
                 {{view Ember.TextField valueBinding="codigo" placeholder="Seguir nuevo pedido" class= "form-control"}}
             </div>  
 
-            <div class="col-xs-3">
+            <div class="col-xs-3 col-md-3">
                 <button {{ action insert}} class="btn btn-primary btn-border-white btn-lg-300" type="button">Seguir
                 </button> 
             </div>        
         </div>             
     </div>
-     <div class="container text-center">
+
+    <!-- ORDER LIST GOES HERE -->
+    {{#view App.LoginView }}
+    <div class="container text-center">
 
         <h3 class="margin-20">Mis pedidos</h3>
         <div id="jquery-orders" class = "alert1 alert-success hidden">
         </div>
-        <div class="row margin-0-100">
+        <div class="row">
             {{#if saved_orders}}
             {{#each saved_order in saved_orders}}
             
-            <div class="col-md-4 col-xs-10 col-xs-offset-1">
-                <div {{bind-attr id="saved_order.key"}} class="list-items-properties">
+            <div class="col-md-4 col-xs-12 list-items-properties" {{bind-attr id="saved_order.key"}} >
+                <div class="row">
                     {{#link-to 'orders.order' saved_order.key}}
-                    <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
-                    <img class="logo-list" src="LaLeona.png"/>
-                    <h5>La Leona</h5>
-                    <h3 class="margin-0">#{{saved_order.key}}</h3>
-                    <div class="btn-group btn-group-lg-100">
-                        {{#if saved_order.delivered}}
-                        <span  class="btn btn-success btn-fix btn-group-lg-100_1 btn-height status-success">Recibido</span>
-                        {{else}} 
-                        {{#if saved_order.dispatch_time}}
-                        <span  class="btn btn-primary btn-lg-32 btn-fix btn-height status-primary">En Camino</span>
-                        <span  class="btn btn-gray btn-lg-32 btn-fix">
-                            <span class="glyphicon glyphicon-time btn-icon"></span> 
-                            <span class="btn-inline text-left"> 
-                                <small>
-                                    <p class="margin-0-0-0">{{saved_order.rest}} pedidos</p>
-                                    <p class="margin-0-0-0">pendientes</p>
-                                </small>
-                            </span>
-                        </span>
-
-                        <span  class="btn btn-default btn-lg-32 btn-fix status-default">
-                            <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
-                            <span class="btn-inline text-left"> 
-                                <small>
-                                    <p class="margin-0-0-0">{{saved_order.estimated_time}} minutos</p>
-                                    <p class="margin-0-0-0">restantes</p>
-                                </small>
-                            </span>
-                        </span>
-                        {{else}} 
-                        <span  class="btn btn-warning btn-fix btn-group-lg-100_1 btn-height status-warning">Agendado</span>                 
-                        {{/if}}
-
-                        {{/if}}
+                    <div class="col-md-2">
+                        <img class="logo-list" src="LaLeona.png"/>
+                    </div>
+                    <div class="col-md-9">
+                        <h3>La Leona</h3>
+                    </div>
+                    <div class="col-md-1">
+                        <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
                     </div>
                 </div>
-                {{/link-to}}
+
+
+                <div class="row">
+                    <h3 class="margin-0">#{{saved_order.key}}</h3>
+                </div>
+                <div class="row">
+                    <div class="btn-group btn-group-lg-100 no-margin">
+                        {{#if saved_order.delivered}}
+                        <div class="col-md-12 col-order-info no-margin">
+                            <div  class="btn btn-success btn-fix btn-lg-100 btn-height status-success">Recibido</div>
+                        </div>
+                        </div>
+                        {{else}} 
+                        {{#if saved_order.dispatch_time}}
+                        <div class="col-md-4 no-margin status-primary col-order-info">
+                            <div  class="btn btn-primary btn-lg-100 btn-height status-primary">En Camino</div>
+                        </div>
+                        <div class="col-md-4 no-margin col-order-info">
+                            <div  class="btn btn-gray btn-lg-100">
+                                <span class="glyphicon glyphicon-time btn-icon"></span> 
+                                <span class="btn-inline text-left"> 
+                                    <small>
+                                        <p class="margin-0-0-0">{{saved_order.rest}} pedidos</p>
+                                        <p class="margin-0-0-0">pendientes</p>
+                                    </small>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 no-margin col-order-info">
+                            <div  class="btn btn-default btn-lg-100 status-default">
+                                <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
+                                <span class="btn-inline text-left"> 
+                                    <small>
+                                        <p class="margin-0-0-0">{{saved_order.estimated_time}} minutos</p>
+                                        <p class="margin-0-0-0">restantes</p>
+                                    </small>
+                                </span>
+                            </div>
+                        </div>
+                        {{else}} 
+                        <div class="col-md-12 col-order-info no-margin">
+                            <div  class="btn btn-warning btn-fix btn-lg-100 btn-height status-warning">Agendado</div>                 
+                        </div>
+                        {{/if}}
+                    </div>
+                    {{/if}}
+                </div>
             </div>
+            {{/link-to}}
+
 
             {{/each}}
-            {{else}}
-            <h4 class="margin-0-10">No está siguiendo ningún pedido</h4>
-            {{/if}}
         </div>
+        {{else}}
+        <h4 class="margin-0-10">No está siguiendo ningún pedido</h4>
+        {{/if}}
+        {{/view}}
     </div>
     {{outlet}} 
 </script>
@@ -269,6 +296,7 @@
 <script src="js/controllers/rating.js"></script>
 <script src="js/controllers/orders.js"></script>
 <script src="js/views/map.js"></script>
+<script src="js/views/login.js"></script>
 <script src="js/routes/orders.js"></script>
 <script src="js/routes/login.js"></script>
 <script src="js/routes/router.js"></script>
@@ -277,7 +305,7 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
 
 <script type="text/javascript">
-$(document).ready( function() {
+    $(document).ready( function() {
     //$('#jquery-orders').hide();
     App.chair.all(function(records) {
         var closeOrders = [];
