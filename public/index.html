@@ -12,7 +12,7 @@
     <!-- titulo -->
     <script type="text/x-handlebars">
         <div class="container" >
-            <div class="rowbootstra page-header">
+            <div class="row page-header">
                 <div class="col-md-offset-1 col-md-11">
                     <a {{ action 'back'}} href='#'>
                         <h2 id="veenda-logo">Veenda</h2>     
@@ -180,13 +180,13 @@
             <div class="col-md-4 col-xs-12 list-items-properties" {{bind-attr id="saved_order.key"}} >
                 <div class="row">
                     {{#link-to 'orders.order' saved_order.key}}
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-2">
                         <img class="logo-list" src="LaLeona.png"/>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-9 col-xs-9">
                         <h3>La Leona</h3>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1 col-xs-1">
                         <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
                     </div>
                 </div>
@@ -198,16 +198,16 @@
                 <div class="row">
                     <div class="btn-group btn-group-lg-100 no-margin">
                         {{#if saved_order.delivered}}
-                        <div class="col-md-12 col-order-info no-margin">
+                        <div class="col-md-12 col-xs-12 col-order-info no-margin">
                             <div  class="btn btn-success btn-fix btn-lg-100 btn-height status-success">Recibido</div>
                         </div>
                         </div>
                         {{else}} 
                         {{#if saved_order.dispatch_time}}
-                        <div class="col-md-4 no-margin status-primary col-order-info">
+                        <div class="col-md-4 col-xs-4 no-margin status-primary col-order-info">
                             <div  class="btn btn-primary btn-lg-100 btn-height status-primary">En Camino</div>
                         </div>
-                        <div class="col-md-4 no-margin col-order-info">
+                        <div class="col-md-4 col-xs-4 no-margin col-order-info">
                             <div  class="btn btn-gray btn-lg-100">
                                 <span class="glyphicon glyphicon-time btn-icon"></span> 
                                 <span class="btn-inline text-left"> 
@@ -218,7 +218,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-md-4 no-margin col-order-info">
+                        <div class="col-md-4 col-xs-4 no-margin col-order-info">
                             <div  class="btn btn-default btn-lg-100 status-default">
                                 <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
                                 <span class="btn-inline text-left"> 
@@ -230,7 +230,7 @@
                             </div>
                         </div>
                         {{else}} 
-                        <div class="col-md-12 col-order-info no-margin">
+                        <div class="col-md-12 col-xs-12 col-order-info no-margin">
                             <div  class="btn btn-warning btn-fix btn-lg-100 btn-height status-warning">Agendado</div>                 
                         </div>
                         {{/if}}
@@ -330,6 +330,10 @@
         }
     });
 });
+
+    $( window ).resize(function() {
+        fixHeights();
+    });
 </script>
 
 </body>
