@@ -1,8 +1,8 @@
 App.LoginView = Ember.View.extend({
 
 	didInsertElement: function() {
-		//Ember.run.schedule('afterRender', this, this.listChanged);
-		fixHeights();
+		Ember.run.schedule('afterRender', this, this.listChanged);
+
 	},
 	didChangeList: function() {
 		Ember.run.schedule('afterRender', this, this.listChanged);
