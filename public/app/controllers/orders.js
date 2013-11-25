@@ -66,7 +66,7 @@ App.OrdersOrderController = Ember.ObjectController.extend({
      $.ajax({               
       url: VEENDA_FULL_URL + '/deliveries/' + order_id,
       type: 'PUT',
-      async: false,
+      async: true,
       data: JSON.stringify({
         order: {
           delivered: false
