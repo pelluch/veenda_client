@@ -1,0 +1,338 @@
+/* Put your CSS here */
+html, body {
+    background-color: #fff;
+    color:#000;
+}
+
+.page-header {
+  margin-bottom: 5px;
+}
+
+.active {
+    color: black;
+    font-weight: bold;
+}
+.page-header {
+
+    margin-top: 9px;
+}
+
+html {
+  width: auto !important;
+  overflow-x: hidden !important;
+}
+
+body {
+  width: auto !important;
+  overflow-x: hidden !important;
+}
+.container{
+    width: 100%;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.navbar {
+
+    background-color: #000;
+    color:#fff;
+    padding:20px;
+}
+.alert {
+    padding:12px;
+    padding-right: 30px;
+    margin-bottom: 1px;
+}
+.alert1 {
+    padding:5px;
+    padding-right: 30px;
+    margin-bottom: 4px;
+}
+
+
+.list-items-properties {
+    border: 1px solid #dddddd;
+    margin-bottom: 4px;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 18px;
+    margin-right: 10px;
+}
+
+
+.list-items-properties:hover {
+    background-color: #fafafa;
+}
+.list-items-properties a:hover{
+    text-decoration: none;
+}
+
+.cl{
+    clear:both;
+}
+.list-items-properties .close {
+    margin-right: 5px;
+}
+
+.list-items-properties h3 {
+    margin-top: 5px;
+}
+.badge-success {
+    background-color: #5cb85c;
+}
+
+
+.btn-group-lg-100 {
+    width: 100%;
+    text-align: center;
+    padding: 3px;
+}
+.btn-group-lg-100_1 {
+    width: 100%;
+    text-align: center;
+}
+.btn-lg-50 {
+    width: 50%;
+}
+.btn-mg-14-14 {
+    padding-left: 15px;
+    float:left;
+}
+.btn-lg-47 {
+    width: 49%;
+}
+
+.btn-gr-300max {
+    max-width: 300px;
+}
+
+.btn-lg-100 {
+    width: 100%;
+    border-radius: 0px;
+}
+
+.btn-order-info span {
+    font-size: 1.2em;
+}
+.col-order-info .btn
+{
+    height: 100%;
+
+}
+.btn-border-white {
+ border: solid 1px #ffffff;
+}
+.btn-border-white:hover {
+ border: solid 1px #ffffff;
+}
+.status:hover {
+    cursor:default;
+}
+.status-primary:hover {
+    background-color: #428bca;
+}
+.status-success:hover {
+    background-color: #5cb85c;
+}
+.status-warning:hover {
+    background-color: #f0ad4e;
+}
+.status-default:hover {
+    background-color: #ffffff;
+}
+
+.btn-lg-20y100p {
+    width: 130px;
+    margin-left: 10px;
+    float: right;
+}
+.add-ons-button {
+    width: calc(100% - 150px);
+    float: right;
+}
+
+.details {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+}
+.float_left {
+    width: 70%;
+}
+.float_lft {
+    float: left;
+}
+.navbar-inverse {
+    background-color: #428bca;
+}
+.details_left {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: left;
+}
+.pedidos {
+    max-width: 390px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+.btn-lg-300 {
+    max-width: 400px;
+    width: 100%;
+}
+.form-group-lg-400 {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+}
+.rating-lg-50 {
+    width: 75%;
+    margin: 0 auto;
+    max-width: 350px;
+}
+.logo-list{
+    width: 100%;
+    padding: 0px;
+    margin-left: 2px;
+    margin-top: 2px;
+}
+.logo-container
+{
+    padding: 0px;
+}
+
+.btn-gray {
+  color: #ffffff;
+  background-color: #787878;
+  border-color: #666666;
+}
+
+.btn-gray:hover,
+.btn-gray:focus,
+.btn-gray:active,
+.btn-gray.active,
+.open .dropdown-toggle.btn-gray {
+  color: #ffffff;
+}
+
+
+h3{
+    font-weight: 200;
+}
+h4{
+    font-weight: 200;
+}
+h5{
+    font-weight: 200;
+}
+.margin-20{
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+.margin-30-0{
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+.margin-0-10{
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+.margin-0-20{
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+.margin-0-100{
+    margin-top: 0px;
+    margin-bottom: 67px;
+}
+.margin-0{
+    margin-top: 0;
+}
+.margin-0-0-0{
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+.margin-0-0{
+    padding: 15px 30px 15px 30px;
+}
+
+.margin-15{
+    margin-top: 15px;
+}
+.margin-0-5{
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+#map_canvas { 
+    height: 100%;
+
+}
+.table-margin-3{
+    margin-top: 3px;
+}
+
+.width-40{
+    max-width:220px;
+    width: 19%;
+}
+
+#map_canvas label { width: auto; display:inline; }
+#map_canvas img { max-width: none; }
+.gm-style img { max-width: none; }
+.gm-style label { width: auto; display: inline; }
+
+li {
+    list-style:none;
+}
+
+#veenda-logo
+{
+    font-family: 'Sarina';
+    color: #4d4d4d;
+}
+a:hover
+{
+    text-decoration: none;
+}
+i.fa 
+{
+    text-rendering: auto;
+}
+.fa-star
+{
+    color: gold;
+}
+
+i.fa
+{
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 1.8em;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.btn-icon {
+   font-size: 20px;
+}
+.btn-inline {
+   display: inline-block;
+}
+
+.no-margin
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+@media (min-width: 992px) {
+.list-items-properties {    
+    margin-left: 100px;
+}
