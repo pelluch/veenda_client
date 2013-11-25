@@ -8,6 +8,7 @@ App.OrdersOrderRoute = Ember.Route.extend( {
       var toSave = { key : params.order_id, id: order.get('id'), name: order.get('name'), delivered: order.get('delivered'), rest: order.get('rest'), dispatch_time: order.get('dispatch_time'), distance: order.get('distance'), estimated_time: order.get('estimated_time'),
        type : 'order'};
       App.chair.save(toSave);
+      
 
 
       return order;

@@ -20,7 +20,7 @@ App.OrdersOrderController = Ember.ObjectController.extend({
       }
     }
     else {
-        clearInterval(this.interval_id);
+      clearInterval(this.interval_id);
     }
 
   },
@@ -41,6 +41,11 @@ App.OrdersOrderController = Ember.ObjectController.extend({
        contentType: "application/json",
        dataType: "text",
        success: function(response) {
+
+        App.chair.get(order_id + "", function(lawnOrder) {
+          lawnOrder.delivered = true;
+          App.chair.save(lawnOrder);
+        });
         console.log('response: ' + response);
         store.find('order', order_id).then( function(model) {
           model.set('delivered', true);
@@ -61,6 +66,7 @@ App.OrdersOrderController = Ember.ObjectController.extend({
      $.ajax({               
       url: VEENDA_FULL_URL + '/deliveries/' + order_id,
       type: 'PUT',
+      async: true,
       data: JSON.stringify({
         order: {
           delivered: false
@@ -75,12 +81,11 @@ App.OrdersOrderController = Ember.ObjectController.extend({
          model.set('comment', "");
          model.set('rating_value', 0);
        });
+        App.chair.get(order_id + '', function(lawnOrder) {          
+          lawnOrder.delivered = false;
+          App.chair.save(lawnOrder);
+        });
       }
-    });
-     App.chair.get(order_id, function(obj) {
-      console.log(obj);
-      obj.delivered = false;
-      App.chair.save(obj);
     });
      this.get('content').reload();
      this.transitionToRoute('orders.order', this.get('content.order'));

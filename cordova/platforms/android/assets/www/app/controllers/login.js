@@ -7,15 +7,21 @@ App.LoginController = Ember.Controller.extend({
 		self = this;
 		self.refreshOrdersList();
 	},
-	refreshOrdersList: function() {
+	refreshOrdersList: function(replaceNow) {
 		
 		clearInterval(self.get('interval_id'));
 		App.chair.all(function(records) 
 		{
-			if(records.length == 0) {
-				return;
+			if(replaceNow) {
+				self.set('saved_orders', records);
+			}
+			else if(records.length == 0) {
+				
 			}
 			else if(!self.get('saved_orders')) {
+				self.set('saved_orders', records);
+			}
+			else if(self.get('saved_orders').length != records.length) {
 				self.set('saved_orders', records);
 			}			
 			else
