@@ -12,11 +12,12 @@ App.LoginController = Ember.Controller.extend({
 		clearInterval(self.get('interval_id'));
 		App.chair.all(function(records) 
 		{
-			if(!self.get('saved_orders')) {
-				self.set('saved_orders', records);
-
-
+			if(records.length == 0) {
+				return;
 			}
+			else if(!self.get('saved_orders')) {
+				self.set('saved_orders', records);
+			}			
 			else
 			{				
 				var ajaxArray = [];
@@ -60,7 +61,7 @@ App.LoginController = Ember.Controller.extend({
 							newList.push(currentOrder);
 						});
 					}
-					else 
+					else if(ajaxArray.length == 1) 
 					{
 						var data = args;
 						var currentOrder, currentDelivered, currentDispatchTime;
@@ -85,25 +86,26 @@ App.LoginController = Ember.Controller.extend({
 						}
 						newList.push(currentOrder);
 					}
+					else
+					{
+
+					}
 					if(self.get('saved_orders').length != newList.length) {
 						changed = true;
 					}
 					if(changed) {
 						console.log('change');
 						self.set('saved_orders', newList);
-					}
-					
+					}		
 
 				});
+			}
+			var interval_id = setInterval(self.refreshOrdersList, 5000);
+			self.set('interval_id', interval_id);
 
-}
-var interval_id = setInterval(self.refreshOrdersList, 5000);
-self.set('interval_id', interval_id);
+			});
 
-});
-
-
-},
+	},
 actions: {
 	insert: function(event) {
 		if(typeof this.get('codigo') == 'undefined' || this.get('codigo').match(/^\s*$/)) {
