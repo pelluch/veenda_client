@@ -2,7 +2,9 @@
 <html>
 <head>
     <meta charset=utf-8>
-    <title>Veenda Client</title>
+    <title>
+        Veenda Client
+    </title>
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="app/css/style.css">    
@@ -15,7 +17,11 @@
             <div class="row page-header">
                 <div class="col-md-offset-1 col-md-11">
                     <a {{ action 'back'}} href='#'>
-                        <h2 id="veenda-logo">Veenda</h2>     
+                        <h2 id="veenda-logo">Veenda</h2>   
+                        <div class="visible-md">Medium</div>
+                        <div class="visible-lg">Large</div>
+                        <div class="visible-sm">Small</div>
+                        <div class="visible-xs">Xs</div>   
                     </a>
                 </div>
             </div>            
@@ -200,40 +206,44 @@
                 <div class="row">
                     <div class="btn-group btn-group-lg-100 no-margin">
                         {{#if saved_order.delivered}}
-                        <div class="col-md-12 col-xs-12 col-order-info no-margin">
-                            <div  class="btn btn-success btn-fix btn-lg-100 btn-height status-success">Recibido</div>
+                        <div class="btn btn-success col-md-12 col-xs-12 col-order-info no-margin">
+                            <div  class="btn-fix btn-lg-100 btn-height status-success">Recibido</div>
                         </div>
                     </div>
                     {{else}} 
                     {{#if saved_order.dispatch_time}}
-                    <div class="col-md-4 col-xs-4 no-margin status-primary col-order-info">
-                        <div  class="btn btn-primary btn-lg-100 btn-height status-primary">En Camino</div>
+                    <div class="btn btn-primary col-md-4 col-xs-4 no-margin status-primary col-order-info">
+                        <div  class="btn-lg-100 btn-height status-primary">En Camino</div>
                     </div>
-                    <div class="col-md-4 col-xs-4 no-margin col-order-info">
-                        <div  class="btn btn-gray btn-lg-100">
-                            <span class="glyphicon glyphicon-time btn-icon"></span> 
-                            <span class="btn-inline text-left"> 
-                                <small>
-                                    <p class="margin-0-0-0">{{saved_order.rest}} pedidos</p>
-                                    <p class="margin-0-0-0">pendientes</p>
-                                </small>
-                            </span>
+                    <div class="btn btn-gray col-md-4 col-xs-4 no-margin col-order-info">
+                        <div class="btn-lg-100 no-margin">
+                            <div class="btn-height">
+                                <span class="glyphicon glyphicon-time btn-icon"></span> 
+                                <span class="btn-inline text-left"> 
+                                    <small>
+                                        <p class="margin-0-0-0">{{saved_order.rest}} pedidos</p>
+                                        <p class="margin-0-0-0">pendientes</p>
+                                    </small>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-xs-4 no-margin col-order-info">
-                        <div  class="btn btn-default btn-lg-100 status-default">
-                            <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
-                            <span class="btn-inline text-left"> 
-                                <small>
-                                    <p class="margin-0-0-0">{{saved_order.estimated_time}} minutos</p>
-                                    <p class="margin-0-0-0">restantes</p>
-                                </small>
-                            </span>
+                    <div class="btn btn-default col-md-4 col-xs-4 no-margin col-order-info">
+                        <div class="btn-lg-100 status-default no-margin">
+                            <div class="btn-height">
+                                <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
+                                <span class="btn-inline text-left"> 
+                                    <small>
+                                        <p class="margin-0-0-0">{{saved_order.estimated_time}} minutos</p>
+                                        <p class="margin-0-0-0">restantes</p>
+                                    </small>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     {{else}} 
-                    <div class="col-md-12 col-xs-12 col-order-info no-margin">
-                        <div  class="btn btn-warning btn-fix btn-lg-100 btn-height status-warning">Agendado</div>                 
+                    <div class="btn btn-warning col-md-12 col-xs-12 col-order-info no-margin">
+                        <div  class="btn-fix btn-lg-100 btn-height status-warning">Agendado</div>                 
                     </div>
                     {{/if}}
 
