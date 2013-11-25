@@ -177,7 +177,7 @@
             {{#if saved_orders}}
             {{#each saved_order in saved_orders}}
             
-            <div class="col-md-4 col-xs-12 list-items-properties" {{bind-attr id="saved_order.key"}} >
+            <div class="col-md-3 col-md-offset-1 col-xs-10 col-xs-offset-1 list-items-properties" {{bind-attr id="saved_order.key"}} >
                 <div class="row">
                     {{#link-to 'orders.order' saved_order.key}}
                     <div class="col-md-2 col-xs-2">

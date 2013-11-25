@@ -50,14 +50,18 @@ body {
     padding-right: 30px;
     margin-bottom: 4px;
 }
+
+
 .list-items-properties {
     border: 1px solid #dddddd;
     margin-bottom: 4px;
     text-align: center;
     border-radius: 4px;
     margin-bottom: 18px;
-    /*margin-left: 100px;*/
+    margin-right: 10px;
 }
+
+
 .list-items-properties:hover {
     background-color: #fafafa;
 }
@@ -71,7 +75,8 @@ body {
 .list-items-properties .close {
     margin-right: 5px;
 }
-list-items-properties h3 {
+
+.list-items-properties h3 {
     margin-top: 5px;
 }
 .badge-success {
@@ -117,10 +122,10 @@ list-items-properties h3 {
 
 }
 .btn-border-white {
-   border: solid 1px #ffffff;
+ border: solid 1px #ffffff;
 }
 .btn-border-white:hover {
-   border: solid 1px #ffffff;
+ border: solid 1px #ffffff;
 }
 .status:hover {
     cursor:default;
@@ -162,7 +167,7 @@ list-items-properties h3 {
     float: left;
 }
 .navbar-inverse {
-	background-color: #428bca;
+    background-color: #428bca;
 }
 .details_left {
     width: 100%;
@@ -279,7 +284,7 @@ h5{
 .gm-style label { width: auto; display: inline; }
 
 li {
-	list-style:none;
+    list-style:none;
 }
 
 #veenda-logo
@@ -310,14 +315,19 @@ i.fa
 }
 
 .btn-icon {
- font-size: 20px;
+   font-size: 20px;
 }
 .btn-inline {
- display: inline-block;
+   display: inline-block;
 }
 
 .no-margin
 {
     margin: 0px;
     padding: 0px;
+}
+
+@media (min-width: 992px) {
+.list-items-properties {    
+    margin-left: 100px;
 }
