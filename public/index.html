@@ -32,7 +32,7 @@
 
         <div class="container text-center">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+                <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
                     {{#if delivered}}
                     <div class="details">
                         <h5 class="btn btn-success btn-xs btn-mg-14-14 btn-lg-50 status status-success">Recibido</h5>
@@ -69,18 +69,26 @@
                     {{else}}
                     {{#if dispatch_time}}
                     {{#if isMap}}
-                    <div class="btn-group btn-group-lg-50 margin-15">
-                        <button type="button" {{ action "mapFalse"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
-                        <button type="button" {{ action "mapTrue"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-screenshot"></span> Mapa</button>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="btn-group btn-group-lg-100 margin-15">
+                                <button type="button" {{ action "mapFalse"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
+                                <button type="button" {{ action "mapTrue"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-screenshot"></span> Mapa</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="details">
-                        {{#view App.MapView }}<br/>{{/view}}
-                        <table class="table table-bordered table-margin-3">
-                            <tr>
-                                <td><img src="img/gps-icon-spec.png"> Destinatario</td>
-                                <td><img src="img/gps-icon-dispatcher-spec.png"> Zona despachador</td>
-                            </tr>
-                        </table>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="details">
+                                {{#view App.MapView }}<br/>{{/view}}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <img src="img/gps-icon-spec.png"> Destinatario
+                                        <img src="img/gps-icon-dispatcher-spec.png"> Zona despachador                                
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>
                     </div>
                     {{else}}
                     <div class="container text-center">
@@ -341,24 +349,24 @@
         var closeOrders = [];
         for(var i = 0; i < records.length; ++i) 
         {
-			if(records[i].estimated_time < 20 && records[i].delivered == false) 
-            {
-                closeOrders.push(records[i].key);
-            }
+           if(records[i].estimated_time < 20 && records[i].delivered == false) 
+           {
+            closeOrders.push(records[i].key);
         }
-        if(closeOrders.length > 1)
-        {
-            $('#jquery-orders').removeClass('hidden');
-            $('#jquery-orders').html('<h4> Los pedidos ' + closeOrders.join(', ') + ' están llegando</h4>');
-            $('#jquery-orders').fadeOut(10000);
-        }
-        else if(closeOrders.length == 1)
-        {
-            $('#jquery-orders').removeClass('hidden');
-            $('#jquery-orders').html('<h4> El pedido ' + closeOrders[0] + ' está llegando</h4>');
-            $('#jquery-orders').fadeOut(10000);
-        }
-    });
+    }
+    if(closeOrders.length > 1)
+    {
+        $('#jquery-orders').removeClass('hidden');
+        $('#jquery-orders').html('<h4> Los pedidos ' + closeOrders.join(', ') + ' están llegando</h4>');
+        $('#jquery-orders').fadeOut(10000);
+    }
+    else if(closeOrders.length == 1)
+    {
+        $('#jquery-orders').removeClass('hidden');
+        $('#jquery-orders').html('<h4> El pedido ' + closeOrders[0] + ' está llegando</h4>');
+        $('#jquery-orders').fadeOut(10000);
+    }
+});
 });
 
     $( window ).resize(function() {
