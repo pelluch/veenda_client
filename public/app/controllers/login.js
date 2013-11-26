@@ -31,7 +31,7 @@ App.LoginController = Ember.Controller.extend({
 		}
 		for(i = 0; i<records.length;i++)
 		{
-			if(!records[i].dispatch_time)
+			if(!records[i].dispatch_time && !records[i].delivered)
 			{
 				final.push(records[i]);
 				aux++;
