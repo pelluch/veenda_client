@@ -1,6 +1,7 @@
 App.OrdersOrderController = Ember.ObjectController.extend({
 
   interval_id: null,
+	//init: refreshes the page every 1 second.
   init: function(params) {
 
     var self = this;
@@ -25,12 +26,13 @@ App.OrdersOrderController = Ember.ObjectController.extend({
 
   },
   actions: {
+	//insert gets the id searched in the homepage looks for it in the API
     insert: function(event) {
       var order_id = this.get('content.id');
       var store = this.get('store');
       var self = this;
       $.ajax({
-
+	//url returns the URL of the delivery page
        url: VEENDA_FULL_URL + '/deliveries/' + order_id,
        type: 'PUT',
        data: JSON.stringify({
@@ -55,9 +57,11 @@ App.OrdersOrderController = Ember.ObjectController.extend({
 
       this.transitionToRoute('rating', order_id);
     },
+	//back:allows you to go back to the home page
     back: function(event) {
       this.transitionToRoute('login');
     },
+	//reset: refreshes the page content
     reset: function(event) {
      var order_id = this.get('content.id');
      var store = this.get('store');
@@ -90,12 +94,15 @@ App.OrdersOrderController = Ember.ObjectController.extend({
      this.get('content').reload();
      this.transitionToRoute('orders.order', this.get('content.order'));
    },
+   //mapTrue: sets the Map to true
    mapTrue: function() {
     this.set('isMap', true)
   },
+  //map False: sets the Map to False
   mapFalse: function() {
     this.set('isMap', false)
   },
+  //rate: redirects the user to the rating page
   rate: function(event) {
     var order_id = this.get('content.id');
     this.transitionToRoute('rating', order_id);
