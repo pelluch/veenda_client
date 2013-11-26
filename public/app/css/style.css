@@ -101,6 +101,16 @@ body {
     background-color: #5cb85c;
 }
 
+.btn-lg-20y100p {
+     width: 130px;
+     margin-left: 10px;
+     float: right;
+}
+ .add-ons-button {
+     width: calc(100% - 150px);
+     float: right;
+ }
+
 
 .btn-group-lg-100 {
     width: 100%;
