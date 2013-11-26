@@ -26,18 +26,18 @@ App.MapView = Ember.View.extend({
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(this.$().get(0),mapOptions);
-	
+    
     this.set("map", map);
     
     //alert(distance);
     var coord;
     for (var coord = 0; coord < 2; coord++) {
       var image = new google.maps.MarkerImage("img/gps-icon.png",
-          new google.maps.Size(60, 60),
-          new google.maps.Point(0,0),
-          new google.maps.Point(19, 19)
-      );
-      new google.maps.Marker({
+        new google.maps.Size(60, 60),
+        new google.maps.Point(0,0),
+        new google.maps.Point(19, 19)
+        );
+      var mkr = new google.maps.Marker({
         position: locationArray[coord],
         map: map,
         title: locationNameArray[coord],
@@ -56,6 +56,15 @@ App.MapView = Ember.View.extend({
       // Add the circle for this city to the map.
       cityCircle = new google.maps.Circle(circleOptions);
     }
+    var self = this;
+    setInterval(function(event) 
+    { 
+      var dispatcher_latitude = self.get('context').get('dispatcher_latitude');
+      var dispatcher_longitude = self.get('context').get('dispatcher_longitude');
+      var current_pos2 = new google.maps.LatLng(dispatcher_latitude, dispatcher_longitude);
+      mkr.setPosition(current_pos2);
+    }, 
+    2000);
     return distance;
   },
 });
