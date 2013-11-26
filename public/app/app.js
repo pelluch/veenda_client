@@ -17,11 +17,9 @@ var fixHeights = function() {
 
 	$('.col-order-info').each( function() {
 		var thisHeight = $(this).outerHeight();
-		console.log('Current height: ' + thisHeight);
-		console.log('Largest: ' + largestGroup);
+
 		$(this).outerHeight(largestGroup);
-		
-		console.log('Current height now: ' + thisHeight);
+
 		// var btnHeight = $(this).height();
 		// var diff = largestGroup - btnHeight;
 		// var padding = diff/1.1;

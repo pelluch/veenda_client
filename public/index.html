@@ -168,11 +168,17 @@
 <script type="text/x-handlebars" data-template-name="login">
 
     <!-- INPUT CODE GOES HERE -->
-    <div class="navbar navbar-inverse navbar-fixed-bottom text-right">
-      <span>
-       <button {{ action insert}} class="btn btn-primary btn-border-white btn-lg-20y100p" type="button">Seguir</button> 
-       {{view Ember.TextField valueBinding="codigo" placeholder="Seguir nuevo pedido" class= "form-control add-ons-button"}}
-      </span>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="row">
+            <div class="col-xs-9 col-sm-9 col-md-9">
+                {{view Ember.TextField valueBinding="codigo" placeholder="Seguir nuevo pedido" class= "form-control"}}
+            </div>  
+
+            <div class="col-xs-3 col-sm-3 col-md-3">
+                <button {{ action insert}} class="btn btn-primary btn-border-white btn-lg-300" type="button">Seguir
+                </button> 
+            </div>        
+        </div>             
     </div>
 
     <!-- ORDER LIST GOES HERE -->
@@ -257,26 +263,25 @@
                         </div>
                     </div>                    
                     {{else}} 
-                    <div class="col-md-12 col-xs-12 col-sm-12">
-                        <div class="btn btn-warning col-order-info no-margin">
-                            <div  class="btn-lg-100 btn-height status-warning">Agendado</div>                 
+                    <div class="col-md-12 col-xs-12 col-sm-12 no-margin">
+                        <div class="btn btn-warning col-order-info no-margin status-warning">
+                            <div  class="btn-lg-100 btn-height">Agendado</div>                 
                         </div>
                     </div>
-                </div>
+                    {{/if}}
+
+                </div>                
                 {{/if}}
-
-            </div>                
-            {{/if}}
-            {{/link-to}}
+                {{/link-to}}
+            </div>
         </div>
-    </div>
 
-    {{/each}}
-</div>
-{{else}}
-<h4 class="margin-0-10">No está siguiendo ningún pedido</h4>
-{{/if}}
-{{/view}}
+        {{/each}}
+    </div>
+    {{else}}
+    <h4 class="margin-0-10">No está siguiendo ningún pedido</h4>
+    {{/if}}
+    {{/view}}
 </div>
 {{outlet}} 
 </script>
@@ -349,8 +354,8 @@
         var closeOrders = [];
         for(var i = 0; i < records.length; ++i) 
         {
-           if(records[i].estimated_time < 20 && records[i].delivered == false) 
-           {
+         if(records[i].estimated_time < 20 && records[i].delivered == false) 
+         {
             closeOrders.push(records[i].key);
         }
     }

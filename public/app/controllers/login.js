@@ -92,10 +92,6 @@ App.LoginController = Ember.Controller.extend({
 						}
 						newList.push(currentOrder);
 					}
-					else
-					{
-
-					}
 					if(self.get('saved_orders').length != newList.length) {
 						changed = true;
 					}
