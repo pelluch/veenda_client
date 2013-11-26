@@ -139,6 +139,7 @@ App.LoginController = Ember.Controller.extend({
 
 	},
 actions: {
+	<!--GOES TO THE ORDER STATUS PAGE-->
 	insert: function(event) {
 		if(typeof this.get('codigo') == 'undefined' || this.get('codigo').match(/^\s*$/)) {
 
@@ -147,10 +148,12 @@ actions: {
 			this.transitionToRoute('orders.order', this.get('codigo'));
 		}
 	},
+	<!--GOES TO THE POSITIONING MAP OF THE ORDER-->
 	activatemap: function(key) {
 		sessionStorage.setItem('map', true);
 		this.transitionToRoute('orders.order', key);
 	},
+	<!--REMOVES ONE ORDER FROM THE ORDER LIST-->
 	removeLink: function(param) {
 		App.chair.remove(param);
 		App.chair.all(function(records) {
@@ -158,9 +161,11 @@ actions: {
 		});
 	}
 },
+<!--RETURNS THE ORDER LIST-->
 orderList: function() {
 	return this.get('saved_orders');
 }.property('saved_orders'),
+<!--RETURNS THE ORDER LIST CHANGED-->
 orderListChanged: function() {
 	fixHeights();
 }.observes('saved_orders')

@@ -131,6 +131,10 @@ body {
 .btn-lg-47 {
     width: 49%;
 }
+.btn-lg-47-a {
+    width: 49%;
+    cursor: default;
+}
 
 .btn-gr-300max {
     max-width: 300px;
