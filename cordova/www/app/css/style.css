@@ -21,6 +21,11 @@ html, body {
     margin-top: 9px;
 }
 
+.btn-group .btn.btn-default.btn-right
+{
+    margin-left: 0px;
+    margin-right: 0px;
+}
 html {
   width: auto !important;
   overflow-x: hidden !important;
@@ -34,8 +39,10 @@ body {
 
 .col-order-info 
 {
+    margin-left: 0px;
     min-height: 50px;
     border-radius: 0px;
+    width: 100%;
 }
 .container{
     width: 100%;

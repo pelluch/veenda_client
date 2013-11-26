@@ -1,0 +1,17 @@
+{
+    "version": "1.0.0",
+    "name": "com.phonegap.plugins.cdvplugintwitter",
+    "cordova_name": "CDVPluginTwitter",
+    "description": "A quick adaption of the previous Twitter plugin to work with Cordova 3.0.0+",
+    "keywords": [
+        "twitter",
+        "ios",
+        "cordova"
+    ],
+    "engines": [
+        {
+            "name": "cordova",
+            "version": ">=3.0.0"
+        }
+    ]
+}

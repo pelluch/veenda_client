@@ -1,0 +1,17 @@
+{
+    "version": "1.0.0",
+    "name": "com.simonmacdonald.imeiplugin",
+    "cordova_name": "IMEINumber",
+    "description": "This plugin allows your to get hold of the IMEI number from an android device. Written by Simon MacDonald, updated to Cordova 3 by Nico Maas",
+    "license": "MIT",
+    "keywords": [
+        "android",
+        " phone number"
+    ],
+    "engines": [
+        {
+            "name": "cordova-android",
+            "version": ">=3.0.0"
+        }
+    ]
+}
