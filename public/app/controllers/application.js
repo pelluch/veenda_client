@@ -4,8 +4,6 @@ App.ApplicationController = Ember.Controller.extend({
     }.observes('currentPath'),
     actions: {
     	back: function(idx) {
-    		
-    		 this.controllerFor("login").set('refresh_idx', idx);
     		this.transitionToRoute('login');
     	}
     }
