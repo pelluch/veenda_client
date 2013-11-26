@@ -7,6 +7,7 @@ App.LoginController = Ember.Controller.extend({
 		self = this;
 		self.refreshOrdersList();
 	},
+	<!--REFRESH THE ORDER LIST-->
 	refreshOrdersList: function(replaceNow) {
 		
 		clearInterval(self.get('interval_id'));
