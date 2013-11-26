@@ -350,28 +350,31 @@
 <script type="text/javascript">
     $(document).ready( function() {
     //$('#jquery-orders').hide();
-    App.chair.all(function(records) {
+    App.chair.all(function(records) 
+    {
         var closeOrders = [];
         for(var i = 0; i < records.length; ++i) 
         {
-         if(records[i].estimated_time < 20 && records[i].delivered == false) 
-         {
-            closeOrders.push(records[i].key);
+
+            if(records[i].estimated_time < 10 && records[i].delivered == false) 
+            {
+
+                closeOrders.push(records[i].key);
+            }
         }
-    }
-    if(closeOrders.length > 1)
-    {
-        $('#jquery-orders').removeClass('hidden');
-        $('#jquery-orders').html('<h4> Los pedidos ' + closeOrders.join(', ') + ' están llegando</h4>');
-        $('#jquery-orders').fadeOut(10000);
-    }
-    else if(closeOrders.length == 1)
-    {
-        $('#jquery-orders').removeClass('hidden');
-        $('#jquery-orders').html('<h4> El pedido ' + closeOrders[0] + ' está llegando</h4>');
-        $('#jquery-orders').fadeOut(10000);
-    }
-});
+        if(closeOrders.length > 1)
+        {
+            $('#jquery-orders').removeClass('hidden');
+            $('#jquery-orders').html('<h4> Los pedidos ' + closeOrders.join(', ') + ' están llegando</h4>');
+            $('#jquery-orders').fadeOut(10000);
+        }
+        else if(closeOrders.length == 1)
+        {
+            $('#jquery-orders').removeClass('hidden');
+            $('#jquery-orders').html('<h4> El pedido ' + closeOrders[0] + ' está llegando</h4>');
+            $('#jquery-orders').fadeOut(10000);
+        }
+    });
 });
 
     $( window ).resize(function() {
