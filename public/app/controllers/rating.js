@@ -2,7 +2,9 @@ App.RatingController = Ember.Controller.extend({
     init: function (params){
         //this.get('content').reload();
     },
+	
     actions: {
+	//vote: sends the information of the rating to be stored
         vote: function(event) {
     	  	/*var elements = document.getElementsByClassName("active");
       			var starvalue = 0;
@@ -55,6 +57,7 @@ App.RatingController = Ember.Controller.extend({
                     });
           this.transitionToRoute('orders.order', this.get('content.order'));
         },
+		//skip: 
         skip: function(){
           this.transitionToRoute('orders.order', this.get('content.order'));
         }
