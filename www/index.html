@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
 
         <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.css">
         <link rel="stylesheet" href="app/css/style.css">    
 
         <meta name="format-detection" content="telephone=no" />
@@ -150,16 +150,20 @@
                         {{else}}<!--IF THE ORDER CODE DOES NOT EXIST-->
 
                         <div class="container text-center">
-                            <div class="details">
-                                <div class="panel panel-danger">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Código Inválido</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        Producto ingresado no existe
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+                                    <div class="details">
+                                        <div class="panel panel-danger">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Código Inválido</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                Producto ingresado no existe
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-default" {{ action "back"}}>Volver</button>
                                     </div>
                                 </div>
-                                <button class="btn btn-default" {{ action "back"}}>Volver</button>
                             </div>
                         </div>
                     </div>
@@ -296,22 +300,26 @@
 <!-- RATING AND COMMENT PAGE -->
 <script type="text/x-handlebars" data-template-name="rating">
     <div class="container text-center">   
-        <div class="details"> 
-            <h4 class="alert alert-success margin-0">El despacho ha sido recibido</h4>
-            <h3>¿Qué opinas del despacho?</h3>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+                <div class="details"> 
+                    <h4 class="alert alert-success margin-0">El despacho ha sido recibido</h4>
+                    <h3>¿Qué opinas del despacho?</h3>
 
-            <h2>{{rating max="5"}}</h2>
+                    <h2>{{rating max="5"}}</h2>
 
-            <div class="form-group">
-                <textarea placeholder="Resumen Comentario" class="form-control comment-box margin-0-5" rows="1"></textarea>
-                <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="4"></textarea>
+                    <div class="form-group">
+                        <textarea placeholder="Resumen Comentario" class="form-control comment-box margin-0-5" rows="1"></textarea>
+                        <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="4"></textarea>
+                    </div>
+                    <p>
+                        <button class="btn btn-primary btn-lg-300" {{ action "vote"}} >Evaluar</button>
+                    </p>
+                    <p>
+                        <button class="btn btn-link btn-lg-300" {{ action "skip"}} >No gracias, no quiero evaluar</button>
+                    </p>
+                </div>
             </div>
-            <p>
-                <button class="btn btn-primary btn-lg-300" {{ action "vote"}} >Evaluar</button>
-            </p>
-            <p>
-                <button class="btn btn-link btn-lg-300" {{ action "skip"}} >No gracias, no quiero evaluar</button>
-            </p>
         </div>
     </div>
     {{outlet}} 
@@ -320,13 +328,10 @@
 
 
 <!-- jquery -->
-<script src="vendor/jquery/jquery-1.10.2.js"></script>
+<script src="vendor/jquery/jquery-2.0.3.js"></script>
 <!-- Bootstrap -->
 <script src="vendor/bootstrap/js/bootstrap.js"></script>
-<!-- Others -->
-<script src="vendor/showdown/showdown.js"></script>
-<script src="vendor/moment/moment.js"></script>
-<script src="vendor/handlebars/handlebars-1.0.0.js"></script>
+<script src="vendor/handlebars/handlebars-v1.1.2.js"></script>
 <!-- Ember -->
 <script src="vendor/ember/ember.js"></script>
 <script src="vendor/ember/ember-data.js"></script> 
