@@ -330,8 +330,7 @@
     {{outlet}} 
 </script>
 
-<script src="cordova.js"></script>
-<script type="text/javascript" charset="utf-8" src="telephonenumber.js"></script>
+
 <script src="vendor/jquery/jquery-2.0.3.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.js"></script>
 <script src="vendor/handlebars/handlebars-v1.1.2.js"></script>
@@ -342,7 +341,7 @@
 <script src="vendor/lawnchair/lawnchair-callbacks-0.6.1.js"></script>
 <script src="vendor/lawnchair/lawnchair-pagination-0.6.1.js"></script>
 <script src="vendor/lawnchair/lawnchair-aggregation-0.6.1.js"></script>
-<script src="js/index.js"></script>
+
 
 <!-- 
 <script src="vendor/jquery/jquery-2.0.3.min.js"></script>
@@ -378,11 +377,23 @@
 
 <script type="text/javascript">
 
+    var cordova = true;
 
     $(document).ready( function() {
         //console.log('Initializing app');
-        app.initialize();
-        //console.log('App initialized');
+
+        $.getScript('cordova.js').
+        done(function() {
+            console.log('Cordova!');
+            $.getScript('js/index.js').done(function () {               
+                app.initialize();
+            });
+        }).
+        fail(function(jqxhr, settings, exception) {
+            console.log('No cordova');
+            initializeList();
+        });
+
     });
 
     function initializeList() 
@@ -418,23 +429,7 @@
         fixHeights();
     });
 
-    //if (!navigator.userAgent.toLowerCase().match('chrome')) {
-    //document.write("<script src='cordova.js'><\/script>");
-    
-        //$('#debug').html(device.model);
-    //}
-     // Wait for device API libraries to load
-    //
-    //document.addEventListener("deviceready", onDeviceReady, false);
-
-    // device APIs are available
-    //
-
-
-
-        //$('#jquery-orders').hide();
-
-    </script>
+</script>
 
 </body>
 </html>

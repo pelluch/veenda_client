@@ -54,13 +54,8 @@
         //app.receivedEvent('deviceready');
         //alert('ready!!');
         initializeList();
-        var telephoneNumber = cordova.require("cordova/plugin/telephonenumber");
-        telephoneNumber.get(function(result) {
-            console.log("Device uuid = " + device.uuid);
-        }, function() {
-            console.log("error");
-        });
-
+        console.log("Device uuid = " + device.uuid);
+ 
         setInterval(function() {
             app.checkConnection();
         }, 5000);
