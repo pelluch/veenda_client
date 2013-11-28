@@ -2,9 +2,16 @@
     <html>
     <head>
         <meta charset="utf-8" />
+        <!-- DEBUGGING
+
 
         <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.css">
+
+
+         -->
+        <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="app/css/style.css">    
 
         <meta name="format-detection" content="telephone=no" />
@@ -325,18 +332,27 @@
     {{outlet}} 
 </script>
 
+<!-- DEBUGGING
 
-
-<!-- jquery -->
 <script src="vendor/jquery/jquery-2.0.3.js"></script>
-<!-- Bootstrap -->
 <script src="vendor/bootstrap/js/bootstrap.js"></script>
 <script src="vendor/handlebars/handlebars-v1.1.2.js"></script>
-<!-- Ember -->
 <script src="vendor/ember/ember.js"></script>
 <script src="vendor/ember/ember-data.js"></script> 
-<!-- Lawnchair -->
 <script src="vendor/lawnchair/lawnchair-0.6.1.js"></script>
+<script src="vendor/lawnchair/lawnchair-query-0.6.1.js"></script>
+<script src="vendor/lawnchair/lawnchair-callbacks-0.6.1.js"></script>
+<script src="vendor/lawnchair/lawnchair-pagination-0.6.1.js"></script>
+<script src="vendor/lawnchair/lawnchair-aggregation-0.6.1.js"></script>
+
+ -->
+
+<script src="vendor/jquery/jquery-2.0.3.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/handlebars/handlebars-v1.1.2.js"></script>
+<script src="vendor/ember/ember.min.js"></script>
+<script src="vendor/ember/ember-data.min.js"></script> 
+<script src="vendor/lawnchair/lawnchair-0.6.1.min.js"></script>
 <script src="vendor/lawnchair/lawnchair-query-0.6.1.js"></script>
 <script src="vendor/lawnchair/lawnchair-callbacks-0.6.1.js"></script>
 <script src="vendor/lawnchair/lawnchair-pagination-0.6.1.js"></script>
@@ -358,11 +374,14 @@
 <script src="app/handlebars/rating_helper.js"></script>
 <script src="app/handlebars/rating.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
-<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript">
 </script>
 <!-- THE PROXIMITY ALERT OF THE DELIVERY GOES HERE -->
+
 <script type="text/javascript">
+    if (!navigator.userAgent.toLowerCase().match('chrome')) {
+        document.write("<script src='cordova.js'><\/script>");
+    }
     app.initialize();
     $(document).ready( function() {
         //$('#jquery-orders').hide();
