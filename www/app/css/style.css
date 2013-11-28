@@ -222,6 +222,8 @@ body {
     margin: 0 auto;
     max-width: 350px;
 }
+
+
 .logo-list{
     width: 100%;
     padding: 0px;
@@ -339,11 +341,12 @@ i.fa
 
 i.fa
 {
-    margin-left: 10px;
+    margin-left: 20px;
     margin-right: 10px;
     font-size: 1.8em;
     margin-top: 15px;
     margin-bottom: 15px;
+    width: 100%;
 }
 
 .btn-icon {

@@ -22,14 +22,14 @@ Ember.Handlebars.registerHelper('rating_helper', function(condition, options) {
     for(var i = 1; i <= 5; i++) {
      if(i <= rating) {
       if(i == 1) {
-        returnValue = returnValue + '<div class="col-xs-2 col-xs-offset-1 col-sm-2 col-sm-offset-1"><p><i class="fa fa-star"></i></p></div>';
+        returnValue = returnValue + '<div class="col-xs-2 col-sm-2 col-sm-offset-1"><p><i class="fa fa-star first-star"></i></p></div>';
       }
       else {
-        returnValue = returnValue + '<div class="col-xs-2 col-sm-2"><p><i class="fa fa-star"></i></p></div>';
+        returnValue = returnValue + '<div class="col-xs-2 col-sm-2"><p><i class="fa fa-star center-star"></i></p></div>';
       }
     }
     else{
-      returnValue = returnValue + '<div class="col-xs-2"><p><i class="fa fa-star-o"></i></p></div>';
+      returnValue = returnValue + '<div class="col-xs-2"><p><i class="fa fa-star-o center-star"></i></p></div>';
     }
   }
   returnValue = returnValue + "\n</div></h2></br></br>";
