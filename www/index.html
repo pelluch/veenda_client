@@ -1,15 +1,21 @@
     <!DOCTYPE html>
     <html>
     <head>
-        <meta charset=utf-8>
-        <title>
-            Veenda Client
-        </title>
+        <meta charset="utf-8" />
+
         <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="app/css/style.css">    
+
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link href='http://fonts.googleapis.com/css?family=Sarina' rel='stylesheet' type='text/css' />
     </head>
+    <title>
+        Veenda Client
+    </title>
     <body>
         <!-- TITLE -->
         <script type="text/x-handlebars">
@@ -283,73 +289,76 @@
         {{/view}}
     </div>
     {{outlet}} 
-    </script>
-    <!-- END ORDER LIST -->
+</script>
+<!-- END ORDER LIST -->
 
-    <!-- RATING AND COMMENT PAGE -->
-    <script type="text/x-handlebars" data-template-name="rating">
-        <div class="container text-center">   
-            <div class="details"> 
-                <h4 class="alert alert-success margin-0">El despacho ha sido recibido</h4>
-                <h3>¿Qué opinas del despacho?</h3>
+<!-- RATING AND COMMENT PAGE -->
+<script type="text/x-handlebars" data-template-name="rating">
+    <div class="container text-center">   
+        <div class="details"> 
+            <h4 class="alert alert-success margin-0">El despacho ha sido recibido</h4>
+            <h3>¿Qué opinas del despacho?</h3>
 
-                <h2>{{rating max="5"}}</h2>
+            <h2>{{rating max="5"}}</h2>
 
-                <div class="form-group">
-                    <textarea placeholder="Resumen Comentario" class="form-control comment-box margin-0-5" rows="1"></textarea>
-                    <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="4"></textarea>
-                </div>
-                <p>
-                    <button class="btn btn-primary btn-lg-300" {{ action "vote"}} >Evaluar</button>
-                </p>
-                <p>
-                    <button class="btn btn-link btn-lg-300" {{ action "skip"}} >No gracias, no quiero evaluar</button>
-                </p>
+            <div class="form-group">
+                <textarea placeholder="Resumen Comentario" class="form-control comment-box margin-0-5" rows="1"></textarea>
+                <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="4"></textarea>
             </div>
+            <p>
+                <button class="btn btn-primary btn-lg-300" {{ action "vote"}} >Evaluar</button>
+            </p>
+            <p>
+                <button class="btn btn-link btn-lg-300" {{ action "skip"}} >No gracias, no quiero evaluar</button>
+            </p>
         </div>
-        {{outlet}} 
-    </script>
+    </div>
+    {{outlet}} 
+</script>
 
 
 
-    <!-- jquery -->
-    <script src="vendor/jquery/jquery-1.10.2.js"></script>
-    <!-- Bootstrap -->
-    <script src="vendor/bootstrap/js/bootstrap.js"></script>
-    <!-- Others -->
-    <script src="vendor/showdown/showdown.js"></script>
-    <script src="vendor/moment/moment.js"></script>
-    <script src="vendor/handlebars/handlebars-1.0.0.js"></script>
-    <!-- Ember -->
-    <script src="vendor/ember/ember.js"></script>
-    <script src="vendor/ember/ember-data.js"></script> 
-    <!-- Lawnchair -->
-    <script src="vendor/lawnchair/lawnchair-0.6.1.js"></script>
-    <script src="vendor/lawnchair/lawnchair-query-0.6.1.js"></script>
-    <script src="vendor/lawnchair/lawnchair-callbacks-0.6.1.js"></script>
-    <script src="vendor/lawnchair/lawnchair-pagination-0.6.1.js"></script>
-    <script src="vendor/lawnchair/lawnchair-aggregation-0.6.1.js"></script>
+<!-- jquery -->
+<script src="vendor/jquery/jquery-1.10.2.js"></script>
+<!-- Bootstrap -->
+<script src="vendor/bootstrap/js/bootstrap.js"></script>
+<!-- Others -->
+<script src="vendor/showdown/showdown.js"></script>
+<script src="vendor/moment/moment.js"></script>
+<script src="vendor/handlebars/handlebars-1.0.0.js"></script>
+<!-- Ember -->
+<script src="vendor/ember/ember.js"></script>
+<script src="vendor/ember/ember-data.js"></script> 
+<!-- Lawnchair -->
+<script src="vendor/lawnchair/lawnchair-0.6.1.js"></script>
+<script src="vendor/lawnchair/lawnchair-query-0.6.1.js"></script>
+<script src="vendor/lawnchair/lawnchair-callbacks-0.6.1.js"></script>
+<script src="vendor/lawnchair/lawnchair-pagination-0.6.1.js"></script>
+<script src="vendor/lawnchair/lawnchair-aggregation-0.6.1.js"></script>
 
-    <!-- App -->
-    <script src="app/config.js"></script>
-    <script src="app/app.js"></script>
-    <script src="app/models/order.js"></script>
-    <script src="app/controllers/login.js"></script>
-    <script src="app/controllers/application.js"></script>
-    <script src="app/controllers/rating.js"></script>
-    <script src="app/controllers/orders.js"></script>
-    <script src="app/views/map.js"></script>
-    <script src="app/views/login.js"></script>
-    <script src="app/routes/orders.js"></script>
-    <script src="app/routes/login.js"></script>
-    <script src="app/routes/router.js"></script>
-    <script src="app/handlebars/rating_helper.js"></script>
-    <script src="app/handlebars/rating.js"></script>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
-
-    <!-- THE PROXIMITY ALERT OF THE DELIVERY GOES HERE -->
-    <script type="text/javascript">
-        $(document).ready( function() {
+<!-- App -->
+<script src="app/config.js"></script>
+<script src="app/app.js"></script>
+<script src="app/models/order.js"></script>
+<script src="app/controllers/login.js"></script>
+<script src="app/controllers/application.js"></script>
+<script src="app/controllers/rating.js"></script>
+<script src="app/controllers/orders.js"></script>
+<script src="app/views/map.js"></script>
+<script src="app/views/login.js"></script>
+<script src="app/routes/orders.js"></script>
+<script src="app/routes/login.js"></script>
+<script src="app/routes/router.js"></script>
+<script src="app/handlebars/rating_helper.js"></script>
+<script src="app/handlebars/rating.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript">
+</script>
+<!-- THE PROXIMITY ALERT OF THE DELIVERY GOES HERE -->
+<script type="text/javascript">
+    app.initialize();
+    $(document).ready( function() {
         //$('#jquery-orders').hide();
         App.chair.all(function(records) 
         {
@@ -378,10 +387,10 @@
         });
     });
 
-        $( window ).resize(function() {
-            fixHeights();
-        });
-    </script>
+    $( window ).resize(function() {
+        fixHeights();
+    });
+</script>
 
-    </body>
-    </html>
+</body>
+</html>
