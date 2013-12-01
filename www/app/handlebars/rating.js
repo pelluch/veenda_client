@@ -7,10 +7,10 @@ Ember.Handlebars.helper("rating", Ember.View.extend({
       buffer.push('<div class="row">');
       for(var i = 0; i < max; i++) {
          if(i == 0) {
-            buffer.push('<div class="col-xs-2 col-xs-offset-1 col-sm-2 col-sm-offset-1"><p><i id="'+i+'" class="fa fa-star-o"></i></p></div>');
+            buffer.push('<div class="col-xs-2 col-sm-2 "><i id="'+i+'" class="fa fa-star-o"></i></div>');
          }
          else {
-            buffer.push('<div class="col-xs-2 col-sm-2"><p><i id="'+i+'" class="fa fa-star-o"></i></p></div>');
+            buffer.push('<div class="col-xs-2 col-sm-2"><i id="'+i+'" class="fa fa-star-o"></i></div>');
          }
       }
       buffer.push('</div>');

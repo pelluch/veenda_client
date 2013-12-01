@@ -60,7 +60,7 @@
             app.checkConnection();
         }, 5000);
 
-        navigator.notification.vibrate(1000);
+        //navigator.notification.vibrate(1000);
         //console.log('ready!!');
     }
 
