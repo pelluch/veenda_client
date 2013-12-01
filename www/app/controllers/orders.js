@@ -8,7 +8,7 @@ App.OrdersOrderController = Ember.ObjectController.extend({
 
     var interval_id = setInterval(function() {
       self.refreshMyData()
-    }, 1000);
+    }, 4000);
     this.interval_id = interval_id;	  
 
   },
