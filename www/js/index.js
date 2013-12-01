@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app = {
+ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -32,18 +32,49 @@ var app = {
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+
+    checkConnection: function() {
+
+        var networkState = navigator.connection.type;
+
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.CELL]     = 'Cell generic connection';
+        states[Connection.NONE]     = 'No network connection';
+
+        console.log('Connection type: ' + states[networkState]);
     },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+    onDeviceReady: function() {
+        //app.receivedEvent('deviceready');
+        //alert('ready!!');
+        initializeList();
+        console.log("Device uuid = " + device.uuid);
+ 
+        setInterval(function() {
+            app.checkConnection();
+        }, 5000);
 
-        console.log('Received Event: ' + id);
+        //navigator.notification.vibrate(1000);
+        //console.log('ready!!');
     }
+
+
+
+    // Update DOM on a Received Event
+    // receivedEvent: function(id) {
+    //     var parentElement = document.getElementById(id);
+    //     var listeningElement = parentElement.querySelector('.listening');
+    //     var receivedElement = parentElement.querySelector('.received');
+
+    //     listeningElement.setAttribute('style', 'display:none;');
+    //     receivedElement.setAttribute('style', 'display:block;');
+
+    //     console.log('Received Event: ' + id);
+    // }
 };

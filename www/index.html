@@ -3,297 +3,302 @@
     <head>
         <meta charset="utf-8" />
 
-        <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
+    <!--   <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.css">
-        <link rel="stylesheet" href="app/css/style.css">    
+    -->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
 
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link href='http://fonts.googleapis.com/css?family=Sarina' rel='stylesheet' type='text/css' />
-    </head>
-    <title>
-        Veenda Client
-    </title>
-    <body>
-        <!-- TITLE -->
-        <script type="text/x-handlebars">
-            <div class="container" >
-                <div class="row page-header">
-                    <div class="col-md-offset-1 col-md-11 col-sm-11 col-sm-offset-1 col-xs-1 col-xs-offset-1">
-                        <a {{ action 'back'}} href='#'>
-                            <h2 id="veenda-logo">Veenda</h2>  
-                        </a>
-                    </div>
-                </div>            
-            </div>
-            {{outlet}} 
-        </script>
+    <link rel="stylesheet" href="app/css/style.css">    
 
-
-        <script type="text/x-handlebars" data-template-name="orders/order">
-            <!-- ORDER STATUS PAGE -->
-            {{#if destination_latitude }}
-
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
-                        {{#if delivered}}<!-- IF THE ORDER HAS BEEN MARKED AS DELIVERED -->
-                        <div class="details">
-                            <h5 class="btn btn-success btn-xs btn-mg-14-14 btn-lg-50 status status-success">Recibido</h5>
-                            <div class="cl"></div>
-                            <p><img class="margin-30-0" src="img/leona.png"/></p>
-                            <h3>#{{ this.id }}</h3>
-                            <h4>{{ this.name }}</h4>
-
-                            {{#if comment}}<!-- IF THE DELIVERY HAS ALREADY QUALIFIED/COMMENTED -->
-
-                            {{rating_helper this}}
-
-                            <div class="panel panel-info">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">{{summary}}</h3>
-                                </div>
-                                <div class="panel-body">
-                                    {{comment}}
-                                </div>
-                            </div>
-                            <button class="btn btn-default" {{ action "back"}}>Volver</button>
-                            <button class="btn btn-danger" {{ action "reset"}}>Despacho No Recibido</button>
-                            {{else}}<!-- IF THE DELIVERY WAS MARKED AS DELIVERED AUTOMATICALLY WITHOUT BEING QUALIFIED -->
-                            <p>
-                                <button class="btn btn-primary btn-lg-300" {{ action "rate"}}>Evaluar/comentar despacho</button>
-                            </p>
-                            <p>
-                                <button class="btn btn-link btn-lg-300" {{ action "reset"}}>No he recibido mi despacho aún</button>
-                            </p>
-                            {{/if}}
-                        </div>
-
-                        {{else}}<!--IF THE ORDER HAS NOT BEEN DELIVERED-->
-                        {{#if dispatch_time}}<!--IF THE ORDER HAS BEEN ASIGNED TO A DISPATCHER-->
-                        {{#if isMap}}<!--IF THE STATUS VIEW OF THE ORDER GOES DIRECTLY TO THE POSITIONING MAP-->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="btn-group btn-group-lg-100 margin-15">
-                                    <button type="button" {{ action "mapFalse"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
-                                    <button type="button" {{ action "mapTrue"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-screenshot"></span> Mapa</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="details">
-                                    {{#view App.MapView }}<br/>{{/view}}
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <img src="img/gps-icon-spec.png"> Destinatario
-                                            <img src="img/gps-icon-dispatcher-spec.png"> Zona despachador                                
-                                        </div>
-                                    </div>    
-                                </div>
-                            </div>
-                        </div>
-                        {{else}}<!--IF THE STATUS VIEW OF THE ORDER GOES DIRECTLY TO THE DETAILS-->
-                        <div class="container text-center">
-                            <div class="details">
-                                <h5 class="btn btn-primary btn-xs btn-mg-14-14 btn-lg-50 status status-primary">En Camino</h5>
-                                <div class="cl"></div>
-
-                                <p><img class="margin-30-0" src="img/leona.png"/></p>
-                                <h3>#{{ this.id }}</h3>
-                                <h4>{{ this.name }}</h4>
-                                <p>
-                                    <button class="btn btn-gray btn-lg-47-a" >
-                                        <span class="glyphicon glyphicon-time btn-icon"></span>
-                                        <span class="btn-inline text-left"> 
-                                            <small>
-                                                <p class="margin-0-0-0">{{this.rest}} pedidos</p>
-                                                <p class="margin-0-0-0">pendientes</p>
-                                            </small>
-                                        </span>
-                                    </button>
-                                    <button class="btn btn-gray btn-lg-47" {{ action "mapTrue"}} >
-                                        <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
-                                        <span class="btn-inline text-left"> 
-                                            <small>
-                                                <p class="margin-0-0-0">{{this.estimated_time}} minutos</p>
-                                                <p class="margin-0-0-0">restantes</p>
-                                            </small>
-                                        </span>
-                                    </button>
-                                </p>
-                                <button class="btn btn-success btn-group-lg-100_1 btn-lg" {{ action "insert"}} >Llegó mi pedido</button>
-                            </div>
-                        </div>
-                        {{/if}}
-                        {{else}}<!--IF THE ORDER HAS NOT BEEN ASIGNED TO A DISPATCHER--> 
-                        <div class="container text-center">
-                            <div class="details">
-                                <h5 class="btn btn-warning btn-xs btn-mg-14-14 btn-lg-50 status status-warning">Agendado</h5>
-                                <div class="cl"></div>
-
-                                <p><img class="margin-30-0" src="img/leona.png"/></p>
-                                <h3>#{{ this.id }}</h3>
-                                <h4>{{ this.name }}</h4>
-                                <h2 class="">Producto no despachado aún</h2>
-                            </div>
-                        </div>
-
-
-                        {{/if}}
-                        {{/if}}
-
-
-                        {{else}}<!--IF THE ORDER CODE DOES NOT EXIST-->
-
-                        <div class="container text-center">
-                            <div class="row">
-                                <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
-                                    <div class="details">
-                                        <div class="panel panel-danger">
-                                            <div class="panel-heading">
-                                                <h3 class="panel-title">Código Inválido</h3>
-                                            </div>
-                                            <div class="panel-body">
-                                                Producto ingresado no existe
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-default" {{ action "back"}}>Volver</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <meta name="format-detection" content="telephone=no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link href='http://fonts.googleapis.com/css?family=Sarina' rel='stylesheet' type='text/css' />
+</head>
+<title>
+    Veenda Client
+</title>
+<body> 
+    <h1 id="debug"></h1>
+    <!-- TITLE -->
+    <script type="text/x-handlebars">
+        <div class="container" >
+            <div class="row page-header">
+                <div class="col-md-offset-1 col-md-11 col-sm-11 col-sm-offset-1 col-xs-1 col-xs-offset-1">
+                    <a {{ action 'back'}} href='#'>
+                        <h2 id="veenda-logo">Veenda</h2>  
+                    </a>
                 </div>
-            </div>
+            </div>            
         </div>
-        {{/if}}
-        {{outlet}}
+        {{outlet}} 
     </script>
 
 
-    <script type="text/x-handlebars" data-template-name="login">
+    <script type="text/x-handlebars" data-template-name="orders/order">
+        <!-- ORDER STATUS PAGE -->
+        {{#if destination_latitude }}
 
-        <!-- INPUT CODE GOES HERE -->
-        <div class="navbar navbar-inverse navbar-fixed-bottom">
-            <div class="row">
-                <div class="col-xs-9 col-sm-9 col-md-9">
-                    {{view Ember.TextField valueBinding="codigo" placeholder="Seguir nuevo pedido" class= "form-control"}}
-                </div>  
-
-                <div class="col-xs-3 col-sm-3 col-md-3">
-                    <button {{ action insert}} class="btn btn-primary btn-border-white btn-lg-300" type="button">Seguir
-                    </button> 
-                </div>        
-            </div>             
-        </div>
-
-        <!-- ORDER LIST GOES HERE -->
-        {{#view App.LoginView }}
         <div class="container text-center">
-
-            <h3 class="margin-20">Mis pedidos</h3>
-            <div id="jquery-orders" class = "alert1 alert-success hidden">
-            </div>
             <div class="row">
-                {{#if saved_orders}}
-                {{#each saved_order in saved_orders}}
+                <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+                    {{#if delivered}}<!-- IF THE ORDER HAS BEEN MARKED AS DELIVERED -->
+                    <div class="details">
+                        <h5 class="btn btn-success btn-xs btn-mg-14-14 btn-lg-50 status status-success">Recibido</h5>
+                        <div class="cl"></div>
+                        <p><img class="margin-30-0" src="img/leona.png"/></p>
+                        <h3>#{{ this.id }}</h3>
+                        <h4>{{ this.name }}</h4>
 
-                <div class="col-md-3 col-md-offset-1 col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 list-items-properties" {{bind-attr id="saved_order.key"}} >
+                        {{#if comment}}<!-- IF THE DELIVERY HAS ALREADY QUALIFIED/COMMENTED -->
 
+                        {{rating_helper this}}
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{summary}}</h3>
+                            </div>
+                            <div class="panel-body">
+                                {{comment}}
+                            </div>
+                        </div>
+                        <button class="btn btn-default" {{ action "back"}}>Volver</button>
+                        <button class="btn btn-danger" {{ action "reset"}}>Despacho No Recibido</button>
+                        {{else}}<!-- IF THE DELIVERY WAS MARKED AS DELIVERED AUTOMATICALLY WITHOUT BEING QUALIFIED -->
+                        <p>
+                            <button class="btn btn-primary btn-lg-300" {{ action "rate"}}>Evaluar/comentar despacho</button>
+                        </p>
+                        <p>
+                            <button class="btn btn-link btn-lg-300" {{ action "reset"}}>No he recibido mi despacho aún</button>
+                        </p>
+                        {{/if}}
+                    </div>
+
+                    {{else}}<!--IF THE ORDER HAS NOT BEEN DELIVERED-->
+                    {{#if dispatch_time}}<!--IF THE ORDER HAS BEEN ASIGNED TO A DISPATCHER-->
+                    {{#if isMap}}<!--IF THE STATUS VIEW OF THE ORDER GOES DIRECTLY TO THE POSITIONING MAP-->
                     <div class="row">
-                        {{#link-to 'orders.order' saved_order.key}}
-                        <div class="col-md-2 col-xs-3 col-sm-3 logo-container">
-                            <img class="logo-list" src="img/leona.png"/>
+                        <div class="col-md-12">
+                            <div class="btn-group btn-group-lg-100 margin-15">
+                                <button type="button" {{ action "mapFalse"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
+                                <button type="button" {{ action "mapTrue"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-screenshot"></span> Mapa</button>
+                            </div>
                         </div>
-                        <div class="col-md-8 col-xs-6 col-sm-6">
-                            <h3>La Leona</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="details">
+                                {{#view App.MapView }}<br/>{{/view}}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <img src="img/gps-icon-spec.png"> Destinatario
+                                        <img src="img/gps-icon-dispatcher-spec.png"> Zona despachador                                
+                                    </div>
+                                </div>    
+                            </div>
                         </div>
-                        {{/link-to}}
-                        <div class="col-md-2 col-xs-3 col-sm-3">
-                            <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                    {{else}}<!--IF THE STATUS VIEW OF THE ORDER GOES DIRECTLY TO THE DETAILS-->
+                    <div class="container text-center">
+                        <div class="details">
+                            <h5 class="btn btn-primary btn-xs btn-mg-14-14 btn-lg-50 status status-primary">En Camino</h5>
+                            <div class="cl"></div>
+
+                            <p><img class="margin-30-0" src="img/leona.png"/></p>
+                            <h3>#{{ this.id }}</h3>
+                            <h4>{{ this.name }}</h4>
+                            <p>
+                                <button class="btn btn-gray btn-lg-47-a" >
+                                    <span class="glyphicon glyphicon-time btn-icon"></span>
+                                    <span class="btn-inline text-left"> 
+                                        <small>
+                                            <p class="margin-0-0-0">{{this.rest}} pedidos</p>
+                                            <p class="margin-0-0-0">pendientes</p>
+                                        </small>
+                                    </span>
+                                </button>
+                                <button class="btn btn-gray btn-lg-47" {{ action "mapTrue"}} >
+                                    <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
+                                    <span class="btn-inline text-left"> 
+                                        <small>
+                                            <p class="margin-0-0-0">{{this.estimated_time}} minutos</p>
+                                            <p class="margin-0-0-0">restantes</p>
+                                        </small>
+                                    </span>
+                                </button>
+                            </p>
+                            <button class="btn btn-success btn-group-lg-100_1 btn-lg" {{ action "insert"}} >Llegó mi pedido</button>
+                        </div>
+                    </div>
+                    {{/if}}
+                    {{else}}<!--IF THE ORDER HAS NOT BEEN ASIGNED TO A DISPATCHER--> 
+                    <div class="container text-center">
+                        <div class="details">
+                            <h5 class="btn btn-warning btn-xs btn-mg-14-14 btn-lg-50 status status-warning">Agendado</h5>
+                            <div class="cl"></div>
+
+                            <p><img class="margin-30-0" src="img/leona.png"/></p>
+                            <h3>#{{ this.id }}</h3>
+                            <h4>{{ this.name }}</h4>
+                            <h2 class="">Producto no despachado aún</h2>
                         </div>
                     </div>
 
-                    {{#link-to 'orders.order' saved_order.key}}
-                    <div class="row">
-                        <h3 class="margin-0">#{{saved_order.key}}</h3>
-                    </div>
-                    <div class="row">
-                        <div class="btn-group btn-group-lg-100 no-margin">
-                            {{#if saved_order.delivered}}
-                            <div class="col-md-12 col-xs-12 col-sm-12 no-margin">
-                                <div class="btn btn-success col-order-info status-success no-margin">
-                                    <div  class="btn-lg-100 btn-height">Recibido</div>
-                                </div>
-                            </div>
-                        </div>
-                        {{else}} 
-                        {{#if saved_order.dispatch_time}}
-                        <div class="col-md-4 col-xs-4 col-sm-4 no-margin">
-                            <div class="btn-group btn-group-lg-100 no-margin">
-                                <div class="btn btn-primary  no-margin status-primary col-order-info">
-                                    <div  class="btn-lg-100 btn-height">En Camino</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-xs-4 col-sm-4 no-margin">
-                            <div class="btn-group btn-group-lg-100 no-margin">
-                                <div class="btn btn-gray no-margin col-order-info">
-                                    <div class="btn-lg-100 no-margin">
-                                        <div class="btn-height">
-                                            <span class="glyphicon glyphicon-time btn-icon"></span> 
-                                            <span class="btn-inline text-left"> 
-                                                <small>
-                                                    <p class="margin-0-0-0">{{saved_order.rest}} pedidos</p>
-                                                    <p class="margin-0-0-0">pendientes</p>
-                                                </small>
-                                            </span>
+
+                    {{/if}}
+                    {{/if}}
+
+
+                    {{else}}<!--IF THE ORDER CODE DOES NOT EXIST-->
+
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+                                <div class="details">
+                                    <div class="panel panel-danger">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Código Inválido</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            Producto ingresado no existe
                                         </div>
                                     </div>
+                                    <button class="btn btn-default" {{ action "back"}}>Volver</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-xs-4 col-sm-4 no-margin">
-                            <div class="btn btn-default no-margin col-order-info btn-right">
-                                <div class="btn-lg-100 status-default no-margin">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    {{outlet}}
+</script>
+
+
+<script type="text/x-handlebars" data-template-name="login">
+
+    <!-- INPUT CODE GOES HERE -->
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="row">
+            <div class="col-xs-9 col-sm-9 col-md-9">
+                {{view Ember.TextField valueBinding="codigo" placeholder="Seguir nuevo pedido" class= "form-control"}}
+            </div>  
+
+            <div class="col-xs-3 col-sm-3 col-md-3">
+                <button {{ action insert}} class="btn btn-primary btn-border-white btn-lg-300" type="button">Seguir
+                </button> 
+            </div>        
+        </div>             
+    </div>
+
+    <!-- ORDER LIST GOES HERE -->
+    {{#view App.LoginView }}
+    <div class="container text-center">
+
+        <h3 class="margin-20">Mis pedidos</h3>
+        <div id="jquery-orders" class = "alert1 alert-success hidden">
+        </div>
+        <div class="row">
+            {{#if saved_orders}}
+            {{#each saved_order in saved_orders}}
+
+            <div class="col-md-3 col-md-offset-1 col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 list-items-properties" {{bind-attr id="saved_order.key"}} >
+
+                <div class="row">
+                    {{#link-to 'orders.order' saved_order.key}}
+                    <div class="col-md-2 col-xs-3 col-sm-3 logo-container">
+                        <img class="logo-list" src="img/leona.png"/>
+                    </div>
+                    <div class="col-md-8 col-xs-6 col-sm-6">
+                        <h3>La Leona</h3>
+                    </div>
+                    {{/link-to}}
+                    <div class="col-md-2 col-xs-3 col-sm-3">
+                        <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                </div>
+
+                {{#link-to 'orders.order' saved_order.key}}
+                <div class="row">
+                    <h3 class="margin-0">#{{saved_order.key}}</h3>
+                </div>
+                <div class="row">
+                    <div class="btn-group btn-group-lg-100 no-margin">
+                        {{#if saved_order.delivered}}
+                        <div class="col-md-12 col-xs-12 col-sm-12 no-margin">
+                            <div class="btn btn-success col-order-info status-success no-margin">
+                                <div  class="btn-lg-100 btn-height">Recibido</div>
+                            </div>
+                        </div>
+                    </div>
+                    {{else}} 
+                    {{#if saved_order.dispatch_time}}
+                    <div class="col-md-4 col-xs-4 col-sm-4 no-margin">
+                        <div class="btn-group btn-group-lg-100 no-margin">
+                            <div class="btn btn-primary  no-margin status-primary col-order-info">
+                                <div  class="btn-lg-100 btn-height">En Camino</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4 no-margin">
+                        <div class="btn-group btn-group-lg-100 no-margin">
+                            <div class="btn btn-gray no-margin col-order-info">
+                                <div class="btn-lg-100 no-margin">
                                     <div class="btn-height">
-                                        <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
+                                        <span class="glyphicon glyphicon-time btn-icon"></span> 
                                         <span class="btn-inline text-left"> 
                                             <small>
-                                                <p class="margin-0-0-0">{{saved_order.estimated_time}} minutos</p>
-                                                <p class="margin-0-0-0">restantes</p>
+                                                <p class="margin-0-0-0">{{saved_order.rest}} pedidos</p>
+                                                <p class="margin-0-0-0">pendientes</p>
                                             </small>
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                        </div>                    
-                        {{else}} 
-                        <div class="col-md-12 col-xs-12 col-sm-12 no-margin">
-                            <div class="btn btn-warning col-order-info no-margin status-warning">
-                                <div  class="btn-lg-100 btn-height">Agendado</div>                 
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4 no-margin">
+                        <div class="btn btn-default no-margin col-order-info btn-right">
+                            <div class="btn-lg-100 status-default no-margin">
+                                <div class="btn-height">
+                                    <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
+                                    <span class="btn-inline text-left"> 
+                                        <small>
+                                            <p class="margin-0-0-0">{{saved_order.estimated_time}} minutos</p>
+                                            <p class="margin-0-0-0">restantes</p>
+                                        </small>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                        {{/if}}
-
-                    </div>                
+                    </div>                    
+                    {{else}} 
+                    <div class="col-md-12 col-xs-12 col-sm-12 no-margin">
+                        <div class="btn btn-warning col-order-info no-margin status-warning">
+                            <div  class="btn-lg-100 btn-height">Agendado</div>                 
+                        </div>
+                    </div>
                     {{/if}}
-                    {{/link-to}}
-                </div>
-            </div>
 
-            {{/each}}
+                </div>                
+                {{/if}}
+                {{/link-to}}
+            </div>
         </div>
-        {{else}}
-        <h4 class="margin-0-10">No está siguiendo ningún pedido</h4>
-        {{/if}}
-        {{/view}}
+
+        {{/each}}
     </div>
-    {{outlet}} 
+    {{else}}
+    <h4 class="margin-0-10">No está siguiendo ningún pedido</h4>
+    {{/if}}
+    {{/view}}
+</div>
+{{outlet}} 
 </script>
 <!-- END ORDER LIST -->
 
@@ -326,17 +331,25 @@
 </script>
 
 
-
-<!-- jquery -->
-<script src="vendor/jquery/jquery-2.0.3.js"></script>
-<!-- Bootstrap -->
+<!-- <script src="vendor/jquery/jquery-2.0.3.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.js"></script>
 <script src="vendor/handlebars/handlebars-v1.1.2.js"></script>
-<!-- Ember -->
 <script src="vendor/ember/ember.js"></script>
 <script src="vendor/ember/ember-data.js"></script> 
-<!-- Lawnchair -->
 <script src="vendor/lawnchair/lawnchair-0.6.1.js"></script>
+<script src="vendor/lawnchair/lawnchair-query-0.6.1.js"></script>
+<script src="vendor/lawnchair/lawnchair-callbacks-0.6.1.js"></script>
+<script src="vendor/lawnchair/lawnchair-pagination-0.6.1.js"></script>
+<script src="vendor/lawnchair/lawnchair-aggregation-0.6.1.js"></script>
+
+ -->
+ 
+<script src="vendor/jquery/jquery-2.0.3.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/handlebars/handlebars-v1.1.2.js"></script>
+<script src="vendor/ember/ember.min.js"></script>
+<script src="vendor/ember/ember-data.min.js"></script> 
+<script src="vendor/lawnchair/lawnchair-0.6.1.min.js"></script>
 <script src="vendor/lawnchair/lawnchair-query-0.6.1.js"></script>
 <script src="vendor/lawnchair/lawnchair-callbacks-0.6.1.js"></script>
 <script src="vendor/lawnchair/lawnchair-pagination-0.6.1.js"></script>
@@ -358,14 +371,33 @@
 <script src="app/handlebars/rating_helper.js"></script>
 <script src="app/handlebars/rating.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
-<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript">
 </script>
 <!-- THE PROXIMITY ALERT OF THE DELIVERY GOES HERE -->
+
 <script type="text/javascript">
-    app.initialize();
+
+    var cordova = true;
+
     $(document).ready( function() {
-        //$('#jquery-orders').hide();
+        //console.log('Initializing app');
+
+        $.getScript('cordova.js').
+        done(function() {
+            console.log('Cordova!');
+            $.getScript('js/index.js').done(function () {               
+                app.initialize();
+            });
+        }).
+        fail(function(jqxhr, settings, exception) {
+            console.log('No cordova');
+            initializeList();
+        });
+
+    });
+
+    function initializeList() 
+    {
         App.chair.all(function(records) 
         {
             var closeOrders = [];
@@ -391,11 +423,12 @@
                 $('#jquery-orders').fadeOut(10000);
             }
         });
-    });
+    }
 
     $( window ).resize(function() {
         fixHeights();
     });
+
 </script>
 
 </body>
