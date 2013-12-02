@@ -1,46 +1,49 @@
+
+
 App.LoginController = Ember.Controller.extend({
 
 	saved_orders: null,
 	self: null,
 	interval_id: null,
+	
 	init: function() {
 		self = this;
 		self.refreshOrdersList();
 	},
 	<!--REFRESH THE ORDER LIST-->
 	refreshOrdersList: function(replaceNow) {
-		
+
 		clearInterval(self.get('interval_id'));
 		App.chair.all(function(records) 
 		{
-		var final = new Array();
-		var aux = 0;
-		for(i = 0; i<records.length;i++)
-		{
-			if(records[i].delivered==false)
+			var final = new Array();
+			var aux = 0;
+			for(i = 0; i<records.length;i++)
+			{
+				if(records[i].delivered==false)
 				{
 					final.push(records[i]);				  
 				}
-		}
-		for(i = 0; i<records.length;i++)
-		{
-			if(!records[i].dispatch_time && !records[i].delivered)
-			{
-				final.push(records[i]);
-				aux++;
 			}
-		}
-		for(i = 0; i<records.length;i++)
-		{
-			if(records[i].delivered==true)
+			for(i = 0; i<records.length;i++)
 			{
-				final.push(records[i]);
-				aux++;
+				if(!records[i].dispatch_time && !records[i].delivered)
+				{
+					final.push(records[i]);
+					aux++;
+				}
 			}
-		}
-		
-		  
-		  records = final;
+			for(i = 0; i<records.length;i++)
+			{
+				if(records[i].delivered==true)
+				{
+					final.push(records[i]);
+					aux++;
+				}
+			}
+
+
+			records = final;
 
 			if(replaceNow) {
 				self.set('saved_orders', records);
@@ -131,13 +134,13 @@ App.LoginController = Ember.Controller.extend({
 					}		
 
 				});
-			}
-			var interval_id = setInterval(self.refreshOrdersList, 5000);
-			self.set('interval_id', interval_id);
-			fixHeights();
-			});
+}
+var interval_id = setInterval(self.refreshOrdersList, 5000);
+self.set('interval_id', interval_id);
+fixHeights();
+});
 
-	},
+},
 actions: {
 	<!--GOES TO THE ORDER STATUS PAGE-->
 	insert: function(event) {
@@ -159,6 +162,31 @@ actions: {
 		App.chair.all(function(records) {
 			self.set('saved_orders', records);
 		});
+	},
+	pair: function(event) {
+		var token = this.get('codigo');
+		if(device) {
+			console.log(device.uuid);
+			console.log(token);
+
+			$.ajax({
+				url: VEENDA_FULL_URL + '/token',
+				type: 'PUT',
+				dataType: 'json',
+				data: {phone_uuid: device.uuid, code: token}
+			})
+			.done(function(obj) {
+				console.log("success!!");
+				console.log(obj);
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+			
+		}
 	}
 },
 <!--RETURNS THE ORDER LIST-->

@@ -49,16 +49,26 @@
 
         console.log('Connection type: ' + states[networkState]);
     },
-
     onDeviceReady: function() {
+
         //app.receivedEvent('deviceready');
         //alert('ready!!');
         initializeList();
-        console.log("Device uuid = " + device.uuid);
- 
-        setInterval(function() {
-            app.checkConnection();
-        }, 5000);
+/*        
+        $.getJSON(VEENDA_FULL_URL + '/orders', {phone_uuid: device.uuid}, function(json, textStatus) {
+
+            for(var i = 0; i < json.length; ++i) {
+
+                console.log(json[i]);
+                console.log(App.Order.find(json[i]));
+            }
+            /*optional stuff to do after success */
+        })
+        .fail(function(error) {
+
+        });
+        /*
+        //refresh_interval = setInterval(refreshFunction, 5000);
 
         //navigator.notification.vibrate(1000);
         //console.log('ready!!');

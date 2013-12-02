@@ -24,4 +24,3 @@ App.Order = DS.Model.extend({
     comment: DS.attr(),
     summary: DS.attr()
 });
-
