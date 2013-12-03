@@ -104,7 +104,9 @@
                     {{else}}<!--IF THE STATUS VIEW OF THE ORDER GOES DIRECTLY TO THE DETAILS-->
                     <div class="container text-center">
                         <div class="details">
-                            <h5 class="btn btn-primary btn-xs btn-mg-14-14 btn-lg-50 status status-primary">En Camino</h5>
+                            <h5 class="btn btn-primary btn-xs btn-mg-14-14 btn-lg-50 status status-primary" {{ action "mapTrue"}}>
+                                <span class="glyphicon glyphicon-map-marker btn-icon"></span>En Camino
+                            </h5>
                             <div class="cl"></div>
 
                             <p><img class="margin-30-0" src="img/leona.png"/></p>
@@ -112,7 +114,7 @@
                             <h4>{{ this.name }}</h4>
                             <p>
                                 <button class="btn btn-gray btn-lg-47-a" >
-                                    <span class="glyphicon glyphicon-time btn-icon"></span>
+                                    <span class="glyphicon glyphicon-shopping-cart btn-icon"></span>
                                     <span class="btn-inline text-left"> 
                                         <small>
                                             <p class="margin-0-0-0">{{this.rest}} pedidos</p>
@@ -120,8 +122,8 @@
                                         </small>
                                     </span>
                                 </button>
-                                <button class="btn btn-gray btn-lg-47" {{ action "mapTrue"}} >
-                                    <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
+                                <button class="btn btn-gray btn-lg-47">
+                                    <span class="glyphicon glyphicon-time btn-icon"></span> 
                                     <span class="btn-inline text-left"> 
                                         <small>
                                             <p class="margin-0-0-0">{{this.estimated_time}} minutos</p>
@@ -203,7 +205,7 @@
         </div>
         <div class="row">
             {{#if saved_orders}}
-                <h3 class="margin-20">Mis Pedidos</h3>              
+            <h3 class="margin-20">Mis Pedidos</h3>              
             {{#each saved_order in saved_orders}}
 
             <div class="col-md-3 col-md-offset-1 col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 list-items-properties" {{bind-attr id="saved_order.key"}} >
@@ -249,7 +251,7 @@
                             <div class="btn btn-gray no-margin col-order-info">
                                 <div class="btn-lg-100 no-margin">
                                     <div class="btn-height">
-                                        <span class="glyphicon glyphicon-time btn-icon"></span> 
+                                        <span class="glyphicon glyphicon-shopping-cart btn-icon"></span> 
                                         <span class="btn-inline text-left"> 
                                             <small>
                                                 <p class="margin-0-0-0">{{saved_order.rest}} pedidos</p>
@@ -265,7 +267,7 @@
                         <div class="btn btn-default no-margin col-order-info btn-right">
                             <div class="btn-lg-100 status-default no-margin">
                                 <div class="btn-height">
-                                    <span class="glyphicon glyphicon-map-marker btn-icon"></span> 
+                                    <span class="glyphicon glyphicon-time btn-icon"></span> 
                                     <span class="btn-inline text-left"> 
                                         <small>
                                             <p class="margin-0-0-0">{{saved_order.estimated_time}} minutos</p>

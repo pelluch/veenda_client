@@ -64,11 +64,13 @@ App.MapView = Ember.View.extend({
       var dispatcher_longitude = self.get('context').get('dispatcher_longitude');
       var current_pos2 = new google.maps.LatLng(dispatcher_latitude, dispatcher_longitude);
       mkr.setPosition(current_pos2);*/
-      var distances = self.get('context').get('distance');
-      cityCircle.set('radius', distances*54 );
+      if(self) {
+        var distances = self.get('context').get('distance');
+        cityCircle.set('radius', distances*54 );
+      }
 
     }, 
-    2000);
+    5000);
     return distance;
   },
 });
