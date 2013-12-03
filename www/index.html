@@ -3,20 +3,20 @@
     <head>
         <meta charset="utf-8" />
 
-      <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.css">
-   
+
     <!-- <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
- -->
-    <link rel="stylesheet" href="app/css/style.css">    
+-->
+<link rel="stylesheet" href="app/css/style.css">    
 
-    <meta name="format-detection" content="telephone=no" />
-    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-    <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <link href='http://fonts.googleapis.com/css?family=Sarina' rel='stylesheet' type='text/css' />
+<meta name="format-detection" content="telephone=no" />
+<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+<!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+<link href='http://fonts.googleapis.com/css?family=Sarina' rel='stylesheet' type='text/css' />
 </head>
 <title>
     Veenda Client
@@ -185,30 +185,25 @@
     <!-- INPUT CODE GOES HERE -->
     <div class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="row">
-            <div class="col-xs-7 col-sm-7 col-md-7">
-                {{view Ember.TextField valueBinding="codigo" placeholder="Seguir nuevo pedido" class= "form-control"}}
+            <div class="col-xs-9 col-sm-9 col-md-9">
+                {{view Ember.TextField valueBinding="codigo" placeholder="Ingresar código de pareo" class= "form-control"}}
             </div>  
 
             <div class="col-xs-3 col-sm-3 col-md-3">
-                <button {{ action insert}} class="btn btn-default btn-border-white btn-lg-300" type="button">Seguir
+                <button {{ action pair}} class="btn btn-primary btn-border-white btn-lg-300" type="button">Parear
                 </button> 
-            </div>       
-            <div class="col-xs-2 col-sm-2 col-md-2"> 
-                <button {{ action pair}} class="btn btn-primary btn-border-white btn-lg-300" type="button"> P 
-                </button> 
-            </div>
+            </div>     
         </div>             
     </div>
 
     <!-- ORDER LIST GOES HERE -->
     {{#view App.LoginView }}
     <div class="container text-center">
-
-        <h3 class="margin-20">Mis pedidos</h3>
         <div id="jquery-orders" class = "alert1 alert-success hidden">
         </div>
         <div class="row">
             {{#if saved_orders}}
+                <h3 class="margin-20">Mis Pedidos</h3>              
             {{#each saved_order in saved_orders}}
 
             <div class="col-md-3 col-md-offset-1 col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 list-items-properties" {{bind-attr id="saved_order.key"}} >
@@ -298,6 +293,7 @@
         {{/each}}
     </div>
     {{else}}
+
     <h4 class="margin-0-10">No está siguiendo ningún pedido</h4>
     {{/if}}
     {{/view}}
@@ -334,7 +330,7 @@
     {{outlet}} 
 </script>
 
-
+<script src="js/index.js"></script>
 <script src="vendor/jquery/jquery-2.0.3.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.js"></script>
 <script src="vendor/handlebars/handlebars-v1.1.2.js"></script>
@@ -381,7 +377,6 @@
 
 <script type="text/javascript">
 
-    var cordova = true;
 
     $(document).ready( function() {
         //console.log('Initializing app');
@@ -389,15 +384,17 @@
         $.getScript('cordova.js').
         done(function() {
             console.log('Cordova!');
-            $.getScript('js/index.js').done(function () {               
-                app.initialize();
-            });
+
+            App.isMobile = true; 
+            App.cordova = app;         
+            app.initialize();
+
         }).
         fail(function(jqxhr, settings, exception) {
             console.log('No cordova');
+            App.isMobile = false;            
             initializeList();
         });
-
     });
 
     function initializeList() 
@@ -432,6 +429,8 @@
     $( window ).resize(function() {
         fixHeights();
     });
+
+    
 
 </script>
 

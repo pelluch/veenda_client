@@ -2,10 +2,9 @@
 
 App.OrderAdapter = DS.RESTAdapter.extend({
     find: function(store, type, id) {
-        return this.ajax(this.buildURL(type.typeKey, id), 'GET');
+        return this.ajax(this.buildURL(type.typeKey, id) + "?client=true", 'GET');
     },
     host: VEENDA_HOST,
-    headers: {"X-AUTH-TOKEN" : "be3bee55-1ad1-4a9e-900c-98200f5c3005" },
     namespace: VEENDA_NAMESPACE
 });
 

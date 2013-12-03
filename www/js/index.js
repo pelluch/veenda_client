@@ -33,7 +33,7 @@
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
 
-    checkConnection: function() {
+    checkConnection: function(verbose) {
 
         var networkState = navigator.connection.type;
 
@@ -47,44 +47,19 @@
         states[Connection.CELL]     = 'Cell generic connection';
         states[Connection.NONE]     = 'No network connection';
 
-        console.log('Connection type: ' + states[networkState]);
+        if(verbose) console.log('Connection type: ' + states[networkState]);
+        if(networkState == Connection.NONE) {
+            return false;
+        }
+        else {
+            return true;
+        }
     },
     onDeviceReady: function() {
 
         //app.receivedEvent('deviceready');
         //alert('ready!!');
         initializeList();
-/*        
-        $.getJSON(VEENDA_FULL_URL + '/orders', {phone_uuid: device.uuid}, function(json, textStatus) {
-
-            for(var i = 0; i < json.length; ++i) {
-
-                console.log(json[i]);
-                console.log(App.Order.find(json[i]));
-            }
-            /*optional stuff to do after success */
-        })
-        .fail(function(error) {
-
-        });
-        /*
-        //refresh_interval = setInterval(refreshFunction, 5000);
-
-        //navigator.notification.vibrate(1000);
-        //console.log('ready!!');
     }
 
-
-
-    // Update DOM on a Received Event
-    // receivedEvent: function(id) {
-    //     var parentElement = document.getElementById(id);
-    //     var listeningElement = parentElement.querySelector('.listening');
-    //     var receivedElement = parentElement.querySelector('.received');
-
-    //     listeningElement.setAttribute('style', 'display:none;');
-    //     receivedElement.setAttribute('style', 'display:block;');
-
-    //     console.log('Received Event: ' + id);
-    // }
 };
