@@ -1,3 +1,16 @@
+
+// var template;
+// $.ajax({
+//    url: 'app/templates/rating.handlebars',
+//    dataType: 'text',
+//    async: false,
+//    success: function(resp) {
+//       template = Ember.Handlebars.compile(resp);
+//    }
+// });
+
+
+
 Ember.Handlebars.helper("rating", Ember.View.extend({
    classNames: ["rating"],
    max: 5,

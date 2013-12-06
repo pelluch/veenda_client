@@ -1,0 +1,127 @@
+<!-- ORDER LIST GOES HERE -->
+<div class="container text-center">
+    <div id="jquery-orders" class = "alert1 alert-success hidden">
+    </div>
+    <div class="row">
+        {{#if saved_orders}}
+        <h3 class="margin-20">Mis Pedidos</h3>              
+        {{#each saved_order in saved_orders}}
+        
+        <!-- An entire order item -->
+        <div class="col-md-3 col-md-offset-1 col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 list-items-properties" {{bind-attr id="saved_order.key"}} >
+
+            <!-- First row with logo -->
+            <div class="row">
+                {{#link-to 'orders.order' saved_order.key}}
+                <div class="col-md-2 col-xs-3 col-sm-3 logo-container">
+                    <img class="logo-list" src="img/leona.png"/>
+                </div>
+                <div class="col-md-8 col-xs-6 col-sm-6">
+                    <h3>La Leona</h3>
+                </div>
+                {{/link-to}}
+                <div class="col-md-2 col-xs-3 col-sm-3">
+                    <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+            </div>
+            
+            <!-- Just the key -->
+            {{#link-to 'orders.order' saved_order.key}}
+            <div class="row">
+                <h3 class="margin-0">#{{saved_order.key}}</h3>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row">
+                <div class="btn-group btn-group-lg-100 no-margin">
+
+                    <!-- Case one: One button, delivered -->
+                    {{#if saved_order.delivered}}
+                    <div class="col-md-12 col-xs-12 col-sm-12 no-margin">
+                        <div class="btn btn-success col-order-info status-success no-margin">
+                            <div class="btn-lg-100 btn-height">Recibido</div>
+                        </div>
+                    </div>
+
+                    {{else}} 
+
+                    <!-- It's underway -->
+                    {{#if saved_order.dispatch_time}}
+                    <!-- Status of order -->
+                    <div class="col-md-4 col-xs-4 col-sm-4 no-margin">
+                        <div class="btn-group btn-group-lg-100 no-margin">
+                            <div class="btn btn-primary  no-margin status-primary col-order-info">
+                                <div class="btn-lg-100 btn-height">En Camino</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- How many more are on their way -->
+                    <div class="col-md-4 col-xs-4 col-sm-4 no-margin">
+                        <div class="btn-group btn-group-lg-100 no-margin">
+                            <div class="btn btn-gray no-margin col-order-info">
+                                <div class="btn-lg-100 no-margin">
+                                    <div class="btn-height">
+                                        <span class="glyphicon glyphicon-shopping-cart btn-icon"></span> 
+                                        <span class="btn-inline text-left"> 
+                                            <small>
+                                                <p class="margin-0-0-0">{{saved_order.rest}} pedidos</p>
+                                                <p class="margin-0-0-0">pendientes</p>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Left minuts -->
+                    <div class="col-md-4 col-xs-4 col-sm-4 no-margin">
+                        <div class="btn btn-default no-margin col-order-info btn-right">
+                            <div class="btn-lg-100 status-default no-margin">
+                                <div class="btn-height">
+                                    <span class="glyphicon glyphicon-time btn-icon"></span> 
+                                    <span class="btn-inline text-left"> 
+                                        <small>
+                                            <p class="margin-0-0-0">{{saved_order.estimated_time}} minutos</p>
+                                            <p class="margin-0-0-0">restantes</p>
+                                        </small>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                    {{else}} 
+                    <!-- Final case: Not dispatched yet -->
+                    <div class="col-md-12 col-xs-12 col-sm-12 no-margin">
+                        <div class="btn btn-warning col-order-info no-margin status-warning">
+                            <div class="btn-lg-100 btn-height">Agendado</div>                 
+                        </div>
+                    </div>
+                    {{/if}}                
+                </div> <!-- End button group -->               
+                {{/if}} <!-- saved_order is delivered -->
+
+                {{/link-to}}
+            </div>  <!-- End button row --> 
+        </div> <!-- End entire  item -->
+
+        {{/each}}
+    </div> <!-- Row with all items -->
+    {{else}}
+
+    <h4 class="margin-0-10">No está siguiendo ningún pedido</h4>
+    {{/if}}
+</div> <!-- Container -->
+
+<!-- INPUT CODE GOES HERE -->
+<div class="navbar navbar-inverse navbar-fixed-bottom" id="footer">
+    <div class="row">
+        <div class="col-xs-9 col-sm-9 col-md-9">
+            {{view Ember.TextField valueBinding="codigo" placeholder="Ingresar código de pareo" class= "form-control"}}
+        </div>  
+
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            <button {{ action pair}} class="btn btn-primary btn-border-white btn-lg-300" type="button">Parear
+            </button> 
+        </div>     
+    </div>             
+</div>

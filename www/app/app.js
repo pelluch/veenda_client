@@ -1,11 +1,12 @@
 
+
 App = Ember.Application.create({
-    // Para efectos de debugging
-    LOG_TRANSITIONS: true,
-    currentPath: '',
+	LOG_TRANSITIONS: true,
+	currentPath: '',
 });
 
 var fixHeights = function() {
+
 	var largestGroup = 0;
 	var groupHeight;
 	$('.btn-group').each( function() {
@@ -16,23 +17,15 @@ var fixHeights = function() {
 	});
 
 	$('.col-order-info').each( function() {
+
 		var thisHeight = $(this).outerHeight();
-
-		$(this).outerHeight(largestGroup);
-
-		// var btnHeight = $(this).height();
-		// var diff = largestGroup - btnHeight;
-		// var padding = diff/1.1;
-		// if(diff > 0){
-			
-			var child = $(this).find('.btn-height')[0];
-			var childHeight = $(child).height();
-			$(child).css({
-				"top": thisHeight/2 - childHeight/2
-			});	
-
-
-		});
+		$(this).outerHeight(largestGroup);		
+		var child = $(this).find('.btn-height')[0];
+		var childHeight = $(child).height();
+		$(child).css({
+			"top": thisHeight/2 - childHeight/2
+		});	
+	});
 }
 
 

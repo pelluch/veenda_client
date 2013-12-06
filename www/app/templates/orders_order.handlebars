@@ -1,0 +1,140 @@
+    <!-- ORDER STATUS PAGE -->
+    {{#if destination_latitude }}
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+                {{#if delivered}}<!-- IF THE ORDER HAS BEEN MARKED AS DELIVERED -->
+                <div class="details">
+                    <h5 class="btn btn-success btn-xs btn-mg-14-14 btn-lg-50 status status-success">Recibido</h5>
+                    <div class="cl"></div>
+                    <p><img class="margin-30-0" src="img/leona.png"/></p>
+                    <h3>#{{ this.id }}</h3>
+                    <h4>{{ this.name }}</h4>
+
+                    {{#if comment}}<!-- IF THE DELIVERY HAS ALREADY QUALIFIED/COMMENTED -->
+
+                    {{rating_helper this}}
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{summary}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            {{comment}}
+                        </div>
+                    </div>
+                    <button class="btn btn-default" {{ action "back"}}>Volver</button>
+                    <button class="btn btn-danger" {{ action "reset"}}>Despacho No Recibido</button>
+                    {{else}}<!-- IF THE DELIVERY WAS MARKED AS DELIVERED AUTOMATICALLY WITHOUT BEING QUALIFIED -->
+                    <p>
+                        <button class="btn btn-primary btn-lg-300" {{ action "rate"}}>Evaluar/comentar despacho</button>
+                    </p>
+                    <p>
+                        <button class="btn btn-link btn-lg-300" {{ action "reset"}}>No he recibido mi despacho aún</button>
+                    </p>
+                    {{/if}}
+                </div>
+
+                {{else}}<!--IF THE ORDER HAS NOT BEEN DELIVERED-->
+                {{#if dispatch_time}}<!--IF THE ORDER HAS BEEN ASIGNED TO A DISPATCHER-->
+                {{#if isMap}}<!--IF THE STATUS VIEW OF THE ORDER GOES DIRECTLY TO THE POSITIONING MAP-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="btn-group btn-group-lg-100 margin-15">
+                            <button type="button" {{ action "mapFalse"}} class="btn btn-default btn-lg-50"><span class="glyphicon glyphicon-list"></span> Detalles</button>
+                            <button type="button" {{ action "mapTrue"}} class="btn btn-primary btn-lg-50"><span class="glyphicon glyphicon-screenshot"></span> Mapa</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="details">
+                            {{#view App.MapView }}<br/>{{/view}}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="img/gps-icon-spec.png"> Destinatario
+                                    <img src="img/gps-icon-dispatcher-spec.png"> Zona despachador                                
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+                {{else}}<!--IF THE STATUS VIEW OF THE ORDER GOES DIRECTLY TO THE DETAILS-->
+                <div class="container text-center">
+                    <div class="details">
+                        <h5 class="btn btn-primary btn-xs btn-mg-14-14 btn-lg-50 status status-primary" {{ action "mapTrue"}}>
+                            <span class="glyphicon glyphicon-map-marker btn-icon"></span>En Camino
+                        </h5>
+                        <div class="cl"></div>
+
+                        <p><img class="margin-30-0" src="img/leona.png"/></p>
+                        <h3>#{{ this.id }}</h3>
+                        <h4>{{ this.name }}</h4>
+                        <p>
+                            <button class="btn btn-gray btn-lg-47-a" >
+                                <span class="glyphicon glyphicon-shopping-cart btn-icon"></span>
+                                <span class="btn-inline text-left"> 
+                                    <small>
+                                        <p class="margin-0-0-0">{{this.rest}} pedidos</p>
+                                        <p class="margin-0-0-0">pendientes</p>
+                                    </small>
+                                </span>
+                            </button>
+                            <button class="btn btn-gray btn-lg-47">
+                                <span class="glyphicon glyphicon-time btn-icon"></span> 
+                                <span class="btn-inline text-left"> 
+                                    <small>
+                                        <p class="margin-0-0-0">{{this.estimated_time}} minutos</p>
+                                        <p class="margin-0-0-0">restantes</p>
+                                    </small>
+                                </span>
+                            </button>
+                        </p>
+                        <button class="btn btn-success btn-group-lg-100_1 btn-lg" {{ action "insert"}} >Llegó mi pedido</button>
+                    </div>
+                </div>
+                {{/if}}
+                {{else}}<!--IF THE ORDER HAS NOT BEEN ASIGNED TO A DISPATCHER--> 
+                <div class="container text-center">
+                    <div class="details">
+                        <h5 class="btn btn-warning btn-xs btn-mg-14-14 btn-lg-50 status status-warning">Agendado</h5>
+                        <div class="cl"></div>
+
+                        <p><img class="margin-30-0" src="img/leona.png"/></p>
+                        <h3>#{{ this.id }}</h3>
+                        <h4>{{ this.name }}</h4>
+                        <h2 class="">Producto no despachado aún</h2>
+                    </div>
+                </div>
+
+
+                {{/if}}
+                {{/if}}
+
+
+                {{else}}<!--IF THE ORDER CODE DOES NOT EXIST-->
+
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+                            <div class="details">
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Código Inválido</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        Producto ingresado no existe
+                                    </div>
+                                </div>
+                                <button class="btn btn-default" {{ action "back"}}>Volver</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+{{outlet}}
