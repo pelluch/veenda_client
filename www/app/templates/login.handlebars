@@ -7,30 +7,29 @@
         <h3 class="margin-20">Mis Pedidos</h3>              
         {{#each saved_order in saved_orders}}
         
+        
         <!-- An entire order item -->
-        <div class="col-md-3 col-md-offset-1 col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 list-items-properties" {{bind-attr id="saved_order.key"}} >
-
+        <div class="col-md-3 col-md-offset-1 col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 list-items-properties">
+            {{#link-to 'orders.order' saved_order.key}}
             <!-- First row with logo -->
             <div class="row">
-                {{#link-to 'orders.order' saved_order.key}}
                 <div class="col-md-2 col-xs-3 col-sm-3 logo-container">
-                    <img class="logo-list" src="img/leona.png"/>
+                    <img class="logo-list" src="img/leona.png" alt="La Leona">
                 </div>
                 <div class="col-md-8 col-xs-6 col-sm-6">
                     <h3>La Leona</h3>
                 </div>
-                {{/link-to}}
                 <div class="col-md-2 col-xs-3 col-sm-3">
-                    <button {{action removeLink saved_order.key}} type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span {{action removeLink saved_order.key}} class="close" data-dismiss="alert">&times;</span>
                 </div>
             </div>
             
-            <!-- Just the key -->
-            {{#link-to 'orders.order' saved_order.key}}
+            <!-- Just the key -->            
             <div class="row">
                 <h3 class="margin-0">#{{saved_order.key}}</h3>
             </div>
-
+            {{/link-to}}
+            
             <!-- Buttons -->
             <div class="row">
                 <div class="btn-group btn-group-lg-100 no-margin">
@@ -98,12 +97,9 @@
                     </div>
                     {{/if}}                
                 </div> <!-- End button group -->               
-                {{/if}} <!-- saved_order is delivered -->
-
-                {{/link-to}}
+                {{/if}} <!-- saved_order is delivered -->                
             </div>  <!-- End button row --> 
-        </div> <!-- End entire  item -->
-
+        </div> <!-- End entire  item -->        
         {{/each}}
     </div> <!-- Row with all items -->
     {{else}}

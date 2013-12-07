@@ -131,11 +131,7 @@ body {
      margin-left: 10px;
      float: right;
 }
- .add-ons-button {
-     width: calc(100% - 150px);
-     float: right;
- }
-
+ 
 
 .btn-group-lg-100 {
     width: 100%;
@@ -198,10 +194,6 @@ body {
 .btn-lg-20y100p {
     width: 130px;
     margin-left: 10px;
-    float: right;
-}
-.add-ons-button {
-    width: calc(100% - 150px);
     float: right;
 }
 
@@ -360,6 +352,7 @@ i.fa:hover, i.fa:focus
     text-rendering: auto;
     text-decoration: none;
 }
+
 .fa-star
 {
     color: gold;
@@ -369,7 +362,7 @@ i.fa
 {
     margin-left: 20px;
     margin-right: 10px;
-    font-size: 1.8em;
+    font-size: 4em;
     margin-top: 15px;
     margin-bottom: 15px;
     width: 100%;

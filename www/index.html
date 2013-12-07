@@ -1,60 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" >
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.css">
 
-        <!--  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css"> -->
+    <!--  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css"> -->
 
-        <link rel="stylesheet" href="app/css/style.css">
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link href='http://fonts.googleapis.com/css?family=Sarina' rel='stylesheet' type='text/css' />
-        <title>
-            Veenda Client
-        </title>
-    </head>
-    <body> 
+    <link rel="stylesheet" href="app/css/style.css">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link href='http://fonts.googleapis.com/css?family=Sarina' rel='stylesheet' type='text/css' />
+    <title>
+        Veenda Client
+    </title>
+</head>
+<body> 
 
-        <script type="text/x-handlebars">                     
-        </script>
+    <script type="text/x-handlebars">                     
+    </script>
 
-        <script type="text/x-handlebars" data-template-name="orders/order">
-        </script>
+    <script type="text/x-handlebars" data-template-name="orders/order">
+    </script>
 
 
-        <script type="text/x-handlebars" data-template-name="login">
-        </script>
+    <script type="text/x-handlebars" data-template-name="login">
+    </script>
 
-        <script type="text/x-handlebars" data-template-name="rating">
-            <div class="container text-center">   
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
-                        <div class="details"> 
-                            <h4 class="alert alert-success margin-0">El despacho ha sido recibido</h4>
-                            <h3>¿Qué opinas del despacho?</h3>
+    <script type="text/x-handlebars" data-template-name="rating">
+        <div class="container text-center">   
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+                    <div class="details"> 
+                        <h4 class="alert alert-success margin-0">El despacho ha sido recibido</h4>
+                        <h3>¿Qué opinas del despacho?</h3>
 
-                            <h2>{{rating max="5"}}</h2>
+                        <h2>{{rating max="5"}}</h2>
 
-                            <div class="form-group">
-                                <textarea placeholder="Resumen Comentario" class="form-control comment-box margin-0-5" rows="1"></textarea>
-                                <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="4"></textarea>
-                            </div>
-                            <p>
-                                <button class="btn btn-primary btn-lg-300" {{ action "vote"}} >Evaluar</button>
-                            </p>
-                            <p>
-                                <button class="btn btn-link btn-lg-300" {{ action "skip"}} >No gracias, no quiero evaluar</button>
-                            </p>
+                        <div class="form-group">
+                            <textarea placeholder="Resumen Comentario" class="form-control comment-box margin-0-5" rows="1"></textarea>
+                            <textarea placeholder="Añadir Comentario" class="form-control comment-box" rows="4"></textarea>
                         </div>
+                        <p>
+                            <button class="btn btn-primary btn-lg-300" {{ action "vote"}} >Evaluar</button>
+                        </p>
+                        <p>
+                            <button class="btn btn-link btn-lg-300" {{ action "skip"}} >No gracias, no quiero evaluar</button>
+                        </p>
                     </div>
                 </div>
-            </div>            
-        </script>
-    </div>
+            </div>
+        </div>            
+    </script>
 
     <script src="vendor/jquery/jquery-2.0.3.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.js"></script>
@@ -68,37 +67,91 @@
     <script src="vendor/lawnchair/lawnchair-aggregation-0.6.1.js"></script>
 
 
-        <!-- 
-        <script src="vendor/jquery/jquery-2.0.3.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-        <script src="vendor/handlebars/handlebars-v1.1.2.js"></script>
-        <script src="vendor/ember/ember.min.js"></script>
-        <script src="vendor/ember/ember-data.min.js"></script> 
-        <script src="vendor/lawnchair/lawnchair-0.6.1.min.js"></script>
-        <script src="vendor/lawnchair/lawnchair-query-0.6.1.js"></script>
-        <script src="vendor/lawnchair/lawnchair-callbacks-0.6.1.js"></script>
-        <script src="vendor/lawnchair/lawnchair-pagination-0.6.1.js"></script>
-        <script src="vendor/lawnchair/lawnchair-aggregation-0.6.1.js"></script> -->
+    <!-- 
+    <script src="vendor/jquery/jquery-2.0.3.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/handlebars/handlebars-v1.1.2.js"></script>
+    <script src="vendor/ember/ember.min.js"></script>
+    <script src="vendor/ember/ember-data.min.js"></script> 
+    <script src="vendor/lawnchair/lawnchair-0.6.1.min.js"></script>
+    <script src="vendor/lawnchair/lawnchair-query-0.6.1.js"></script>
+    <script src="vendor/lawnchair/lawnchair-callbacks-0.6.1.js"></script>
+    <script src="vendor/lawnchair/lawnchair-pagination-0.6.1.js"></script>
+    <script src="vendor/lawnchair/lawnchair-aggregation-0.6.1.js"></script> -->
 
-        <!-- App -->
-        <script src="js/index.js"></script>
-        <script src="app/config.js"></script>
-        <script src="app/app.js"></script>
-        <script src="app/models/order.js"></script>
-        <script src="app/controllers/login.js"></script>
-        <script src="app/controllers/application.js"></script>
-        <script src="app/controllers/rating.js"></script>
-        <script src="app/controllers/orders.js"></script>
-        <script src="app/views/application.js"></script>
-        <script src="app/views/map.js"></script>
-        <script src="app/views/login.js"></script>
-        <script src="app/views/orders_order.js"></script>
-        <script src="app/routes/orders.js"></script>
-        <script src="app/routes/login.js"></script>
-        <script src="app/routes/router.js"></script>
-        <script src="app/handlebars/rating_helper.js"></script>
-        <script src="app/handlebars/rating.js"></script>
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
+    <!-- App -->
+    <script src="js/index.js"></script>
+    <script src="app/config.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/models/order.js"></script>
+    <script src="app/controllers/login.js"></script>
+    <script src="app/controllers/application.js"></script>
+    <script src="app/controllers/rating.js"></script>
+    <script src="app/controllers/orders.js"></script>
+    <script src="app/views/application.js"></script>
+    <script src="app/views/map.js"></script>
+    <script src="app/views/login.js"></script>
+    <script src="app/views/orders_order.js"></script>
+    <script src="app/routes/orders.js"></script>
+    <script src="app/routes/login.js"></script>
+    <script src="app/routes/router.js"></script>
+    <script src="app/handlebars/rating_helper.js"></script>
+    <script src="app/handlebars/rating.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=geometry"></script>
 
-    </body>
-    </html>
+    <script type="text/javascript">
+        $(document).ready( function() {
+            //console.log('Initializing app');
+
+            $.getScript('cordova.js').
+            done(function() {
+                console.log('Cordova!');
+
+                App.isMobile = true; 
+                App.cordova = app;         
+                app.initialize();
+
+            }).
+            fail(function(jqxhr, settings, exception) {
+                console.log('No cordova');
+                App.isMobile = false;            
+                initializeList();
+            });
+
+            $( window ).resize(function() {
+                fixHeights();
+            });
+        });
+
+        function initializeList() 
+        {
+            App.chair.all(function(records) 
+            {
+                var closeOrders = [];
+                for(var i = 0; i < records.length; ++i) 
+                {
+
+                    if(records[i].estimated_time < 10 && records[i].delivered == false) 
+                    {
+
+                        closeOrders.push(records[i].key);
+                    }
+                }
+                if(closeOrders.length > 1)
+                {
+                    $('#jquery-orders').removeClass('hidden');
+                    $('#jquery-orders').html('<h4> Los pedidos ' + closeOrders.join(', ') + ' están llegando</h4>');
+                    $('#jquery-orders').fadeOut(10000);
+                }
+                else if(closeOrders.length == 1)
+                {
+                    $('#jquery-orders').removeClass('hidden');
+                    $('#jquery-orders').html('<h4> El pedido ' + closeOrders[0] + ' está llegando</h4>');
+                    $('#jquery-orders').fadeOut(10000);
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
