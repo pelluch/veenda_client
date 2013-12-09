@@ -85,8 +85,8 @@ App.OrdersOrderController = Ember.ObjectController.extend({
   },
   //rate: redirects the user to the rating page
   rate: function(event) {
-    var order_id = this.get('content.id');
-    this.transitionToRoute('rating', order_id);
+    var delivery_id = this.get('content.delivery_id');
+    this.transitionToRoute('rating', delivery_id);
   }
 },
 isMap: false
