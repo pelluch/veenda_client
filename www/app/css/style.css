@@ -16,7 +16,7 @@ html, body {
 
 #app-view
 {
-    height:100%;
+    /*height:100%;*/
 }
 #eraser-link
 {
@@ -37,7 +37,7 @@ html, body {
 
 #footer
 {
-    position: relative;
+    /*position: relative;*/
 
 }
 
