@@ -36,7 +36,7 @@ App.OrdersOrderController = Ember.ObjectController.extend({
       }
     });
 
-      this.transitionToRoute('rating', order_id);
+      this.transitionToRoute('rating', delivery_id);
     },
 	//back:allows you to go back to the home page
     back: function(event) {
