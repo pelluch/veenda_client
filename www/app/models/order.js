@@ -14,6 +14,7 @@ App.Order = DS.Model.extend({
     rest: DS.attr(),
     dispatcher_latitude: DS.attr(),
     dispatcher_longitude: DS.attr(),
+    delivery_id: DS.attr(),
     destination_latitude: DS.attr(),
     destination_longitude: DS.attr(),
     dispatch_time: DS.attr(),

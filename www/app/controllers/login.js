@@ -11,9 +11,10 @@ App.LoginController = Ember.Controller.extend({
 		self.refreshOrdersList();
 	},
 	<!--REFRESH THE ORDER LIST-->
-	refreshOrdersList: function(replaceNow) {
+	refreshOrdersList: function() {
 
 		clearInterval(self.get('interval_id'));
+
 		if(App.isMobile) {		
 			var uuid = device.uuid;
 			var hasConnection = App.cordova.checkConnection(false);
@@ -25,7 +26,7 @@ App.LoginController = Ember.Controller.extend({
 							
 							orderJson = orderJson.order;
 							var toSave = { key : orderJson.id + '', id: orderJson.id, name: orderJson.name,
-							delivered: orderJson.delivered, rest: orderJson.rest, dispatch_time: orderJson.dispatch_time,
+							delivered: orderJson.delivered, rest: orderJson.rest, dispatch_time: orderJson.dispatch_time, delivery_id: orderJson.delivery_id, 
 							distance: orderJson.distance, estimated_time: orderJson.estimated_time, type : 'order'};
 							App.chair.save(toSave);				
 							App.chair.all(function(records) {
@@ -44,39 +45,9 @@ App.LoginController = Ember.Controller.extend({
 		else {
 			App.chair.all(function(records) 
 			{
-				var final = new Array();
-				var aux = 0;
-				for(i = 0; i<records.length;i++)
-				{
-					if(records[i].delivered==false)
-					{
-						final.push(records[i]);				  
-					}
-				}
-				for(i = 0; i<records.length;i++)
-				{
-					if(!records[i].dispatch_time && !records[i].delivered)
-					{
-						final.push(records[i]);
-						aux++;
-					}
-				}
-				for(i = 0; i<records.length;i++)
-				{
-					if(records[i].delivered==true)
-					{
-						final.push(records[i]);
-						aux++;
-					}
-				}
+				var final = [];
 
-
-				records = final;
-
-				if(replaceNow) {
-					self.set('saved_orders', records);
-				}
-				else if(records.length == 0) {
+				if(records.length == 0) {
 
 				}
 				else if(!self.get('saved_orders')) {
@@ -89,7 +60,7 @@ App.LoginController = Ember.Controller.extend({
 				{				
 					var ajaxArray = [];
 					for(var i = 0; i < records.length; ++i) 
-					{
+					{	
 						ajaxArray.push(
 							$.ajax({
 								url: VEENDA_FULL_URL + '/orders/' + records[i].id,
@@ -105,6 +76,7 @@ App.LoginController = Ember.Controller.extend({
 						{
 							$.each(arguments, function(index, responseData) {
 								var data = responseData[0];
+
 								var currentOrder, currentDelivered, currentDispatchTime;
 								App.chair.get(data.id, function(lawnOrder) {
 									currentOrder = lawnOrder;
@@ -157,7 +129,6 @@ App.LoginController = Ember.Controller.extend({
 							changed = true;
 						}
 						if(changed) {
-							console.log('change');
 							self.set('saved_orders', newList);
 						}		
 
@@ -207,10 +178,10 @@ actions: {
 			console.log(token);
 
 			$.ajax({
-				url: VEENDA_FULL_URL + '/token',
+				url: VEENDA_FULL_URL + '/clients',
 				type: 'PUT',
 				dataType: 'json',
-				data: {phone_uuid: device.uuid, code: token}
+				data: { token : token, client : { phone_uuid: device.uuid, token: null} }
 			})
 			.done(function(obj) {
 				console.log("success!!");

@@ -3,10 +3,12 @@ App.OrdersOrderRoute = Ember.Route.extend( {
     
 
     var order = this.get('store').find('order', params.order_id).then( function(order) {
+      console.log(order);
     if(order.id != -1) {
       //alert(order.get('name'));
-      var toSave = { key : params.order_id, id: order.get('id'), name: order.get('name'), delivered: order.get('delivered'), rest: order.get('rest'), dispatch_time: order.get('dispatch_time'), distance: order.get('distance'), estimated_time: order.get('estimated_time'),
-       type : 'order'};
+      var toSave = { key : params.order_id, id: order.get('id'), name: order.get('name'), delivered: order.get('delivered'), 
+      rest: order.get('rest'), dispatch_time: order.get('dispatch_time'), distance: order.get('distance'), 
+      estimated_time: order.get('estimated_time'), delivery_id: order.get('delivery_id'), type : 'order'};
       App.chair.save(toSave);
       
 

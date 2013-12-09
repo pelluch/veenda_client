@@ -3,37 +3,19 @@ App.OrdersOrderController = Ember.ObjectController.extend({
   interval_id: null,
 	//init: refreshes the page every 1 second.
   init: function(params) {
-
     var self = this;
-
-    var interval_id = setInterval(function() {
-      self.refreshMyData()
-    }, 5000);
-    this.interval_id = interval_id;	  
-
-  },
-  refreshMyData: function(params) {
-    var content = this.get('content');
-    if(content) {
-      this.get('content').reload();
-      if(App.get('currentPath') == 'orders.order') {
-        this.transitionToRoute(App.get('currentPath'));
-      }
-    }
-    else {
-      clearInterval(this.interval_id);
-    }
-
   },
   actions: {
 	//insert gets the id searched in the homepage looks for it in the API
     insert: function(event) {
-      var order_id = this.get('content.id');
+
+       var order_id = this.get('content.id');
+     var delivery_id = this.get('content.delivery_id');
       var store = this.get('store');
       var self = this;
       $.ajax({
 	//url returns the URL of the delivery page
-       url: VEENDA_FULL_URL + '/deliveries/' + order_id,
+       url: VEENDA_FULL_URL + '/deliveries/' + delivery_id,
        type: 'PUT',
        data: JSON.stringify({
         order: {
@@ -48,7 +30,6 @@ App.OrdersOrderController = Ember.ObjectController.extend({
           lawnOrder.delivered = true;
           App.chair.save(lawnOrder);
         });
-        console.log('response: ' + response);
         store.find('order', order_id).then( function(model) {
           model.set('delivered', true);
         });
@@ -63,12 +44,13 @@ App.OrdersOrderController = Ember.ObjectController.extend({
     },
 	//reset: refreshes the page content
     reset: function(event) {
-     var order_id = this.get('content.id');
+    var order_id = this.get('content.id');
+     var delivery_id = this.get('content.delivery_id');
      var store = this.get('store');
      var self = this;
      this.get('content').reload();
      $.ajax({               
-      url: VEENDA_FULL_URL + '/deliveries/' + order_id,
+      url: VEENDA_FULL_URL + '/deliveries/' + delivery_id,
       type: 'PUT',
       async: true,
       data: JSON.stringify({
@@ -79,7 +61,6 @@ App.OrdersOrderController = Ember.ObjectController.extend({
       contentType: "application/json",
       dataType: "text",
       success: function(response) {
-        console.log('response: ' + response);
         store.find('order', order_id).then( function(model) {
          model.set('delivered', false);
          model.set('comment', "");
