@@ -4,5 +4,6 @@ App.Router.map(function() {
     });
 
     this.route('login', {path: '/'});
-	  this.route('rating', {path: '/ratings/:order'});
+	this.route('rating', {path: '/ratings/:order'});
+	//this.resource('rating', {path: '/ratings/:rating_id'});
 });

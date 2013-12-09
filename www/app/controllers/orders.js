@@ -19,7 +19,7 @@ App.OrdersOrderController = Ember.ObjectController.extend({
        type: 'PUT',
        data: JSON.stringify({
         order: {
-          delivered: true
+          state: OrderStates.DELIVERED;
         }
       }),
        contentType: "application/json",
@@ -55,7 +55,7 @@ App.OrdersOrderController = Ember.ObjectController.extend({
       async: true,
       data: JSON.stringify({
         order: {
-          delivered: false
+          state: OrderStates.UNDERWAY;
         }
       }),
       contentType: "application/json",
