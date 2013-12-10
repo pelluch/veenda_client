@@ -55,11 +55,11 @@ App.RatingController = Ember.Controller.extend({
                         model.set('comment', comment);
                         model.set('summary', summary);
                     });
-          this.transitionToRoute('orders.order', this.get('content.order'));
+          this.transitionToRoute('login');
         },
 		//skip: sends the user to the order page
         skip: function(){
-          this.transitionToRoute('orders.order', this.get('content.order'));
+          this.transitionToRoute('login');
         }
     }
 });

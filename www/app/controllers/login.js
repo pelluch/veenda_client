@@ -14,27 +14,48 @@ App.LoginController = Ember.Controller.extend({
 	refreshOrdersList: function() {
 
 		clearInterval(self.get('interval_id'));
+		App.chair.all(function(records) {
+						self.set('saved_orders', records);
+					});		
+		if(App.isMobile) {	
 
-		if(App.isMobile) {		
 			var uuid = device.uuid;
+			
 			var hasConnection = App.cordova.checkConnection(false);
 			if(hasConnection) {
 				$.getJSON(VEENDA_FULL_URL + '/orders' , {phone_uuid: uuid}, function(ordersJson, ordersTextStatus) {
-				
+					//console.log('NUKE');
+					//App.chair.nuke();
+					var newList = {};
 					for(var i = 0; i < ordersJson.length; ++i) {
-						$.getJSON(VEENDA_FULL_URL + '/orders/' + ordersJson[i], {client: true}, function(orderJson, orderTextStatus) {
-							
+						newList[ordersJson[i]] = {};
+						var idx = i;
+
+
+						$.ajax({
+							url: VEENDA_FULL_URL + '/orders/' + ordersJson[i],
+							type: 'GET',
+							dataType: 'json',
+							data: {client: true},
+							async: true
+						})
+						.done(function(orderJson) {
 							orderJson = orderJson.order;
 							var toSave = { key : orderJson.id + '', id: orderJson.id, name: orderJson.name,
 							delivered: orderJson.delivered, rest: orderJson.rest, dispatch_time: orderJson.dispatch_time, delivery_id: orderJson.delivery_id, 
 							distance: orderJson.distance, estimated_time: orderJson.estimated_time, type : 'order'};
-							App.chair.save(toSave);				
-							App.chair.all(function(records) {
-								self.set('saved_orders', records);
-							});
-							
+							newList[orderJson[idx]] = toSave;
+							App.chair.save(toSave);	
+							console.log('Saved order with id ' + toSave.id);		
+						})
+						.fail(function(error) {
+							console.log(error);
+						})
+						.always(function() {
 						});
-					}					
+					}	
+
+									
 				})
 				.fail(function(error) {
 					console.log(error);
@@ -42,103 +63,103 @@ App.LoginController = Ember.Controller.extend({
 			}
 
 		}
-		else {
-			App.chair.all(function(records) 
-			{
-				var final = [];
+// 		else {
+// 			App.chair.all(function(records) 
+// 			{
+// 				var final = [];
 
-				if(records.length == 0) {
+// 				if(records.length == 0) {
 
-				}
-				else if(!self.get('saved_orders')) {
-					self.set('saved_orders', records);
-				}
-				else if(self.get('saved_orders').length != records.length) {
-					self.set('saved_orders', records);
-				}			
-				else
-				{				
-					var ajaxArray = [];
-					for(var i = 0; i < records.length; ++i) 
-					{	
-						ajaxArray.push(
-							$.ajax({
-								url: VEENDA_FULL_URL + '/orders/' + records[i].id,
-								type: 'GET',
-								async: true
-							}));				
-					}
+// 				}
+// 				else if(!self.get('saved_orders')) {
+// 					self.set('saved_orders', records);
+// 				}
+// 				else if(self.get('saved_orders').length != records.length) {
+// 					self.set('saved_orders', records);
+// 				}			
+// 				else
+// 				{				
+// 					var ajaxArray = [];
+// 					for(var i = 0; i < records.length; ++i) 
+// 					{	
+// 						ajaxArray.push(
+// 							$.ajax({
+// 								url: VEENDA_FULL_URL + '/orders/' + records[i].id,
+// 								type: 'GET',
+// 								async: true
+// 							}));				
+// 					}
 
-					var defer = $.when.apply($, ajaxArray);
-					defer.done(function(args) {
-						var changed = false, newList = [];
-						if(ajaxArray.length > 1)
-						{
-							$.each(arguments, function(index, responseData) {
-								var data = responseData[0];
+// 					var defer = $.when.apply($, ajaxArray);
+// 					defer.done(function(args) {
+// 						var changed = false, newList = [];
+// 						if(ajaxArray.length > 1)
+// 						{
+// 							$.each(arguments, function(index, responseData) {
+// 								var data = responseData[0];
 
-								var currentOrder, currentDelivered, currentDispatchTime;
-								App.chair.get(data.id, function(lawnOrder) {
-									currentOrder = lawnOrder;
-									currentDelivered = lawnOrder.delivered;
-									currentDispatchTime = lawnOrder.dispatch_time;
-								});
+// 								var currentOrder, currentDelivered, currentDispatchTime;
+// 								App.chair.get(data.id, function(lawnOrder) {
+// 									currentOrder = lawnOrder;
+// 									currentDelivered = lawnOrder.delivered;
+// 									currentDispatchTime = lawnOrder.dispatch_time;
+// 								});
 
-								var delivered = null, dispatchTime = null;
-								if(data.delivery) {
-									delivered = data.delivery.delivered;
-									dispatchTime = data.delivery.dispatch_time;
-								}
+// 								var delivered = null, dispatchTime = null;
+// 								if(data.delivery) {
+// 									delivered = data.delivery.delivered;
+// 									dispatchTime = data.delivery.dispatch_time;
+// 								}
 
-								if(currentDelivered != delivered || currentDispatchTime != dispatchTime) 
-								{
-									currentOrder.delivered = delivered;						
-									currentOrder.dispatch_time = currentDispatchTime;
-									App.chair.save(currentOrder);		
-									changed = true;			
-								}
-								newList.push(currentOrder);
-							});
-						}
-						else if(ajaxArray.length == 1) 
-						{
-							var data = args;
-							var currentOrder, currentDelivered, currentDispatchTime;
-							App.chair.get(data.id, function(lawnOrder) {
-								currentOrder = lawnOrder;
-								currentDelivered = lawnOrder.delivered;
-								currentDispatchTime = lawnOrder.dispatch_time;
-							});
+// 								if(currentDelivered != delivered || currentDispatchTime != dispatchTime) 
+// 								{
+// 									currentOrder.delivered = delivered;						
+// 									currentOrder.dispatch_time = currentDispatchTime;
+// 									App.chair.save(currentOrder);		
+// 									changed = true;			
+// 								}
+// 								newList.push(currentOrder);
+// 							});
+// 						}
+// 						else if(ajaxArray.length == 1) 
+// 						{
+// 							var data = args;
+// 							var currentOrder, currentDelivered, currentDispatchTime;
+// 							App.chair.get(data.id, function(lawnOrder) {
+// 								currentOrder = lawnOrder;
+// 								currentDelivered = lawnOrder.delivered;
+// 								currentDispatchTime = lawnOrder.dispatch_time;
+// 							});
 
-							var delivered = null, dispatchTime = null;
-							if(data.delivery) {
-								delivered = data.delivery.delivered;
-								dispatchTime = data.delivery.dispatch_time;
-							}					
+// 							var delivered = null, dispatchTime = null;
+// 							if(data.delivery) {
+// 								delivered = data.delivery.delivered;
+// 								dispatchTime = data.delivery.dispatch_time;
+// 							}					
 
-							if(currentDelivered != delivered || currentDispatchTime != dispatchTime) 
-							{
-								currentOrder.delivered = delivered;						
-								currentOrder.dispatch_time = currentDispatchTime;
-								App.chair.save(currentOrder);		
-								changed = true;			
-							}
-							newList.push(currentOrder);
-						}
-						if(self.get('saved_orders').length != newList.length) {
-							changed = true;
-						}
-						if(changed) {
-							self.set('saved_orders', newList);
-						}		
+// 							if(currentDelivered != delivered || currentDispatchTime != dispatchTime) 
+// 							{
+// 								currentOrder.delivered = delivered;						
+// 								currentOrder.dispatch_time = currentDispatchTime;
+// 								App.chair.save(currentOrder);		
+// 								changed = true;			
+// 							}
+// 							newList.push(currentOrder);
+// 						}
+// 						if(self.get('saved_orders').length != newList.length) {
+// 							changed = true;
+// 						}
+// 						if(changed) {
+// 							self.set('saved_orders', newList);
+// 						}		
 
-					});
-}
+// 					});
+// }
 
-});
-}
+// });
+// }
 
-var interval_id = setInterval(self.refreshOrdersList, 5000);
+var interval_id = setInterval(self.refreshOrdersList, 8000);
 self.set('interval_id', interval_id);
 fixHeights();
 
@@ -184,11 +205,10 @@ actions: {
 				data: { token : token, client : { phone_uuid: device.uuid, token: null} }
 			})
 			.done(function(obj) {
-				console.log("success!!");
-				console.log(obj);
+				alert('Felicitaciones, su equipo está pareado');
 			})
 			.fail(function() {
-				console.log("error");
+				alert('No se pudo concretar el pareo, por favor revise su código');
 			})
 			.always(function() {
 				console.log("complete");
